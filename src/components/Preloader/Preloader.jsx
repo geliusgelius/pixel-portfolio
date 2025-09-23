@@ -1,7 +1,10 @@
 import React from "react";
+import { useLanguage } from "../../context/LanguageContext";
 import "./Preloader.css";
 
 const Preloader = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="preloader">
       <div className="crt-effect">
@@ -23,9 +26,9 @@ const Preloader = () => {
                   </div>
                 </div>
                 <div className="boot-text">
-                  <p>Initializing portfolio system...</p>
-                  <p>Loading pixel graphics...</p>
-                  <p>★ Ready to code ★</p>
+                  <p>{t("initializing")}</p>
+                  <p>{t("loadingGraphics")}</p>
+                  <p>{t("ready")}</p>
                 </div>
               </div>
             </div>

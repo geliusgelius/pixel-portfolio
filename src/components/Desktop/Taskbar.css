@@ -82,3 +82,13 @@
   font-size: 0.8rem;
   color: #333;
 }
+.language-indicator {
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.system-tray {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

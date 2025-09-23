@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import { useLanguage } from "../../context/LanguageContext";
 import Taskbar from "./Taskbar";
 import Window from "./Window";
+import StartMenu from "./StartMenu";
+import EasterEgg from "./EasterEgg";
 import "./Desktop.css";
 
 const Desktop = () => {
+  const { t } = useLanguage();
   const [windows, setWindows] = useState([]);
   const [activeWindow, setActiveWindow] = useState(null);
+  const [showStartMenu, setShowStartMenu] = useState(false);
+  const [showEasterEgg, setShowEasterEgg] = useState(false);
 
   const openWindow = (title, icon, content) => {
     const id = Date.now().toString();
@@ -21,6 +27,7 @@ const Desktop = () => {
 
     setWindows((prev) => [...prev, newWindow]);
     setActiveWindow(id);
+    setShowStartMenu(false);
   };
 
   const closeWindow = (id) => {
@@ -50,10 +57,12 @@ const Desktop = () => {
       )
     );
     setActiveWindow(id);
+    setShowStartMenu(false);
   };
 
   const bringToFront = (id) => {
     setActiveWindow(id);
+    setShowStartMenu(false);
   };
 
   const updateWindowPosition = (id, position) => {
@@ -64,8 +73,17 @@ const Desktop = () => {
     );
   };
 
+  const toggleStartMenu = () => {
+    setShowStartMenu((prev) => !prev);
+  };
+
+  const activateEasterEgg = () => {
+    setShowEasterEgg(true);
+    setTimeout(() => setShowEasterEgg(false), 5000);
+  };
+
   return (
-    <div className="desktop">
+    <div className="desktop" onClick={() => setShowStartMenu(false)}>
       <div className="crt-effect">
         <div className="scanlines"></div>
         <div className="desktop-background">
@@ -73,36 +91,42 @@ const Desktop = () => {
           <div className="desktop-icons">
             <div
               className="desktop-icon"
-              onClick={() => openWindow("About Me", "👤", <AboutMeContent />)}
+              onClick={() =>
+                openWindow(t("aboutMeTitle"), "👤", <AboutMeContent />)
+              }
             >
               <div className="icon">👤</div>
-              <span>About Me</span>
-            </div>
-
-            <div
-              className="desktop-icon"
-              onClick={() => openWindow("Skills", "⚡", <SkillsContent />)}
-            >
-              <div className="icon">⚡</div>
-              <span>Skills</span>
+              <span>{t("aboutMe")}</span>
             </div>
 
             <div
               className="desktop-icon"
               onClick={() =>
-                openWindow("Portfolio", "💼", <PortfolioContent />)
+                openWindow(t("skillsTitle"), "⚡", <SkillsContent />)
               }
             >
-              <div className="icon">💼</div>
-              <span>Portfolio</span>
+              <div className="icon">⚡</div>
+              <span>{t("skills")}</span>
             </div>
 
             <div
               className="desktop-icon"
-              onClick={() => openWindow("Contact", "📧", <ContactContent />)}
+              onClick={() =>
+                openWindow(t("portfolioTitle"), "💼", <PortfolioContent />)
+              }
+            >
+              <div className="icon">💼</div>
+              <span>{t("portfolio")}</span>
+            </div>
+
+            <div
+              className="desktop-icon"
+              onClick={() =>
+                openWindow(t("contactTitle"), "📧", <ContactContent />)
+              }
             >
               <div className="icon">📧</div>
-              <span>Contact</span>
+              <span>{t("contact")}</span>
             </div>
           </div>
         </div>
@@ -126,73 +150,93 @@ const Desktop = () => {
         windows={windows}
         activeWindow={activeWindow}
         onRestoreWindow={restoreWindow}
+        onStartClick={toggleStartMenu}
+        onEasterEgg={activateEasterEgg}
       />
+
+      {showStartMenu && (
+        <StartMenu
+          onOpenWindow={openWindow}
+          onClose={() => setShowStartMenu(false)}
+        />
+      )}
+
+      {showEasterEgg && <EasterEgg />}
     </div>
   );
 };
 
-const AboutMeContent = () => (
-  <div className="window-content">
-    <div className="pixel-avatar">👩‍💻</div>
-    <h3>Angelina Smirnova</h3>
-    <p>Frontend Developer</p>
-    <div className="pixel-divider"></div>
-    <p>
-      Welcome to my pixel portfolio! I create amazing web experiences with
-      modern technologies.
-    </p>
-  </div>
-);
+const AboutMeContent = () => {
+  const { t } = useLanguage();
+  return (
+    <div className="window-content">
+      <div className="pixel-avatar">👩‍💻</div>
+      <h3>{t("name")}</h3>
+      <p>{t("profession")}</p>
+      <div className="pixel-divider"></div>
+      <p>{t("welcome")}</p>
+    </div>
+  );
+};
 
-const SkillsContent = () => (
-  <div className="window-content">
-    <h3>Technical Skills</h3>
-    <div className="skills-grid">
-      <div className="skill-item">
-        <span className="skill-icon">⚡</span>
-        <span>React</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">🎨</span>
-        <span>TypeScript</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">✨</span>
-        <span>CSS3</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">🚀</span>
-        <span>Vite</span>
+const SkillsContent = () => {
+  const { t } = useLanguage();
+  return (
+    <div className="window-content">
+      <h3>{t("technicalSkills")}</h3>
+      <div className="skills-grid">
+        <div className="skill-item">
+          <span className="skill-icon">⚡</span>
+          <span>React</span>
+        </div>
+        <div className="skill-item">
+          <span className="skill-icon">🎨</span>
+          <span>TypeScript</span>
+        </div>
+        <div className="skill-item">
+          <span className="skill-icon">✨</span>
+          <span>CSS3</span>
+        </div>
+        <div className="skill-item">
+          <span className="skill-icon">🚀</span>
+          <span>Vite</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
-const PortfolioContent = () => (
-  <div className="window-content">
-    <h3>My Projects</h3>
-    <div className="projects-list">
-      <div className="project-item pixel-border">
-        <h4>Pixel Art Generator</h4>
-        <p>React + TypeScript</p>
-      </div>
-      <div className="project-item pixel-border">
-        <h4>Retro Game</h4>
-        <p>HTML5 Canvas</p>
+const PortfolioContent = () => {
+  const { t } = useLanguage();
+  return (
+    <div className="window-content">
+      <h3>{t("myProjects")}</h3>
+      <div className="projects-list">
+        <div className="project-item pixel-border">
+          <h4>{t("pixelArtGenerator")}</h4>
+          <p>React + TypeScript</p>
+        </div>
+        <div className="project-item pixel-border">
+          <h4>{t("retroGame")}</h4>
+          <p>HTML5 Canvas</p>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
-const ContactContent = () => (
-  <div className="window-content">
-    <h3>Get In Touch</h3>
-    <div className="contact-info">
-      <p>📧 email@example.com</p>
-      <p>📱 +1234567890</p>
-      <p>💼 GitHub: angelina-dev</p>
+const ContactContent = () => {
+  const { t } = useLanguage();
+  return (
+    <div className="window-content">
+      <h3>{t("getInTouch")}</h3>
+      <div className="contact-info">
+        <p>📧 {t("email")}</p>
+        <p>📱 {t("phone")}</p>
+        <p>💼 {t("github")}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Desktop;
