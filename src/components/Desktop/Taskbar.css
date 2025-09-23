@@ -1,0 +1,84 @@
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(45deg, #ff1493, #ff69b4);
+  border-top: 4px solid #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 10px;
+  z-index: 10000;
+}
+
+.start-button {
+  background: #ffb6c1;
+  padding: 8px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.start-button:hover {
+  background: #ff69b4;
+  color: white;
+}
+
+.start-icon {
+  font-size: 1.2rem;
+}
+
+.taskbar-items {
+  display: flex;
+  gap: 5px;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.taskbar-item {
+  background: #ffb6c1;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  min-width: 120px;
+}
+
+.taskbar-item:hover {
+  background: #ff69b4;
+  color: white;
+}
+
+.taskbar-item.active {
+  background: #fff;
+  border-color: #ff1493 #fff #fff #ff1493;
+}
+
+.taskbar-icon {
+  font-size: 0.9rem;
+}
+
+.taskbar-title {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.system-tray {
+  background: #ffb6c1;
+  padding: 8px 12px;
+}
+
+.tray-time {
+  font-size: 0.8rem;
+  color: #333;
+}

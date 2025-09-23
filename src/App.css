@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Press Start 2P", cursive, monospace;
+  background: #ff69b4;
+  overflow: hidden;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.pixel-border {
+  border-style: solid;
+  border-width: 4px;
+  border-color: #ffb6c1 #ff1493 #ff1493 #ffb6c1;
+  box-shadow: inset 2px 2px 0px #fff, inset -2px -2px 0px #ff1493;
+}
+
+.pixel-border-inset {
+  border-style: solid;
+  border-width: 4px;
+  border-color: #ff1493 #ffb6c1 #ffb6c1 #ff1493;
+  box-shadow: inset -2px -2px 0px #fff, inset 2px 2px 0px #ff1493;
+}

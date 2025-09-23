@@ -1,0 +1,78 @@
+.window {
+  position: absolute;
+  background: #ffb6c1;
+  border: 4px solid;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2), inset 2px 2px 0px #fff,
+    inset -2px -2px 0px #ff1493;
+  min-width: 300px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.window.active {
+  border-color: #ff69b4 #fff #fff #ff69b4;
+}
+
+.window-header {
+  background: linear-gradient(45deg, #ff1493, #ff69b4);
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  user-select: none;
+  border-bottom: 2px solid #fff;
+}
+
+.window-title {
+  color: white;
+  text-shadow: 1px 1px 0px #db7093;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.window-icon {
+  font-size: 1rem;
+}
+
+.window-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.control-btn {
+  width: 20px;
+  height: 20px;
+  border: 2px solid;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  background: #ffb6c1;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.control-btn:hover {
+  background: #ff69b4;
+  color: white;
+}
+
+.control-btn.close:hover {
+  background: #ff0000;
+}
+
+.window-body {
+  flex: 1;
+  padding: 0;
+  overflow: auto;
+  background: #fff;
+  border: 2px solid #ffb6c1;
+  margin: 2px;
+}

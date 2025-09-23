@@ -1,0 +1,159 @@
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-effect {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 51%
+  );
+  background-size: 100% 4px;
+  animation: scanline 0.8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.desktop-background {
+  width: 100%;
+  height: calc(100% - 60px);
+  background: linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093);
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+}
+
+.desktop-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 10px;
+}
+
+.desktop-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px dotted #fff;
+}
+
+.desktop-icon .icon {
+  font-size: 2rem;
+  margin-bottom: 5px;
+  filter: drop-shadow(2px 2px 0px #ff1493);
+}
+
+.desktop-icon span {
+  color: white;
+  text-shadow: 2px 2px 0px #ff1493;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.window-content {
+  padding: 20px;
+  color: #333;
+  height: 100%;
+}
+
+.window-content h3 {
+  color: #ff1493;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 0px #fff;
+}
+
+.pixel-avatar {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.pixel-divider {
+  height: 4px;
+  background: #ff1493;
+  margin: 15px 0;
+  border: 2px solid #fff;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #ffb6c1;
+  border: 2px solid #ff1493;
+}
+
+.skill-icon {
+  font-size: 1.2rem;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.project-item {
+  padding: 15px;
+  background: #ffb6c1;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.project-item:hover {
+  background: #ff69b4;
+  color: white;
+}
+
+.contact-info p {
+  margin: 10px 0;
+  padding: 5px;
+  background: #ffb6c1;
+  border: 2px solid #ff1493;
+}
