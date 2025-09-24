@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
 import "./EasterEgg.css";
 
 const EasterEgg = () => {
+  const { t } = useLanguage();
+
   return (
     <motion.div
       className="easter-egg"
@@ -12,10 +15,9 @@ const EasterEgg = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="easter-egg-content">
-        <div className="easter-egg-title">🎉 Пасхалка найдена! 🎉</div>
+        <div className="easter-egg-title">{t("secretFound")}</div>
         <div className="easter-egg-message">
-          <p>Ты нашел секретную функцию!</p>
-          <p>Ангелина - лучший фронтенд разработчик! 💖</p>
+          <p>{t("secretMessage")}</p>
           <div className="pixel-cat">(=^･ω･^=)</div>
         </div>
         <div className="easter-egg-animation">
@@ -25,7 +27,6 @@ const EasterEgg = () => {
               className="floating-heart"
               style={{
                 left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
               }}
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: -100, opacity: 1 }}

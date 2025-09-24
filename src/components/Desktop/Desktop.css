@@ -157,3 +157,30 @@
   background: #ffb6c1;
   border: 2px solid #ff1493;
 }
+
+.restart-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #00ff00;
+  font-family: "Press Start 2P", monospace;
+}
+
+.restart-text {
+  font-size: 1.5rem;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}

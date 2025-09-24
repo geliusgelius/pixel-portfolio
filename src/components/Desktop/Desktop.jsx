@@ -4,6 +4,7 @@ import Taskbar from "./Taskbar";
 import Window from "./Window";
 import StartMenu from "./StartMenu";
 import EasterEgg from "./EasterEgg";
+import ShutdownScreen from "./ShutdownScreen";
 import "./Desktop.css";
 
 const Desktop = () => {
@@ -12,6 +13,8 @@ const Desktop = () => {
   const [activeWindow, setActiveWindow] = useState(null);
   const [showStartMenu, setShowStartMenu] = useState(false);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const [showShutdown, setShowShutdown] = useState(false);
+  const [isRestarting, setIsRestarting] = useState(false);
 
   const openWindow = (title, icon, content) => {
     const id = Date.now().toString();
@@ -81,6 +84,36 @@ const Desktop = () => {
     setShowEasterEgg(true);
     setTimeout(() => setShowEasterEgg(false), 5000);
   };
+
+  const handleShutdown = () => {
+    setShowShutdown(true);
+    setShowStartMenu(false);
+  };
+
+  const handleRestart = () => {
+    setIsRestarting(true);
+    setTimeout(() => {
+      setShowShutdown(false);
+      setIsRestarting(false);
+      setWindows([]);
+      setActiveWindow(null);
+
+      // Имитация перезагрузки - показываем прелоадер на секунду
+      setTimeout(() => {
+        // Автоматически открываем окно "О себе" после перезагрузки
+        openWindow(t("aboutMeTitle"), "👤", <AboutMeContent />);
+      }, 1000);
+    }, 1000);
+  };
+
+  // Если идет перезагрузка, показываем черный экран
+  if (isRestarting) {
+    return (
+      <div className="restart-screen">
+        <div className="restart-text">{t("restart")}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="desktop" onClick={() => setShowStartMenu(false)}>
@@ -158,10 +191,13 @@ const Desktop = () => {
         <StartMenu
           onOpenWindow={openWindow}
           onClose={() => setShowStartMenu(false)}
+          onShutdown={handleShutdown}
         />
       )}
 
       {showEasterEgg && <EasterEgg />}
+
+      {showShutdown && <ShutdownScreen onRestart={handleRestart} />}
     </div>
   );
 };

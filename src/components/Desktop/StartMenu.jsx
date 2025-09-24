@@ -3,12 +3,17 @@ import { useLanguage } from "../../context/LanguageContext";
 import { languageNames } from "../../utils/translations";
 import "./StartMenu.css";
 
-const StartMenu = ({ onOpenWindow, onClose }) => {
+const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
   const { t, currentLanguage, switchLanguage } = useLanguage();
 
   const handleLanguageChange = (lang) => {
     switchLanguage(lang);
     onClose();
+  };
+
+  const handleShutdown = () => {
+    onClose();
+    onShutdown();
   };
 
   const menuItems = [
@@ -19,14 +24,18 @@ const StartMenu = ({ onOpenWindow, onClose }) => {
         onOpenWindow(
           t("aboutMeTitle"),
           "👤",
-          <div>{t("aboutMe")} content</div>
+          <div>Content for {t("aboutMeTitle")}</div>
         ),
     },
     {
       icon: "⚡",
       title: t("skillsTitle"),
       action: () =>
-        onOpenWindow(t("skillsTitle"), "⚡", <div>{t("skills")} content</div>),
+        onOpenWindow(
+          t("skillsTitle"),
+          "⚡",
+          <div>Content for {t("skillsTitle")}</div>
+        ),
     },
     {
       icon: "💼",
@@ -35,7 +44,7 @@ const StartMenu = ({ onOpenWindow, onClose }) => {
         onOpenWindow(
           t("portfolioTitle"),
           "💼",
-          <div>{t("portfolio")} content</div>
+          <div>Content for {t("portfolioTitle")}</div>
         ),
     },
     {
@@ -45,7 +54,7 @@ const StartMenu = ({ onOpenWindow, onClose }) => {
         onOpenWindow(
           t("contactTitle"),
           "📧",
-          <div>{t("contact")} content</div>
+          <div>Content for {t("contactTitle")}</div>
         ),
     },
   ];
@@ -54,7 +63,7 @@ const StartMenu = ({ onOpenWindow, onClose }) => {
     <div className="start-menu" onClick={(e) => e.stopPropagation()}>
       <div className="start-menu-header">
         <span className="start-menu-title">Angelina OS</span>
-        <span className="start-menu-version">v1.0</span>
+        <span className="start-menu-version">v2.0</span>
       </div>
 
       <div className="start-menu-items">
@@ -86,7 +95,9 @@ const StartMenu = ({ onOpenWindow, onClose }) => {
         </div>
 
         <div className="start-menu-shutdown">
-          <button className="shutdown-btn">🚪 Выход</button>
+          <button className="shutdown-btn" onClick={handleShutdown}>
+            {t("shutdown")}
+          </button>
         </div>
       </div>
     </div>

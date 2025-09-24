@@ -40,6 +40,22 @@ export const translations = {
     // Taskbar
     start: "Пуск",
     time: "00:00",
+
+    // Shutdown screen
+    shutdownSaving: "Сохранение ваших данных...",
+    shutdownClosing: "Завершение работы программ...",
+    shutdownWindows: "Завершение работы Windows...",
+    shutdownOff: "Выключение компьютера",
+    shutdownHint: "Не выключайте компьютер до завершения процесса",
+    shutdownSafe: "Теперь компьютер можно выключить",
+    restart: "Перезагрузка...",
+
+    // Start menu
+    shutdown: "🚪 Выключение",
+
+    // Easter egg
+    secretFound: "🎉 Секретная функция активирована!",
+    secretMessage: "Ангелина - суперзвезда фронтенд разработки! 💫",
   },
   en: {
     // Preloader
@@ -82,6 +98,22 @@ export const translations = {
     // Taskbar
     start: "Start",
     time: "00:00",
+
+    // Shutdown screen
+    shutdownSaving: "Saving your data...",
+    shutdownClosing: "Closing programs...",
+    shutdownWindows: "Shutting down Windows...",
+    shutdownOff: "Turning off your computer",
+    shutdownHint: "Do not turn off your computer until the process is complete",
+    shutdownSafe: "It's now safe to turn off your computer",
+    restart: "Restarting...",
+
+    // Start menu
+    shutdown: "🚪 Shutdown",
+
+    // Easter egg
+    secretFound: "🎉 Secret feature activated!",
+    secretMessage: "Angelina is a frontend development superstar! 💫",
   },
 };
 
