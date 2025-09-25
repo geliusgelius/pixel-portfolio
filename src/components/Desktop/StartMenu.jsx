@@ -16,48 +16,49 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
     onShutdown();
   };
 
+  // Передаем компоненты вместо готового JSX
   const menuItems = [
     {
       icon: "👤",
       title: t("aboutMeTitle"),
-      action: () =>
-        onOpenWindow(
-          t("aboutMeTitle"),
-          "👤",
-          <div>Content for {t("aboutMeTitle")}</div>
-        ),
+      action: () => onOpenWindow(t("aboutMeTitle"), "👤", AboutMeContent),
     },
     {
       icon: "⚡",
       title: t("skillsTitle"),
-      action: () =>
-        onOpenWindow(
-          t("skillsTitle"),
-          "⚡",
-          <div>Content for {t("skillsTitle")}</div>
-        ),
+      action: () => onOpenWindow(t("skillsTitle"), "⚡", SkillsContent),
     },
     {
       icon: "💼",
       title: t("portfolioTitle"),
-      action: () =>
-        onOpenWindow(
-          t("portfolioTitle"),
-          "💼",
-          <div>Content for {t("portfolioTitle")}</div>
-        ),
+      action: () => onOpenWindow(t("portfolioTitle"), "💼", PortfolioContent),
     },
     {
       icon: "📧",
       title: t("contactTitle"),
-      action: () =>
-        onOpenWindow(
-          t("contactTitle"),
-          "📧",
-          <div>Content for {t("contactTitle")}</div>
-        ),
+      action: () => onOpenWindow(t("contactTitle"), "📧", ContactContent),
     },
   ];
+
+  const AboutMeContent = () => {
+    const { t } = useLanguage();
+    return <div>About Me Content</div>;
+  };
+
+  const SkillsContent = () => {
+    const { t } = useLanguage();
+    return <div>Skills Content</div>;
+  };
+
+  const PortfolioContent = () => {
+    const { t } = useLanguage();
+    return <div>Portfolio Content</div>;
+  };
+
+  const ContactContent = () => {
+    const { t } = useLanguage();
+    return <div>Contact Content</div>;
+  };
 
   return (
     <div className="start-menu" onClick={(e) => e.stopPropagation()}>
@@ -83,13 +84,13 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
               className={`lang-btn ${currentLanguage === "ru" ? "active" : ""}`}
               onClick={() => handleLanguageChange("ru")}
             >
-              🇷🇺 Русский
+              Русский
             </button>
             <button
               className={`lang-btn ${currentLanguage === "en" ? "active" : ""}`}
               onClick={() => handleLanguageChange("en")}
             >
-              🇺🇸 English
+              English
             </button>
           </div>
         </div>

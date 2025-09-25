@@ -49,6 +49,11 @@
 .shutdown-content {
   text-align: center;
   z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
 }
 
 .shutdown-step {
@@ -56,38 +61,27 @@
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  width: 100%;
 }
 
-.windows-logo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+.angelina-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
   margin-bottom: 20px;
 }
 
-.pixel-window {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  animation: pulse 2s infinite;
+.logo-icon {
+  font-size: 4rem;
+  animation: bounce 2s infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
 }
 
-.pixel-window:nth-child(1) {
-  animation-delay: 0s;
-}
-.pixel-window:nth-child(2) {
-  animation-delay: 0.5s;
-}
-.pixel-window:nth-child(3) {
-  animation-delay: 1s;
-}
-.pixel-window:nth-child(4) {
-  animation-delay: 1.5s;
+.logo-text {
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  color: #ffb6c1;
 }
 
 .shutdown-text {
@@ -97,11 +91,12 @@
 }
 
 .shutdown-progress {
-  width: 300px;
+  width: 400px;
   height: 20px;
   background: rgba(0, 0, 0, 0.5);
   border: 2px solid #fff;
   position: relative;
+  max-width: 80%;
 }
 
 .progress-bar {
@@ -144,7 +139,8 @@
 .blinking-cursor {
   position: absolute;
   bottom: 50px;
-  right: 50px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 2rem;
   animation: blink 1s infinite;
   opacity: 0.5;
@@ -169,15 +165,13 @@
   }
 }
 
-@keyframes pulse {
+@keyframes bounce {
   0%,
   100% {
-    transform: scale(1);
-    opacity: 1;
+    transform: translateY(0);
   }
   50% {
-    transform: scale(1.1);
-    opacity: 0.8;
+    transform: translateY(-10px);
   }
 }
 
@@ -221,12 +215,14 @@
   }
 
   .shutdown-progress {
-    width: 250px;
+    width: 300px;
   }
 
-  .pixel-window {
-    width: 30px;
-    height: 30px;
-    font-size: 1rem;
+  .logo-icon {
+    font-size: 3rem;
+  }
+
+  .logo-text {
+    font-size: 1.2rem;
   }
 }

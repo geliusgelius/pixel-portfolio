@@ -44,7 +44,7 @@ export const translations = {
     // Shutdown screen
     shutdownSaving: "Сохранение ваших данных...",
     shutdownClosing: "Завершение работы программ...",
-    shutdownWindows: "Завершение работы Windows...",
+    shutdownWindows: "Завершение работы Angelina OS...",
     shutdownOff: "Выключение компьютера",
     shutdownHint: "Не выключайте компьютер до завершения процесса",
     shutdownSafe: "Теперь компьютер можно выключить",
@@ -102,7 +102,7 @@ export const translations = {
     // Shutdown screen
     shutdownSaving: "Saving your data...",
     shutdownClosing: "Closing programs...",
-    shutdownWindows: "Shutting down Windows...",
+    shutdownWindows: "Shutting down Angelina OS...",
     shutdownOff: "Turning off your computer",
     shutdownHint: "Do not turn off your computer until the process is complete",
     shutdownSafe: "It's now safe to turn off your computer",

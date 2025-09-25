@@ -9,11 +9,38 @@ const Window = ({
   onMinimize,
   onBringToFront,
   onPositionChange,
+  currentLanguage,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 
-  if (windowData.isMinimized) return null;
+  // Добавляем ключ для принудительного перерисовывания контента при смене языка
+  const contentKey = `${windowData.id}-${currentLanguage}`;
+
+  useEffect(() => {
+    if (isDragging) {
+      const handleMouseMove = (e) => {
+        if (!isDragging) return;
+
+        onPositionChange({
+          x: e.clientX - dragOffset.x,
+          y: e.clientY - dragOffset.y,
+        });
+      };
+
+      const handleMouseUp = () => {
+        setIsDragging(false);
+      };
+
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+
+      return () => {
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+      };
+    }
+  }, [isDragging, dragOffset, onPositionChange]);
 
   const handleMouseDown = (e) => {
     if (!isActive) onBringToFront();
@@ -25,30 +52,12 @@ const Window = ({
     });
   };
 
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
+  if (windowData.isMinimized) {
+    return null;
+  }
 
-    onPositionChange({
-      x: e.clientX - dragOffset.x,
-      y: e.clientY - dragOffset.y,
-    });
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  useEffect(() => {
-    if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-
-      return () => {
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
-      };
-    }
-  }, [isDragging, dragOffset]);
+  // Создаем компонент контента динамически
+  const WindowContent = windowData.ContentComponent;
 
   return (
     <motion.div
@@ -79,7 +88,10 @@ const Window = ({
         </div>
       </div>
 
-      <div className="window-body">{windowData.content}</div>
+      <div className="window-body">
+        <WindowContent key={contentKey} />{" "}
+        {/* Ключ заставляет перерисовываться при смене языка */}
+      </div>
     </motion.div>
   );
 };

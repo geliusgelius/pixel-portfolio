@@ -9,10 +9,11 @@ const Taskbar = ({
   onStartClick,
   onEasterEgg,
 }) => {
-  const { t, currentLanguage } = useLanguage();
+  const { t, currentLanguage, switchLanguage } = useLanguage();
   const [currentTime, setCurrentTime] = useState("00:00");
   const [clickCount, setClickCount] = useState(0);
   const [lastClickTime, setLastClickTime] = useState(0);
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -50,6 +51,16 @@ const Taskbar = ({
     }
   };
 
+  const handleLanguageClick = (e) => {
+    e.stopPropagation();
+    setShowLanguageMenu((prev) => !prev);
+  };
+
+  const handleLanguageChange = (lang) => {
+    switchLanguage(lang);
+    setShowLanguageMenu(false);
+  };
+
   return (
     <div className="taskbar">
       <div className="start-button pixel-border" onClick={handleStartClick}>
@@ -73,9 +84,33 @@ const Taskbar = ({
       </div>
 
       <div className="system-tray pixel-border-inset">
-        <div className="language-indicator">
-          {currentLanguage === "ru" ? "🇷🇺" : "🇺🇸"}
+        <div className="language-selector">
+          <div className="language-button" onClick={handleLanguageClick}>
+            {currentLanguage === "ru" ? "🇷🇺 RU" : "🇺🇸 EN"}
+          </div>
+
+          {showLanguageMenu && (
+            <div className="language-menu">
+              <div
+                className={`language-option ${
+                  currentLanguage === "ru" ? "active" : ""
+                }`}
+                onClick={() => handleLanguageChange("ru")}
+              >
+                RU
+              </div>
+              <div
+                className={`language-option ${
+                  currentLanguage === "en" ? "active" : ""
+                }`}
+                onClick={() => handleLanguageChange("en")}
+              >
+                EN
+              </div>
+            </div>
+          )}
         </div>
+
         <div className="tray-time">{currentTime}</div>
       </div>
     </div>

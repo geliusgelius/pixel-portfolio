@@ -82,11 +82,10 @@ const ShutdownScreen = ({ onRestart }) => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="windows-logo">
-                <div className="pixel-window">□</div>
-                <div className="pixel-window">□</div>
-                <div className="pixel-window">□</div>
-                <div className="pixel-window">□</div>
+              {/* личный логотип вместо Windows */}
+              <div className="angelina-logo">
+                <div className="logo-icon">👩‍💻</div>
+                <div className="logo-text">Angelina OS</div>
               </div>
 
               <div className="shutdown-text">{steps[currentStep].text}</div>
@@ -117,7 +116,7 @@ const ShutdownScreen = ({ onRestart }) => {
         </AnimatePresence>
       </div>
 
-      {/* Мигающий курсор */}
+      {/* Мигающий курсор по центру внизу */}
       <div className="blinking-cursor">_</div>
     </motion.div>
   );

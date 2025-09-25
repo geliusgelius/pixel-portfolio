@@ -22,6 +22,9 @@
   gap: 8px;
   font-weight: bold;
   color: #333;
+  border: 2px solid;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  min-width: 80px;
 }
 
 .start-button:hover {
@@ -50,6 +53,7 @@
   border: 2px solid;
   border-color: #fff #ff1493 #ff1493 #fff;
   min-width: 120px;
+  transition: all 0.2s;
 }
 
 .taskbar-item:hover {
@@ -76,19 +80,112 @@
 .system-tray {
   background: #ffb6c1;
   padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  height: 100%;
+}
+
+.language-selector {
+  position: relative;
+}
+
+.language-button {
+  padding: 6px 10px;
+  background: #ff69b4;
+  border: 2px solid #ff1493;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: white;
+  text-shadow: 1px 1px 0px #ff1493;
+  transition: all 0.2s;
+  min-width: 60px;
+  text-align: center;
+  margin-top: 13px;
+}
+
+.language-button:hover {
+  background: #ff1493;
+  transform: scale(1.05);
+}
+
+.language-menu {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  background: linear-gradient(45deg, #ff69b4, #ff1493);
+  border: 3px solid;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 10001;
+  min-width: 120px;
+}
+
+.language-option {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.8rem;
+  text-shadow: 1px 1px 0px #ff1493;
+  transition: all 0.2s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.language-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.language-option.active {
+  background: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+}
+
+.language-option:last-child {
+  border-bottom: none;
 }
 
 .tray-time {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #333;
-}
-.language-indicator {
-  margin-right: 10px;
-  font-size: 1rem;
+  text-shadow: 1px 1px 0px #fff;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #ff1493;
+  min-width: 80px;
+  text-align: center;
 }
 
-.system-tray {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* Адаптивность */
+@media (max-width: 768px) {
+  .taskbar {
+    padding: 0 5px;
+    gap: 5px;
+  }
+
+  .start-button {
+    padding: 6px 10px;
+    min-width: 60px;
+    font-size: 0.8rem;
+  }
+
+  .taskbar-item {
+    min-width: 100px;
+    padding: 6px 8px;
+  }
+
+  .system-tray {
+    gap: 8px;
+    padding: 6px 8px;
+  }
+
+  .language-button {
+    min-width: 50px;
+    font-size: 0.7rem;
+  }
+
+  .tray-time {
+    min-width: 60px;
+    font-size: 0.7rem;
+  }
 }

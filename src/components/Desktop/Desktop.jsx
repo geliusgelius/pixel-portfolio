@@ -8,7 +8,7 @@ import ShutdownScreen from "./ShutdownScreen";
 import "./Desktop.css";
 
 const Desktop = () => {
-  const { t } = useLanguage();
+  const { t, currentLanguage } = useLanguage(); // Добавляем currentLanguage
   const [windows, setWindows] = useState([]);
   const [activeWindow, setActiveWindow] = useState(null);
   const [showStartMenu, setShowStartMenu] = useState(false);
@@ -16,13 +16,13 @@ const Desktop = () => {
   const [showShutdown, setShowShutdown] = useState(false);
   const [isRestarting, setIsRestarting] = useState(false);
 
-  const openWindow = (title, icon, content) => {
+  const openWindow = (title, icon, ContentComponent) => {
     const id = Date.now().toString();
     const newWindow = {
       id,
       title,
       icon,
-      content,
+      ContentComponent, // Сохраняем компонент вместо готового JSX
       position: { x: 50 + windows.length * 30, y: 50 + windows.length * 30 },
       size: { width: 600, height: 400 },
       isMinimized: false,
@@ -98,15 +98,39 @@ const Desktop = () => {
       setWindows([]);
       setActiveWindow(null);
 
-      // Имитация перезагрузки - показываем прелоадер на секунду
       setTimeout(() => {
-        // Автоматически открываем окно "О себе" после перезагрузки
-        openWindow(t("aboutMeTitle"), "👤", <AboutMeContent />);
+        openWindow(t("aboutMeTitle"), "👤", AboutMeContent);
       }, 1000);
     }, 1000);
   };
 
-  // Если идет перезагрузка, показываем черный экран
+  // Обновляем заголовки окон при смене языка
+  const updateWindowTitles = () => {
+    setWindows((prev) =>
+      prev.map((window) => {
+        let newTitle = window.title;
+
+        // Обновляем заголовки на основе типа контента
+        if (window.ContentComponent === AboutMeContent) {
+          newTitle = t("aboutMeTitle");
+        } else if (window.ContentComponent === SkillsContent) {
+          newTitle = t("skillsTitle");
+        } else if (window.ContentComponent === PortfolioContent) {
+          newTitle = t("portfolioTitle");
+        } else if (window.ContentComponent === ContactContent) {
+          newTitle = t("contactTitle");
+        }
+
+        return { ...window, title: newTitle };
+      })
+    );
+  };
+
+  // Вызываем обновление заголовков при смене языка
+  React.useEffect(() => {
+    updateWindowTitles();
+  }, [currentLanguage]);
+
   if (isRestarting) {
     return (
       <div className="restart-screen">
@@ -125,7 +149,7 @@ const Desktop = () => {
             <div
               className="desktop-icon"
               onClick={() =>
-                openWindow(t("aboutMeTitle"), "👤", <AboutMeContent />)
+                openWindow(t("aboutMeTitle"), "👤", AboutMeContent)
               }
             >
               <div className="icon">👤</div>
@@ -134,9 +158,7 @@ const Desktop = () => {
 
             <div
               className="desktop-icon"
-              onClick={() =>
-                openWindow(t("skillsTitle"), "⚡", <SkillsContent />)
-              }
+              onClick={() => openWindow(t("skillsTitle"), "⚡", SkillsContent)}
             >
               <div className="icon">⚡</div>
               <span>{t("skills")}</span>
@@ -145,7 +167,7 @@ const Desktop = () => {
             <div
               className="desktop-icon"
               onClick={() =>
-                openWindow(t("portfolioTitle"), "💼", <PortfolioContent />)
+                openWindow(t("portfolioTitle"), "💼", PortfolioContent)
               }
             >
               <div className="icon">💼</div>
@@ -155,7 +177,7 @@ const Desktop = () => {
             <div
               className="desktop-icon"
               onClick={() =>
-                openWindow(t("contactTitle"), "📧", <ContactContent />)
+                openWindow(t("contactTitle"), "📧", ContactContent)
               }
             >
               <div className="icon">📧</div>
@@ -176,6 +198,7 @@ const Desktop = () => {
           onPositionChange={(position) =>
             updateWindowPosition(window.id, position)
           }
+          currentLanguage={currentLanguage} // Передаем текущий язык
         />
       ))}
 
@@ -202,6 +225,7 @@ const Desktop = () => {
   );
 };
 
+// Компоненты контента теперь независимые
 const AboutMeContent = () => {
   const { t } = useLanguage();
   return (
