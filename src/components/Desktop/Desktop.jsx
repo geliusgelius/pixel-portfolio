@@ -16,6 +16,8 @@ import {
   TeenyiconsTypescriptOutline,
   TablerBrandVite,
   MaterialSymbolsContentCopyOutline,
+  MaterialSymbolsAttachEmailOutline,
+  IconoirTelegram,
 } from "./icones";
 
 const Desktop = () => {
@@ -336,19 +338,19 @@ const ContactContent = () => {
       <h3>{t("getInTouch")}</h3>
       <div className="contact-info">
         <div>
-          📧 {t("email")}
+          <MaterialSymbolsAttachEmailOutline /> {t("email")}
           <button onClick={handleCopy} className="copy-btn">
             <MaterialSymbolsContentCopyOutline />
           </button>
         </div>
         <div>
-          📱{" "}
+          <IconoirTelegram />{" "}
           <a href={t("phoneUrl")} target="_blank" rel="noopener noreferrer">
             {t("phone")}
           </a>
         </div>
         <div>
-          💼{" "}
+          <MdiGithub />{" "}
           <a href={t("githubUrl")} target="_blank" rel="noopener noreferrer">
             {t("github")}
           </a>
