@@ -9,6 +9,8 @@
   min-height: 200px;
   display: flex;
   flex-direction: column;
+  resize: none;
+  overflow: hidden;
 }
 
 .window.active {
@@ -24,6 +26,8 @@
   cursor: move;
   user-select: none;
   border-bottom: 2px solid #fff;
+  position: relative;
+  z-index: 10;
 }
 
 .window-title {
@@ -57,15 +61,18 @@
   align-items: center;
   justify-content: center;
   font-size: 0.8rem;
+  transition: all 0.1s;
 }
 
 .control-btn:hover {
   background: #ff69b4;
   color: white;
+  transform: scale(1.1);
 }
 
 .control-btn.close:hover {
   background: #ff0000;
+  transform: scale(1.1);
 }
 
 .window-body {
@@ -75,4 +82,153 @@
   background: #fff;
   border: 2px solid #ffb6c1;
   margin: 2px;
+  position: relative;
+}
+
+/* Угловой маркер для изменения размера */
+.window-resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  cursor: nwse-resize;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resize-corner {
+  position: relative;
+  width: 12px;
+  height: 12px;
+}
+
+.resize-line {
+  position: absolute;
+  background: #ff1493;
+  border: 1px solid #fff;
+}
+
+.resize-line.horizontal {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.resize-line.vertical {
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.window-resize-handle:hover .resize-corner {
+  transform: scale(1.2);
+}
+
+.window-resize-handle:hover .resize-line {
+  background: #ff69b4;
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.8);
+}
+
+/* Бордеры для изменения размера со всех сторон */
+.resize-border {
+  position: absolute;
+  z-index: 5;
+}
+
+.resize-border.top {
+  top: 0;
+  left: 5px;
+  right: 5px;
+  height: 5px;
+  cursor: n-resize;
+}
+
+.resize-border.right {
+  top: 5px;
+  right: 0;
+  bottom: 5px;
+  width: 5px;
+  cursor: e-resize;
+}
+
+.resize-border.bottom {
+  bottom: 0;
+  left: 5px;
+  right: 5px;
+  height: 5px;
+  cursor: s-resize;
+}
+
+.resize-border.left {
+  top: 5px;
+  left: 0;
+  bottom: 5px;
+  width: 5px;
+  cursor: w-resize;
+}
+
+/* Эффекты при изменении размера */
+.resize-border:hover,
+.window-resize-handle:hover ~ .resize-border {
+  background: rgba(255, 20, 147, 0.3);
+}
+
+/* Анимация курсора при наведении на угловой маркер */
+.window-resize-handle:hover {
+  animation: resizePulse 1s infinite;
+}
+
+@keyframes resizePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Адаптивность для маленьких окон */
+@media (max-width: 768px) {
+  .window {
+    min-width: 250px;
+    min-height: 150px;
+  }
+
+  .window-resize-handle {
+    width: 25px;
+    height: 25px;
+  }
+
+  .resize-corner {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Стили для скроллбара в окне */
+.window-body::-webkit-scrollbar {
+  width: 12px;
+}
+
+.window-body::-webkit-scrollbar-track {
+  background: #ffb6c1;
+  border: 2px solid #ff1493;
+}
+
+.window-body::-webkit-scrollbar-thumb {
+  background: #ff1493;
+  border: 2px solid #ffb6c1;
+  border-radius: 0;
+}
+
+.window-body::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
 }

@@ -86,7 +86,7 @@ const Taskbar = ({
       <div className="system-tray pixel-border-inset">
         <div className="language-selector">
           <div className="language-button" onClick={handleLanguageClick}>
-            {currentLanguage === "ru" ? "🇷🇺 RU" : "🇺🇸 EN"}
+            {currentLanguage === "ru" ? "RU" : "EN"}
           </div>
 
           {showLanguageMenu && (

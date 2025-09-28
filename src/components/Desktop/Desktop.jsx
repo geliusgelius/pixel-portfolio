@@ -6,6 +6,16 @@ import StartMenu from "./StartMenu";
 import EasterEgg from "./EasterEgg";
 import ShutdownScreen from "./ShutdownScreen";
 import "./Desktop.css";
+import {
+  TablerBrandHtml5,
+  TablerBrandCss3,
+  IxJavaScript,
+  AkarIconsReactFill,
+  Fa7BrandsNodeJs,
+  MdiGithub,
+  TeenyiconsTypescriptOutline,
+  TablerBrandVite,
+} from "./icones";
 
 const Desktop = () => {
   const { t, currentLanguage } = useLanguage(); // Добавляем currentLanguage
@@ -73,6 +83,12 @@ const Desktop = () => {
       prev.map((window) =>
         window.id === id ? { ...window, position } : window
       )
+    );
+  };
+
+  const updateWindowSize = (id, size) => {
+    setWindows((prev) =>
+      prev.map((window) => (window.id === id ? { ...window, size } : window))
     );
   };
 
@@ -198,6 +214,7 @@ const Desktop = () => {
           onPositionChange={(position) =>
             updateWindowPosition(window.id, position)
           }
+          onSizeChange={(size) => updateWindowSize(window.id, size)}
           currentLanguage={currentLanguage} // Передаем текущий язык
         />
       ))}
@@ -246,19 +263,38 @@ const SkillsContent = () => {
       <h3>{t("technicalSkills")}</h3>
       <div className="skills-grid">
         <div className="skill-item">
-          <span className="skill-icon">⚡</span>
-          <span>React</span>
+          <TablerBrandHtml5 style={{ fontSize: "32px", color: "#e44d26" }} />
+          <span>HTML5</span>
         </div>
         <div className="skill-item">
-          <span className="skill-icon">🎨</span>
-          <span>TypeScript</span>
-        </div>
-        <div className="skill-item">
-          <span className="skill-icon">✨</span>
+          <TablerBrandCss3 style={{ fontSize: "32px", color: " #1572B6" }} />
           <span>CSS3</span>
         </div>
         <div className="skill-item">
-          <span className="skill-icon">🚀</span>
+          <IxJavaScript style={{ fontSize: "32px", color: " #F7DF1E" }} />
+          <span>Java Script</span>
+        </div>
+        <div className="skill-item">
+          <AkarIconsReactFill style={{ fontSize: "32px", color: " #61DAFB" }} />
+          <span>React</span>
+        </div>
+        <div className="skill-item">
+          <Fa7BrandsNodeJs style={{ fontSize: "32px", color: " #339933" }} />
+          <span>Node.js</span>
+        </div>
+        <div className="skill-item">
+          <MdiGithub style={{ fontSize: "32px", color: " #000000" }} />
+          <span>Git</span>
+        </div>
+        <div className="skill-item">
+          <TeenyiconsTypescriptOutline
+            style={{ fontSize: "32px", color: " #3178C6" }}
+          />
+          <span>TypeScript</span>
+        </div>
+
+        <div className="skill-item">
+          <TablerBrandVite style={{ fontSize: "32px", color: " #646CFF" }} />
           <span>Vite</span>
         </div>
       </div>
