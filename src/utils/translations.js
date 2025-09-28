@@ -55,7 +55,7 @@ export const translations = {
 
     // Easter egg
     secretFound: "🎉 Секретная функция активирована!",
-    secretMessage: "Ангелина - суперзвезда фронтенд разработки! 💫",
+    secretMessage: "Опа, все сломалось! 💫",
   },
   en: {
     // Preloader
@@ -113,7 +113,7 @@ export const translations = {
 
     // Easter egg
     secretFound: "🎉 Secret feature activated!",
-    secretMessage: "Angelina is a frontend development superstar! 💫",
+    secretMessage: "Oops, everything is broken! 💫",
   },
 };
 
