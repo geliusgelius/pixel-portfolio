@@ -42,9 +42,11 @@ export const translations = {
 
     // Contact content
     getInTouch: "Свяжитесь со мной",
-    email: "email@example.com",
-    phone: "+7 (123) 456-78-90",
-    github: "GitHub: angelina-dev",
+    email: "angelina68tmb@gmail.com",
+    phone: "Telegram",
+    phoneUrl: "https://t.me/geliusgelius",
+    github: "GitHub",
+    githubUrl: "https://github.com/geliusgelius",
 
     // Taskbar
     start: "Пуск",
@@ -100,9 +102,11 @@ export const translations = {
 
     // Contact content
     getInTouch: "Get In Touch",
-    email: "email@example.com",
-    phone: "+1234567890",
-    github: "GitHub: angelina-dev",
+    email: "angelina68tmb@gmail.com",
+    phone: "Telegram",
+    phoneUrl: "https://t.me/geliusgelius",
+    github: "GitHub",
+    githubUrl: "https://github.com/geliusgelius",
 
     // Taskbar
     start: "Start",

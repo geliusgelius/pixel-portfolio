@@ -15,6 +15,7 @@ import {
   MdiGithub,
   TeenyiconsTypescriptOutline,
   TablerBrandVite,
+  MaterialSymbolsContentCopyOutline,
 } from "./icones";
 
 const Desktop = () => {
@@ -271,11 +272,11 @@ const SkillsContent = () => {
           <span>CSS3</span>
         </div>
         <div className="skill-item">
-          <IxJavaScript style={{ fontSize: "32px", color: " #F7DF1E" }} />
+          <IxJavaScript style={{ fontSize: "32px", color: " #D4B90F" }} />
           <span>Java Script</span>
         </div>
         <div className="skill-item">
-          <AkarIconsReactFill style={{ fontSize: "32px", color: " #61DAFB" }} />
+          <AkarIconsReactFill style={{ fontSize: "32px", color: " #4BB8D9" }} />
           <span>React</span>
         </div>
         <div className="skill-item">
@@ -323,16 +324,37 @@ const PortfolioContent = () => {
 
 const ContactContent = () => {
   const { t } = useLanguage();
+
+  // Кнопка для копирования email
+  const handleCopy = () => {
+    navigator.clipboard.writeText(t("email"));
+    alert("Email скопирован!");
+  };
+
   return (
     <div className="window-content">
       <h3>{t("getInTouch")}</h3>
       <div className="contact-info">
-        <p>📧 {t("email")}</p>
-        <p>📱 {t("phone")}</p>
-        <p>💼 {t("github")}</p>
+        <div>
+          📧 {t("email")}
+          <button onClick={handleCopy} className="copy-btn">
+            <MaterialSymbolsContentCopyOutline />
+          </button>
+        </div>
+        <div>
+          📱{" "}
+          <a href={t("phoneUrl")} target="_blank" rel="noopener noreferrer">
+            {t("phone")}
+          </a>
+        </div>
+        <div>
+          💼{" "}
+          <a href={t("githubUrl")} target="_blank" rel="noopener noreferrer">
+            {t("github")}
+          </a>
+        </div>
       </div>
     </div>
   );
 };
-
 export default Desktop;
