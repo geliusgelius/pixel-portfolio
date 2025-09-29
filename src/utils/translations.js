@@ -89,9 +89,17 @@ export const translations = {
     // About Me content
     name: "Angelina Smirnova",
     profession: "Frontend Developer",
-    welcome:
-      "Welcome to my pixel portfolio! I create amazing web experiences with modern technologies.",
+    welcome: `Frontend is a developer who turns ideas into fast and intuitive interfaces.
 
+I create modern, productive code for React, Next.js and TypeScript. I'm not just designing layouts, but thinking about how the user will interact with the product, and how my code will affect business metrics such as download speed and conversion.
+
+What I bring to the project:
+
+Confident work with JavaScript (ES6+), React (hooks, functional components), Next.js for SSR/SSG.
+
+It's important to me that the interface is not only beautiful, but also accessible, cross-browser, and properly indexed by search engines.
+
+I am looking for a team where I can solve interesting tasks, grow under the guidance of experienced colleagues and make a real contribution to the overall product.`,
     // Skills content
     technicalSkills: "Technical Skills",
 
