@@ -36,7 +36,7 @@ const Desktop = () => {
       id,
       title,
       icon,
-      ContentComponent, // Сохраняем компонент вместо готового JSX
+      ContentComponent,
       position: { x: 50 + windows.length * 30, y: 50 + windows.length * 30 },
       size: { width: 600, height: 400 },
       isMinimized: false,
@@ -219,7 +219,7 @@ const Desktop = () => {
             updateWindowPosition(window.id, position)
           }
           onSizeChange={(size) => updateWindowSize(window.id, size)}
-          currentLanguage={currentLanguage} // Передаем текущий язык
+          currentLanguage={currentLanguage}
         />
       ))}
 
@@ -246,7 +246,6 @@ const Desktop = () => {
   );
 };
 
-// Компоненты контента теперь независимые
 const AboutMeContent = () => {
   const { t } = useLanguage();
   return (
@@ -334,10 +333,9 @@ const ContactContent = () => {
     try {
       await navigator.clipboard.writeText(t("email"));
       setShowNotification(true);
-      setTimeout(() => setShowNotification(false), 3000); // Авто-скрытие через 3 секунды
+      setTimeout(() => setShowNotification(false), 3000);
     } catch (err) {
       console.error("Failed to copy: ", err);
-      // Fallback для браузеров без clipboard API
       const textArea = document.createElement("textarea");
       textArea.value = t("email");
       document.body.appendChild(textArea);
@@ -392,7 +390,7 @@ const ContactContent = () => {
         </div>
       </div>
 
-      {/* Стильное уведомление вместо alert */}
+      {}
       <Notification
         message="Email скопирован в буфер обмена! 📧"
         isVisible={showNotification}

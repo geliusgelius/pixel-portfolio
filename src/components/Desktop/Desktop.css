@@ -128,6 +128,12 @@
   border: 2px solid #ff1493;
 }
 
+.skill-item:hover {
+  background: #ff69b4;
+  color: white;
+  transform: translateX(5px);
+}
+
 .skill-icon {
   font-size: 1.2rem;
 }
