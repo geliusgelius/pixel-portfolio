@@ -252,9 +252,10 @@ const AboutMeContent = () => {
     <div className="window-content">
       <div className="pixel-avatar">👩‍💻</div>
       <h3>{t("name")}</h3>
-      <p>{t("profession")}</p>
+      <p className="profession">{t("profession")}</p>
       <div className="pixel-divider"></div>
-      <p>{t("welcome")}</p>
+      {}
+      <div className="welcome-text">{t("welcome")}</div>
     </div>
   );
 };
