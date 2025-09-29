@@ -5,6 +5,7 @@ import Window from "./Window";
 import StartMenu from "./StartMenu";
 import EasterEgg from "./EasterEgg";
 import ShutdownScreen from "./ShutdownScreen";
+import Notification from "./Notification";
 import "./Desktop.css";
 import {
   TablerBrandHtml5,
@@ -326,36 +327,77 @@ const PortfolioContent = () => {
 
 const ContactContent = () => {
   const { t } = useLanguage();
+  const [showNotification, setShowNotification] = useState(false);
 
   // Кнопка для копирования email
-  const handleCopy = () => {
-    navigator.clipboard.writeText(t("email"));
-    alert("Email скопирован!");
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(t("email"));
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000); // Авто-скрытие через 3 секунды
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+      // Fallback для браузеров без clipboard API
+      const textArea = document.createElement("textarea");
+      textArea.value = t("email");
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000);
+    }
+  };
+
+  const handleCloseNotification = () => {
+    setShowNotification(false);
   };
 
   return (
     <div className="window-content">
       <h3>{t("getInTouch")}</h3>
       <div className="contact-info">
-        <div>
-          <MaterialSymbolsAttachEmailOutline /> {t("email")}
-          <button onClick={handleCopy} className="copy-btn">
-            <MaterialSymbolsContentCopyOutline />
+        <div className="contact-item">
+          <MaterialSymbolsAttachEmailOutline className="contact-icon" />
+          <span className="contact-text">{t("email")}</span>
+          <button
+            onClick={handleCopy}
+            className="copy-btn"
+            title="Скопировать email"
+          >
+            <MaterialSymbolsContentCopyOutline className="copy-icon" />
           </button>
         </div>
-        <div>
-          <IconoirTelegram />{" "}
-          <a href={t("phoneUrl")} target="_blank" rel="noopener noreferrer">
+        <div className="contact-item">
+          <IconoirTelegram className="contact-icon" />
+          <a
+            href={t("phoneUrl")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-link"
+          >
             {t("phone")}
           </a>
         </div>
-        <div>
-          <MdiGithub />{" "}
-          <a href={t("githubUrl")} target="_blank" rel="noopener noreferrer">
+        <div className="contact-item">
+          <MdiGithub className="contact-icon" />
+          <a
+            href={t("githubUrl")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-link"
+          >
             {t("github")}
           </a>
         </div>
       </div>
+
+      {/* Стильное уведомление вместо alert */}
+      <Notification
+        message="Email скопирован в буфер обмена! 📧"
+        isVisible={showNotification}
+        onClose={handleCloseNotification}
+      />
     </div>
   );
 };

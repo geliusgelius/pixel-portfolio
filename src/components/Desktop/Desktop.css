@@ -204,3 +204,99 @@
     opacity: 0;
   }
 }
+
+/* Стили для контактов */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background: #ffb6c1;
+  border: 2px solid #ff1493;
+  transition: all 0.2s;
+}
+
+.contact-item:hover {
+  background: #ff69b4;
+  transform: translateX(5px);
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  color: #ff1493;
+  flex-shrink: 0;
+}
+
+.contact-text {
+  color: #333;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.contact-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  flex: 1;
+  transition: color 0.2s;
+}
+
+.contact-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.copy-btn {
+  padding: 6px 10px;
+  background: #fff;
+  border: 2px solid #ff1493;
+  color: #ff1493;
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.copy-btn:hover {
+  background: #ff1493;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.copy-icon {
+  font-size: 1rem;
+}
+
+/* Анимация для уведомления */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
