@@ -37,8 +37,9 @@ export const translations = {
 
     // Portfolio content
     myProjects: "Мои Проекты",
-    pixelArtGenerator: "Генератор Пиксель Арта",
-    retroGame: "Ретро Игра",
+    miniTrello: "Mini Trello",
+    artistPortfolio: "Сайт-портфолио художника",
+    dollImpostorQuiz: "Квиз по игре Doll Impostor",
 
     // Contact content
     getInTouch: "Свяжитесь со мной",
@@ -105,8 +106,9 @@ I am looking for a team where I can solve interesting tasks, grow under the guid
 
     // Portfolio content
     myProjects: "My Projects",
-    pixelArtGenerator: "Pixel Art Generator",
-    retroGame: "Retro Game",
+    miniTrello: "Mini Trello",
+    artistPortfolio: "Artist Portfolio Website",
+    dollImpostorQuiz: "Doll Impostor Quiz",
 
     // Contact content
     getInTouch: "Get In Touch",

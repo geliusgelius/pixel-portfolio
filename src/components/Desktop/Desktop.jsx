@@ -312,13 +312,95 @@ const PortfolioContent = () => {
     <div className="window-content">
       <h3>{t("myProjects")}</h3>
       <div className="projects-list">
+        {}
         <div className="project-item pixel-border">
-          <h4>{t("pixelArtGenerator")}</h4>
-          <p>React + TypeScript</p>
+          <h4>{t("dollImpostorQuiz")}</h4>
+          <p>Веб-приложение квиз по игре Doll Impostor</p>
+          <div className="project-links">
+            <a
+              href="https://doll-impostor-quiz.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+            >
+              Демо
+            </a>
+            <a
+              href="https://github.com/geliusgelius/doll-impostor-quiz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+            >
+              Код
+            </a>
+          </div>
+          <div className="project-tags">
+            <span>React</span>
+            <span>Vite</span>
+            <span>SCSS</span>
+            <span>TypeScript</span>
+          </div>
         </div>
+
+        {}
         <div className="project-item pixel-border">
-          <h4>{t("retroGame")}</h4>
-          <p>HTML5 Canvas</p>
+          <h4>{t("artistPortfolio")}</h4>
+          <p>
+            Лендинг-портфолио для художника с адаптивным дизайном и галереей
+            работ
+          </p>
+          <div className="project-links">
+            <a
+              href="https://geliusgelius.github.io/art-portfolio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+            >
+              Демо
+            </a>
+            <a
+              href="https://github.com/geliusgelius/art-portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+            >
+              Код
+            </a>
+          </div>
+          <div className="project-tags">
+            <span>React</span>
+            <span>Vite</span>
+            <span>SCSS</span>
+          </div>
+        </div>
+
+        {}
+        <div className="project-item pixel-border">
+          <h4>{t("miniTrello")}</h4>
+          <p>Минималистичный, но функциональный аналог Trello</p>
+          <div className="project-links">
+            <a
+              href="https://geliusgelius.github.io/trello-mini/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+            >
+              Демо
+            </a>
+            <a
+              href="https://github.com/geliusgelius/trello-mini"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+            >
+              Код
+            </a>
+          </div>
+          <div className="project-tags">
+            <span>HTML/CSS</span>
+            <span>JavaScript</span>
+            <span>Адаптивная верстка</span>
+          </div>
         </div>
       </div>
     </div>
