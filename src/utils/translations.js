@@ -66,7 +66,7 @@ export const translations = {
     shutdown: "🚪 Выключение",
 
     // Easter egg
-    secretFound: "🎉 Секретная функция активирована!",
+    secretFound: "🎉 Ты что здесь делаешь?!",
     secretMessage: "Опа, все сломалось! 💫",
   },
   en: {
