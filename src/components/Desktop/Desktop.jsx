@@ -22,7 +22,7 @@ import {
 } from "./icones";
 
 const Desktop = () => {
-  const { t, currentLanguage } = useLanguage(); // Добавляем currentLanguage
+  const { t, currentLanguage } = useLanguage();
   const [windows, setWindows] = useState([]);
   const [activeWindow, setActiveWindow] = useState(null);
   const [showStartMenu, setShowStartMenu] = useState(false);
@@ -139,6 +139,8 @@ const Desktop = () => {
           newTitle = t("portfolioTitle");
         } else if (window.ContentComponent === ContactContent) {
           newTitle = t("contactTitle");
+        } else if (window.ContentComponent === PaintContent) {
+          newTitle = t("paintTitle");
         }
 
         return { ...window, title: newTitle };
@@ -192,6 +194,14 @@ const Desktop = () => {
             >
               <div className="icon">💼</div>
               <span>{t("portfolio")}</span>
+            </div>
+
+            <div
+              className="desktop-icon"
+              onClick={() => openWindow(t("paintTitle"), "🎨", PaintContent)}
+            >
+              <div className="icon">🎨</div>
+              <span>{t("paint")}</span>
             </div>
 
             <div
@@ -482,4 +492,241 @@ const ContactContent = () => {
     </div>
   );
 };
+
+const PaintContent = () => {
+  const [color, setColor] = useState("#ff1493");
+  const [brushSize, setBrushSize] = useState(5);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [canvasContext, setCanvasContext] = useState(null);
+  const [originalImage, setOriginalImage] = useState(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const canvasRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    setCanvasContext(ctx);
+
+    // Загружаем изображение
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = "/src/assets/images/avatar.jpg";
+    img.onload = () => {
+      setOriginalImage(img);
+      setImageLoaded(true);
+      // Рисуем изображение на холсте с центрированием
+      drawImageCentered(ctx, img, canvas);
+    };
+
+    img.onerror = () => {
+      console.error("Не удалось загрузить изображение");
+      setImageLoaded(false);
+      // Если изображение не загрузилось, создаем белый фон
+      clearToWhite(ctx, canvas);
+    };
+  }, []);
+
+  // Функция для центрирования изображения на квадратном холсте
+  const drawImageCentered = (ctx, img, canvas) => {
+    const size = Math.min(canvas.width, canvas.height);
+    const x = (canvas.width - size) / 2;
+    const y = (canvas.height - size) / 2;
+
+    // Очищаем белым
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Рисуем изображение по центру
+    ctx.drawImage(img, x, y, size, size);
+  };
+
+  // Функция для очистки белым фоном
+  const clearToWhite = (ctx, canvas) => {
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Если изображение не загружено, показываем сообщение
+    if (!imageLoaded) {
+      ctx.fillStyle = "#ff1493";
+      ctx.font = "14px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText(
+        "Фотография не найдена",
+        canvas.width / 2,
+        canvas.height / 2
+      );
+      ctx.fillText(canvas.width / 2, canvas.height / 2 + 25);
+    }
+  };
+
+  const startDrawing = (e) => {
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+
+    setIsDrawing(true);
+    if (canvasContext) {
+      canvasContext.beginPath();
+      canvasContext.moveTo(x, y);
+    }
+  };
+
+  const draw = (e) => {
+    if (!isDrawing || !canvasContext) return;
+
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+
+    canvasContext.lineTo(x, y);
+    canvasContext.strokeStyle = color;
+    canvasContext.lineWidth = brushSize;
+    canvasContext.lineCap = "round";
+    canvasContext.lineJoin = "round";
+    canvasContext.stroke();
+  };
+
+  const stopDrawing = () => {
+    setIsDrawing(false);
+    if (canvasContext) {
+      canvasContext.closePath();
+    }
+  };
+
+  // Восстанавливает оригинальную фотографию
+  const restoreOriginal = () => {
+    if (canvasContext && originalImage) {
+      const canvas = canvasRef.current;
+      drawImageCentered(canvasContext, originalImage, canvas);
+    }
+  };
+
+  // Очищает до белого фона
+  const clearToWhiteCanvas = () => {
+    if (canvasContext) {
+      const canvas = canvasRef.current;
+      clearToWhite(canvasContext, canvas);
+    }
+  };
+
+  const saveImage = () => {
+    const canvas = canvasRef.current;
+    const link = document.createElement("a");
+    link.download = "angelina-pixel-paint.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  };
+
+  const colors = [
+    "#ff1493",
+    "#ff69b4",
+    "#ffb6c1",
+    "#db7093",
+    "#000000",
+    "#ffffff",
+    "#ff0000",
+    "#00ff00",
+    "#0000ff",
+    "#ffff00",
+    "#00ffff",
+    "#ff00ff",
+    "#ffa500",
+    "#800080",
+    "#008000",
+    "#ffc0cb",
+  ];
+
+  return (
+    <div className="window-content">
+      <h3>Pixel Paint</h3>
+      <div className="paint-tools">
+        <div className="tool-section">
+          <label>Цвет:</label>
+          <div className="color-palette">
+            {colors.map((col) => (
+              <button
+                key={col}
+                className={`color-btn ${color === col ? "active" : ""}`}
+                style={{
+                  backgroundColor: col,
+                  border:
+                    col === "#ffffff" ? "1px solid #ccc" : "2px solid #fff",
+                }}
+                onClick={() => setColor(col)}
+                title={col}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="tool-section">
+          <label>Размер кисти: {brushSize}px</label>
+          <input
+            type="range"
+            min="1"
+            max="30"
+            value={brushSize}
+            onChange={(e) => setBrushSize(parseInt(e.target.value))}
+            className="brush-slider"
+          />
+        </div>
+
+        <div className="tool-buttons">
+          <button onClick={restoreOriginal} className="paint-btn">
+            🖼️ Восстановить фото
+          </button>
+          <button onClick={clearToWhiteCanvas} className="paint-btn">
+            ⬜ Очистить холст
+          </button>
+          <button onClick={saveImage} className="paint-btn">
+            💾 Сохранить
+          </button>
+        </div>
+      </div>
+
+      <div className="paint-canvas-container">
+        <canvas
+          ref={canvasRef}
+          width={400}
+          height={400}
+          className="paint-canvas"
+          onMouseDown={startDrawing}
+          onMouseMove={draw}
+          onMouseUp={stopDrawing}
+          onMouseLeave={stopDrawing}
+          onTouchStart={(e) => {
+            e.preventDefault();
+            startDrawing(e.touches[0]);
+          }}
+          onTouchMove={(e) => {
+            e.preventDefault();
+            draw(e.touches[0]);
+          }}
+          onTouchEnd={stopDrawing}
+        />
+        {!imageLoaded && (
+          <div className="image-loading">Загрузка изображения...</div>
+        )}
+      </div>
+
+      <div className="paint-hint">
+        💡 <strong>Восстановить фото</strong> - вернет оригинальную фотографию
+        <br />
+        💡 <strong>Очистить холст</strong> - полностью очистит холст белым
+        цветом
+        <br />
+        {!imageLoaded &&
+          " (Для загрузки фотографии разместите avatar.jpg в папке public/assets/images)"}
+      </div>
+    </div>
+  );
+};
+
 export default Desktop;

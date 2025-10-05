@@ -38,6 +38,11 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
       title: t("contactTitle"),
       action: () => onOpenWindow(t("contactTitle"), "📧", ContactContent),
     },
+    {
+      icon: "🎨",
+      title: t("paintTitle"),
+      action: () => onOpenWindow(t("paintTitle"), "🎨", PaintContent),
+    },
   ];
 
   const AboutMeContent = () => {

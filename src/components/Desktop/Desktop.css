@@ -497,3 +497,192 @@
     font-size: 1.1rem;
   }
 }
+
+/* Стили для Pixel Paint */
+.paint-tools {
+  background: #ffb6c1;
+  padding: 15px;
+  border: 2px solid #ff1493;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tool-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tool-section label {
+  color: #333;
+  font-weight: bold;
+  min-width: 120px;
+}
+
+.color-palette {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.color-btn {
+  width: 25px;
+  height: 25px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 3px;
+}
+
+.color-btn:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.color-btn.active {
+  border-color: #333;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.brush-slider {
+  flex: 1;
+  max-width: 200px;
+  background: #ff69b4;
+  height: 6px;
+  border-radius: 3px;
+  outline: none;
+}
+
+.brush-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ff1493;
+  border: 2px solid #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.brush-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ff1493;
+  border: 2px solid #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tool-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.paint-btn {
+  padding: 10px 15px;
+  background: #fff;
+  border: 2px solid #ff1493;
+  color: #ff1493;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 120px;
+  font-weight: bold;
+}
+
+.paint-btn:hover {
+  background: #ff1493;
+  color: white;
+  transform: scale(1.05);
+}
+
+.paint-canvas-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.paint-canvas {
+  border: 3px solid #ff1493;
+  background: white;
+  cursor: crosshair;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  touch-action: none;
+  /* Квадратный холст */
+  width: 400px;
+  height: 400px;
+}
+
+.image-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border: 2px solid #ff1493;
+  border-radius: 5px;
+  color: #ff1493;
+  font-weight: bold;
+}
+
+.paint-hint {
+  text-align: center;
+  color: #666;
+  font-size: 0.8rem;
+  background: #ffb6c1;
+  padding: 10px;
+  border: 1px solid #ff69b4;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+/* Адаптивность для Pixel Paint */
+@media (max-width: 768px) {
+  .paint-tools {
+    padding: 10px;
+  }
+
+  .tool-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tool-section label {
+    min-width: auto;
+  }
+
+  .brush-slider {
+    max-width: none;
+    width: 100%;
+  }
+
+  .paint-canvas {
+    width: 300px;
+    height: 300px;
+  }
+
+  .tool-buttons {
+    flex-direction: column;
+  }
+
+  .paint-btn {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .paint-canvas {
+    width: 250px;
+    height: 250px;
+  }
+}
