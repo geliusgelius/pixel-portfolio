@@ -24,7 +24,6 @@ const Window = ({
 
   const contentKey = `${windowData.id}-${currentLanguage}`;
 
-  // Обработка перемещения окна
   useEffect(() => {
     if (isDragging) {
       const handleMouseMove = (e) => {

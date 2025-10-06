@@ -129,13 +129,11 @@ const Desktop = () => {
     }, 1000);
   };
 
-  // Обновляем заголовки окон при смене языка
   const updateWindowTitles = () => {
     setWindows((prev) =>
       prev.map((window) => {
         let newTitle = window.title;
 
-        // Обновляем заголовки на основе типа контента
         if (window.ContentComponent === AboutMeContent) {
           newTitle = t("aboutMeTitle");
         } else if (window.ContentComponent === SkillsContent) {
@@ -153,7 +151,6 @@ const Desktop = () => {
     );
   };
 
-  // Вызываем обновление заголовков при смене языка
   React.useEffect(() => {
     updateWindowTitles();
   }, [currentLanguage]);
@@ -440,7 +437,6 @@ const ContactContent = () => {
   const { t } = useLanguage();
   const [showNotification, setShowNotification] = useState(false);
 
-  // Кнопка для копирования email
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(t("email"));
