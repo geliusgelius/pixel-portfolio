@@ -42,7 +42,7 @@ const ShutdownScreen = ({ onRestart }) => {
       // Цикл завершен, перезапускаем
       const restartTimeout = setTimeout(() => {
         onRestart();
-      }, 2000);
+      }, 3000);
 
       return () => clearTimeout(restartTimeout);
     }
@@ -82,7 +82,7 @@ const ShutdownScreen = ({ onRestart }) => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
             >
-              {/* личный логотип вместо Windows */}
+              {}
               <div className="angelina-logo">
                 <div className="logo-icon">👩‍💻</div>
                 <div className="logo-text">Angelina OS</div>
@@ -116,7 +116,7 @@ const ShutdownScreen = ({ onRestart }) => {
         </AnimatePresence>
       </div>
 
-      {/* Мигающий курсор по центру внизу */}
+      {}
       <div className="blinking-cursor">_</div>
     </motion.div>
   );

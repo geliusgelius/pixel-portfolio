@@ -22,7 +22,6 @@ const Window = ({
     height: 0,
   });
 
-  // Добавляем ключ для принудительного перерисовывания контента при смене языка
   const contentKey = `${windowData.id}-${currentLanguage}`;
 
   // Обработка перемещения окна
@@ -51,7 +50,6 @@ const Window = ({
     }
   }, [isDragging, dragOffset, onPositionChange]);
 
-  // Обработка изменения размера окна
   useEffect(() => {
     if (isResizing) {
       const handleMouseMove = (e) => {
@@ -113,7 +111,6 @@ const Window = ({
     return null;
   }
 
-  // Создаем компонент контента динамически
   const WindowContent = windowData.ContentComponent;
 
   return (
@@ -149,7 +146,7 @@ const Window = ({
         <WindowContent key={contentKey} />
       </div>
 
-      {/* Угловой маркер для изменения размера */}
+      {}
       <div
         className="window-resize-handle"
         onMouseDown={handleResizeStart}
@@ -161,7 +158,7 @@ const Window = ({
         </div>
       </div>
 
-      {/* Бордеры для изменения размера со всех сторон */}
+      {}
       <div className="resize-border top" onMouseDown={handleResizeStart} />
       <div className="resize-border right" onMouseDown={handleResizeStart} />
       <div className="resize-border bottom" onMouseDown={handleResizeStart} />
