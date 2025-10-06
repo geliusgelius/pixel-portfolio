@@ -19,6 +19,11 @@ import {
   MaterialSymbolsContentCopyOutline,
   MaterialSymbolsAttachEmailOutline,
   IconoirTelegram,
+  MaterialSymbolsAccountCircle,
+  MdiLightningBolt,
+  BytesizePortfolio,
+  StreamlinePixelDesignColorPaintingPalette,
+  MaterialSymbolsContactMailOutline,
 } from "./icones";
 
 const Desktop = () => {
@@ -174,7 +179,9 @@ const Desktop = () => {
                 openWindow(t("aboutMeTitle"), "👤", AboutMeContent)
               }
             >
-              <div className="icon">👤</div>
+              <div className="icon">
+                <MaterialSymbolsAccountCircle></MaterialSymbolsAccountCircle>
+              </div>
               <span>{t("aboutMe")}</span>
             </div>
 
@@ -182,7 +189,9 @@ const Desktop = () => {
               className="desktop-icon"
               onClick={() => openWindow(t("skillsTitle"), "⚡", SkillsContent)}
             >
-              <div className="icon">⚡</div>
+              <div className="icon">
+                <MdiLightningBolt> </MdiLightningBolt>
+              </div>
               <span>{t("skills")}</span>
             </div>
 
@@ -192,7 +201,9 @@ const Desktop = () => {
                 openWindow(t("portfolioTitle"), "💼", PortfolioContent)
               }
             >
-              <div className="icon">💼</div>
+              <div className="icon">
+                <BytesizePortfolio></BytesizePortfolio>
+              </div>
               <span>{t("portfolio")}</span>
             </div>
 
@@ -200,7 +211,11 @@ const Desktop = () => {
               className="desktop-icon"
               onClick={() => openWindow(t("paintTitle"), "🎨", PaintContent)}
             >
-              <div className="icon">🎨</div>
+              <div className="icon">
+                <StreamlinePixelDesignColorPaintingPalette>
+                  {" "}
+                </StreamlinePixelDesignColorPaintingPalette>
+              </div>
               <span>{t("paint")}</span>
             </div>
 
@@ -210,7 +225,11 @@ const Desktop = () => {
                 openWindow(t("contactTitle"), "📧", ContactContent)
               }
             >
-              <div className="icon">📧</div>
+              <div className="icon">
+                <MaterialSymbolsContactMailOutline>
+                  {" "}
+                </MaterialSymbolsContactMailOutline>
+              </div>
               <span>{t("contact")}</span>
             </div>
           </div>
@@ -722,8 +741,7 @@ const PaintContent = () => {
         💡 <strong>Очистить холст</strong> - полностью очистит холст белым
         цветом
         <br />
-        {!imageLoaded &&
-          " (Для загрузки фотографии разместите avatar.jpg в папке public/assets/images)"}
+        {!imageLoaded && ""}
       </div>
     </div>
   );
