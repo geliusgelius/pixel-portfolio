@@ -10,7 +10,7 @@ export const translations = {
     skills: "Навыки",
     portfolio: "Портфолио",
     contact: "Контакты",
-    photoEditor: "Фоторедактор",
+    photoEditor: "Фото редактор",
 
     // Window titles
     aboutMeTitle: "О себе",
