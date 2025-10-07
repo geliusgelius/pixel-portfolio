@@ -2,6 +2,13 @@ import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import { languageNames } from "../../utils/translations";
 import "./StartMenu.css";
+import {
+  MaterialSymbolsAccountCircle,
+  MdiLightningBolt,
+  BytesizePortfolio,
+  MaterialSymbolsContactMailOutline,
+  StreamlinePixelDesignColorPaintingPalette,
+} from "./icones";
 
 const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
   const { t, currentLanguage, switchLanguage } = useLanguage();
@@ -19,29 +26,62 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
   // Передаем компоненты вместо готового JSX
   const menuItems = [
     {
-      icon: "👤",
+      icon: <MaterialSymbolsAccountCircle style={{ fontSize: "1.5rem" }} />,
       title: t("aboutMeTitle"),
-      action: () => onOpenWindow(t("aboutMeTitle"), "👤", AboutMeContent),
+      action: () =>
+        onOpenWindow(
+          t("aboutMeTitle"),
+          <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
+          AboutMeContent
+        ),
     },
     {
-      icon: "⚡",
+      icon: <MdiLightningBolt style={{ fontSize: "1.5rem" }} />,
       title: t("skillsTitle"),
-      action: () => onOpenWindow(t("skillsTitle"), "⚡", SkillsContent),
+      action: () =>
+        onOpenWindow(
+          t("skillsTitle"),
+          <MdiLightningBolt style={{ fontSize: "1rem" }} />,
+          SkillsContent
+        ),
     },
     {
-      icon: "💼",
+      icon: <BytesizePortfolio style={{ fontSize: "1.5rem" }} />,
       title: t("portfolioTitle"),
-      action: () => onOpenWindow(t("portfolioTitle"), "💼", PortfolioContent),
+      action: () =>
+        onOpenWindow(
+          t("portfolioTitle"),
+          <BytesizePortfolio style={{ fontSize: "1rem" }} />,
+          PortfolioContent
+        ),
     },
     {
-      icon: "📧",
+      icon: (
+        <MaterialSymbolsContactMailOutline style={{ fontSize: "1.5rem" }} />
+      ),
       title: t("contactTitle"),
-      action: () => onOpenWindow(t("contactTitle"), "📧", ContactContent),
+      action: () =>
+        onOpenWindow(
+          t("contactTitle"),
+          <MaterialSymbolsContactMailOutline style={{ fontSize: "1rem" }} />,
+          ContactContent
+        ),
     },
     {
-      icon: "🎨",
+      icon: (
+        <StreamlinePixelDesignColorPaintingPalette
+          style={{ fontSize: "1.5rem" }}
+        />
+      ),
       title: t("paintTitle"),
-      action: () => onOpenWindow(t("paintTitle"), "🎨", PaintContent),
+      action: () =>
+        onOpenWindow(
+          t("paintTitle"),
+          <StreamlinePixelDesignColorPaintingPalette
+            style={{ fontSize: "1rem" }}
+          />,
+          PaintContent
+        ),
     },
   ];
 
@@ -63,6 +103,11 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
   const ContactContent = () => {
     const { t } = useLanguage();
     return <div>Contact Content</div>;
+  };
+
+  const PaintContent = () => {
+    const { t } = useLanguage();
+    return <div>Paint Content</div>;
   };
 
   return (

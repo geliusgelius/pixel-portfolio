@@ -124,7 +124,11 @@ const Desktop = () => {
       setActiveWindow(null);
 
       setTimeout(() => {
-        openWindow(t("aboutMeTitle"), "👤", AboutMeContent);
+        openWindow(
+          t("aboutMeTitle"),
+          <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
+          AboutMeContent
+        );
       }, 1000);
     }, 1000);
   };
@@ -173,21 +177,31 @@ const Desktop = () => {
             <div
               className="desktop-icon"
               onClick={() =>
-                openWindow(t("aboutMeTitle"), "👤", AboutMeContent)
+                openWindow(
+                  t("aboutMeTitle"),
+                  <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
+                  AboutMeContent
+                )
               }
             >
               <div className="icon">
-                <MaterialSymbolsAccountCircle></MaterialSymbolsAccountCircle>
+                <MaterialSymbolsAccountCircle />
               </div>
               <span>{t("aboutMe")}</span>
             </div>
 
             <div
               className="desktop-icon"
-              onClick={() => openWindow(t("skillsTitle"), "⚡", SkillsContent)}
+              onClick={() =>
+                openWindow(
+                  t("skillsTitle"),
+                  <MdiLightningBolt style={{ fontSize: "1rem" }} />,
+                  SkillsContent
+                )
+              }
             >
               <div className="icon">
-                <MdiLightningBolt> </MdiLightningBolt>
+                <MdiLightningBolt />
               </div>
               <span>{t("skills")}</span>
             </div>
@@ -195,23 +209,33 @@ const Desktop = () => {
             <div
               className="desktop-icon"
               onClick={() =>
-                openWindow(t("portfolioTitle"), "💼", PortfolioContent)
+                openWindow(
+                  t("portfolioTitle"),
+                  <BytesizePortfolio style={{ fontSize: "1rem" }} />,
+                  PortfolioContent
+                )
               }
             >
               <div className="icon">
-                <BytesizePortfolio></BytesizePortfolio>
+                <BytesizePortfolio />
               </div>
               <span>{t("portfolio")}</span>
             </div>
 
             <div
               className="desktop-icon"
-              onClick={() => openWindow(t("paintTitle"), "🎨", PaintContent)}
+              onClick={() =>
+                openWindow(
+                  t("paintTitle"),
+                  <StreamlinePixelDesignColorPaintingPalette
+                    style={{ fontSize: "1rem" }}
+                  />,
+                  PaintContent
+                )
+              }
             >
               <div className="icon">
-                <StreamlinePixelDesignColorPaintingPalette>
-                  {" "}
-                </StreamlinePixelDesignColorPaintingPalette>
+                <StreamlinePixelDesignColorPaintingPalette />
               </div>
               <span>{t("paint")}</span>
             </div>
@@ -219,13 +243,17 @@ const Desktop = () => {
             <div
               className="desktop-icon"
               onClick={() =>
-                openWindow(t("contactTitle"), "📧", ContactContent)
+                openWindow(
+                  t("contactTitle"),
+                  <MaterialSymbolsContactMailOutline
+                    style={{ fontSize: "1rem" }}
+                  />,
+                  ContactContent
+                )
               }
             >
               <div className="icon">
-                <MaterialSymbolsContactMailOutline>
-                  {" "}
-                </MaterialSymbolsContactMailOutline>
+                <MaterialSymbolsContactMailOutline />
               </div>
               <span>{t("contact")}</span>
             </div>
