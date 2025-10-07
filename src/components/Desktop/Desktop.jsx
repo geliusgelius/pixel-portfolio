@@ -6,6 +6,7 @@ import StartMenu from "./StartMenu";
 import EasterEgg from "./EasterEgg";
 import ShutdownScreen from "./ShutdownScreen";
 import Notification from "./Notification";
+import DesktopIcon from "./DesktopIcon";
 import "./Desktop.css";
 import {
   TablerBrandHtml5,
@@ -34,6 +35,8 @@ const Desktop = () => {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const [showShutdown, setShowShutdown] = useState(false);
   const [isRestarting, setIsRestarting] = useState(false);
+  const [iconsLocked, setIconsLocked] = useState(false);
+  const [iconPositions, setIconPositions] = useState({});
 
   const openWindow = (title, icon, ContentComponent) => {
     const id = Date.now().toString();
@@ -122,6 +125,7 @@ const Desktop = () => {
       setIsRestarting(false);
       setWindows([]);
       setActiveWindow(null);
+      setIconPositions({});
 
       setTimeout(() => {
         openWindow(
@@ -131,6 +135,17 @@ const Desktop = () => {
         );
       }, 1000);
     }, 1000);
+  };
+
+  const toggleIconsLock = () => {
+    setIconsLocked(!iconsLocked);
+  };
+
+  const handleIconPositionChange = (iconId, newPosition) => {
+    setIconPositions((prev) => ({
+      ...prev,
+      [iconId]: newPosition,
+    }));
   };
 
   const updateWindowTitles = () => {
@@ -174,8 +189,10 @@ const Desktop = () => {
         <div className="desktop-background">
           <div className="pixel-grid"></div>
           <div className="desktop-icons">
-            <div
-              className="desktop-icon"
+            <DesktopIcon
+              iconId="aboutMe"
+              icon={<MaterialSymbolsAccountCircle />}
+              title={t("aboutMe")}
               onClick={() =>
                 openWindow(
                   t("aboutMeTitle"),
@@ -183,15 +200,17 @@ const Desktop = () => {
                   AboutMeContent
                 )
               }
-            >
-              <div className="icon">
-                <MaterialSymbolsAccountCircle />
-              </div>
-              <span>{t("aboutMe")}</span>
-            </div>
+              isLocked={iconsLocked}
+              onPositionChange={(position) =>
+                handleIconPositionChange("aboutMe", position)
+              }
+              initialPosition={iconPositions.aboutMe || { x: 0, y: 0 }}
+            />
 
-            <div
-              className="desktop-icon"
+            <DesktopIcon
+              iconId="skills"
+              icon={<MdiLightningBolt />}
+              title={t("skills")}
               onClick={() =>
                 openWindow(
                   t("skillsTitle"),
@@ -199,15 +218,17 @@ const Desktop = () => {
                   SkillsContent
                 )
               }
-            >
-              <div className="icon">
-                <MdiLightningBolt />
-              </div>
-              <span>{t("skills")}</span>
-            </div>
+              isLocked={iconsLocked}
+              onPositionChange={(position) =>
+                handleIconPositionChange("skills", position)
+              }
+              initialPosition={iconPositions.skills || { x: 0, y: 0 }}
+            />
 
-            <div
-              className="desktop-icon"
+            <DesktopIcon
+              iconId="portfolio"
+              icon={<BytesizePortfolio />}
+              title={t("portfolio")}
               onClick={() =>
                 openWindow(
                   t("portfolioTitle"),
@@ -215,15 +236,17 @@ const Desktop = () => {
                   PortfolioContent
                 )
               }
-            >
-              <div className="icon">
-                <BytesizePortfolio />
-              </div>
-              <span>{t("portfolio")}</span>
-            </div>
+              isLocked={iconsLocked}
+              onPositionChange={(position) =>
+                handleIconPositionChange("portfolio", position)
+              }
+              initialPosition={iconPositions.portfolio || { x: 0, y: 0 }}
+            />
 
-            <div
-              className="desktop-icon"
+            <DesktopIcon
+              iconId="photoEditor"
+              icon={<StreamlinePixelDesignColorPaintingPalette />}
+              title={t("photoEditor")}
               onClick={() =>
                 openWindow(
                   t("photoEditorTitle"),
@@ -233,15 +256,17 @@ const Desktop = () => {
                   PhotoEditorContent
                 )
               }
-            >
-              <div className="icon">
-                <StreamlinePixelDesignColorPaintingPalette />
-              </div>
-              <span>{t("photoEditor")}</span>
-            </div>
+              isLocked={iconsLocked}
+              onPositionChange={(position) =>
+                handleIconPositionChange("photoEditor", position)
+              }
+              initialPosition={iconPositions.photoEditor || { x: 0, y: 0 }}
+            />
 
-            <div
-              className="desktop-icon"
+            <DesktopIcon
+              iconId="contact"
+              icon={<MaterialSymbolsContactMailOutline />}
+              title={t("contact")}
               onClick={() =>
                 openWindow(
                   t("contactTitle"),
@@ -251,12 +276,12 @@ const Desktop = () => {
                   ContactContent
                 )
               }
-            >
-              <div className="icon">
-                <MaterialSymbolsContactMailOutline />
-              </div>
-              <span>{t("contact")}</span>
-            </div>
+              isLocked={iconsLocked}
+              onPositionChange={(position) =>
+                handleIconPositionChange("contact", position)
+              }
+              initialPosition={iconPositions.contact || { x: 0, y: 0 }}
+            />
           </div>
         </div>
       </div>
@@ -283,6 +308,8 @@ const Desktop = () => {
         onRestoreWindow={restoreWindow}
         onStartClick={toggleStartMenu}
         onEasterEgg={activateEasterEgg}
+        iconsLocked={iconsLocked}
+        onToggleIconsLock={toggleIconsLock}
       />
 
       {showStartMenu && (

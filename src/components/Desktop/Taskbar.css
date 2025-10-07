@@ -156,6 +156,117 @@
   text-align: center;
 }
 
+/* Стили для кнопки блокировки */
+.lock-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.lock-button {
+  width: 32px;
+  height: 32px;
+  background: #ffb6c1;
+  border: 2px solid;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-right: 8px;
+}
+
+.lock-button:hover {
+  background: #ff69b4;
+  transform: scale(1.1);
+}
+
+.lock-button.locked {
+  background: #ff1493;
+  border-color: #fff #ff69b4 #ff69b4 #fff;
+  color: white;
+}
+
+.lock-button.locked:hover {
+  background: #db7093;
+}
+
+.lock-button.unlocked {
+  background: #ffb6c1;
+  border-color: #fff #ff1493 #ff1493 #fff;
+}
+
+.lock-icon {
+  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
+}
+
+/* Анимация для кнопки блокировки */
+@keyframes lockPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.lock-button.locked .lock-icon {
+  animation: lockPulse 2s infinite;
+}
+
+/* Подсказка при наведении */
+.lock-button::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 20, 147, 0.9);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 10001;
+}
+
+.lock-button:hover::after {
+  opacity: 1;
+}
+
+/* Адаптивность для системного трея */
+.system-tray {
+  background: #ffb6c1;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  height: 100%;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .lock-button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+    margin-right: 5px;
+  }
+
+  .system-tray {
+    gap: 6px;
+    padding: 6px 8px;
+  }
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
   .taskbar {

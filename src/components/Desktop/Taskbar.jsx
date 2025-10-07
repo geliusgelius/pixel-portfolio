@@ -8,6 +8,8 @@ const Taskbar = ({
   onRestoreWindow,
   onStartClick,
   onEasterEgg,
+  iconsLocked,
+  onToggleIconsLock,
 }) => {
   const { t, currentLanguage, switchLanguage } = useLanguage();
   const [currentTime, setCurrentTime] = useState("00:00");
@@ -61,6 +63,11 @@ const Taskbar = ({
     setShowLanguageMenu(false);
   };
 
+  const handleLockClick = (e) => {
+    e.stopPropagation();
+    onToggleIconsLock();
+  };
+
   return (
     <div className="taskbar">
       <div className="start-button pixel-border" onClick={handleStartClick}>
@@ -84,6 +91,19 @@ const Taskbar = ({
       </div>
 
       <div className="system-tray pixel-border-inset">
+        {/* Кнопка блокировки значков */}
+        <div className="lock-button-container">
+          <button
+            className={`lock-button ${iconsLocked ? "locked" : "unlocked"}`}
+            onClick={handleLockClick}
+            title={
+              iconsLocked ? "Разблокировать значки" : "Заблокировать значки"
+            }
+          >
+            <span className="lock-icon">{iconsLocked ? "🔒" : "🔓"}</span>
+          </button>
+        </div>
+
         <div className="language-selector">
           <div className="language-button" onClick={handleLanguageClick}>
             {currentLanguage === "ru" ? "RU" : "EN"}

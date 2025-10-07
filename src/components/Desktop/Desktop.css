@@ -33,7 +33,7 @@
   height: calc(100% - 60px);
   background: linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093);
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* Меняем на visible для перетаскивания */
 }
 
 .pixel-grid {
@@ -55,279 +55,123 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px;
+  padding: 20px 15px;
   align-items: flex-start;
+  position: relative;
+  z-index: 2;
+  height: 100%;
 }
 
+/* Стили для DesktopIcon компонента */
 .desktop-icon {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80px;
-  cursor: pointer;
-  transition: all 0.2s;
   padding: 10px;
+  transition: background-color 0.2s, border 0.2s; /* Только цветовые переходы */
+  z-index: 10;
+  cursor: grab;
+  user-select: none; /* Запрещаем выделение текста */
 }
 
-.desktop-icon:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px dotted #fff;
+.desktop-icon:active {
+  cursor: grabbing;
 }
 
 .desktop-icon .icon {
   font-size: 2rem;
   margin-bottom: 5px;
   filter: drop-shadow(2px 2px 0px #ff1493);
+  pointer-events: none;
 }
 
 .desktop-icon span {
   color: white;
   text-shadow: 2px 2px 0px #ff1493;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-align: center;
+  line-height: 1.2;
+  word-wrap: break-word;
+  max-width: 80px;
+  pointer-events: none;
 }
 
+/* Ховер эффект - ТОЛЬКО изменение фона и границы */
+.desktop-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px dotted #fff;
+  /* НИКАКИХ transform! */
+}
+
+/* Заблокированные значки */
+.desktop-icon.locked {
+  cursor: default;
+  opacity: 0.8;
+}
+
+.desktop-icon.locked:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dotted rgba(255, 255, 255, 0.5);
+}
+
+/* Индикатор блокировки */
+.lock-overlay {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 20, 147, 0.9);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.lock-indicator {
+  font-size: 0.7rem;
+  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+}
+
+/* Эффект тряски при попытке перетащить заблокированный значок */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+.desktop-icon.locked:active {
+  animation: shake 0.3s ease-in-out;
+}
+
+/* Стили для контента окон */
 .window-content {
   padding: 20px;
   color: #333;
   height: 100%;
+  background: white;
+  overflow-y: auto;
 }
 
 .window-content h3 {
   color: #ff1493;
   margin-bottom: 15px;
   text-shadow: 1px 1px 0px #fff;
-}
-
-.pixel-avatar {
-  font-size: 4rem;
   text-align: center;
-  margin-bottom: 15px;
-}
-
-.pixel-divider {
-  height: 4px;
-  background: #ff1493;
-  margin: 15px 0;
-  border: 2px solid #fff;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.skill-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  background: #ffb6c1;
-  border: 2px solid #ff1493;
-}
-
-.skill-item:hover {
-  background: #ff69b4;
-  color: white;
-  transform: translateX(5px);
-}
-
-.skill-icon {
-  font-size: 1.2rem;
-}
-
-.projects-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.project-item {
-  padding: 15px;
-  background: #ffb6c1;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.project-item:hover {
-  background: #ff69b4;
-  color: white;
-}
-
-.contact-info p {
-  margin: 10px 0;
-  padding: 5px;
-  background: #ffb6c1;
-  border: 2px solid #ff1493;
-}
-
-.restart-screen {
-  width: 100vw;
-  height: 100vh;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #00ff00;
-  font-family: "Press Start 2P", monospace;
-}
-
-.restart-text {
   font-size: 1.5rem;
-  animation: blink 1s infinite;
-}
-
-.copy-btn {
-  margin-left: 8px;
-  padding: 6px 14px;
-  background: #ffb6c1;
-  border: 2px solid #ff1493;
-  color: #ff1493;
-  font-family: inherit;
-  font-size: 0.85rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  box-shadow: 1px 1px 0px #fff;
-}
-
-.copy-btn:hover {
-  background: #ff69b4;
-  color: #fff;
-  border-color: #fff;
-}
-
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Стили для контактов */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 15px;
-  background: #ffb6c1;
-  border: 2px solid #ff1493;
-  transition: all 0.2s;
-}
-
-.contact-item:hover {
-  background: #ff69b4;
-  transform: translateX(5px);
-}
-
-.contact-icon {
-  font-size: 1.5rem;
-  color: #ff1493;
-  flex-shrink: 0;
-}
-
-.contact-text {
-  color: #333;
-  font-size: 0.9rem;
-  flex: 1;
-}
-
-.contact-link {
-  color: #333;
-  text-decoration: none;
-  font-size: 0.9rem;
-  flex: 1;
-  transition: color 0.2s;
-}
-
-.contact-link:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.copy-btn {
-  padding: 6px 10px;
-  background: #fff;
-  border: 2px solid #ff1493;
-  color: #ff1493;
-  font-family: inherit;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-}
-
-.copy-btn:hover {
-  background: #ff1493;
-  color: #fff;
-  transform: scale(1.05);
-}
-
-.copy-icon {
-  font-size: 1rem;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
-.welcome-text {
-  white-space: pre-line;
-  line-height: 1.6;
-  margin-top: 15px;
-  text-align: left;
-  max-width: 100%;
-  font-size: 14px;
-  color: #333;
-  background: #fff;
-  padding: 15px;
-  border: 2px solid #ffb6c1;
-  border-radius: 4px;
-  box-shadow: inset 2px 2px 0px #ff1493, inset -2px -2px 0px #ff69b4;
-}
-
-.profession {
-  font-weight: bold;
-  color: #ff1493;
-  margin: 10px 0;
-  font-size: 16px;
-  text-shadow: 1px 1px 0px #fff;
-  text-align: center;
 }
 
 .pixel-avatar {
@@ -345,20 +189,28 @@
   box-shadow: 0 2px 0px #ff69b4;
 }
 
-.window-content {
-  padding: 20px;
-  color: #333;
-  height: 100%;
-  background: white;
-  overflow-y: auto;
-}
-
-.window-content h3 {
+.profession {
+  font-weight: bold;
   color: #ff1493;
-  margin-bottom: 15px;
+  margin: 10px 0;
+  font-size: 16px;
   text-shadow: 1px 1px 0px #fff;
   text-align: center;
-  font-size: 1.5rem;
+}
+
+.welcome-text {
+  white-space: pre-line;
+  line-height: 1.6;
+  margin-top: 15px;
+  text-align: left;
+  max-width: 100%;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+  padding: 15px;
+  border: 2px solid #ffb6c1;
+  border-radius: 4px;
+  box-shadow: inset 2px 2px 0px #ff1493, inset -2px -2px 0px #ff69b4;
 }
 
 .about-me-content {
@@ -366,16 +218,32 @@
   word-wrap: break-word;
 }
 
-@media (max-width: 768px) {
-  .welcome-text {
-    font-size: 12px;
-    padding: 10px;
-    line-height: 1.5;
-  }
+/* Стили для навыков */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
 
-  .profession {
-    font-size: 14px;
-  }
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #ffb6c1;
+  border: 2px solid #ff1493;
+  transition: all 0.2s;
+}
+
+.skill-item:hover {
+  background: #ff69b4;
+  color: white;
+  transform: translateX(5px);
+}
+
+.skill-icon {
+  font-size: 1.2rem;
 }
 
 /* Стили для портфолио */
@@ -467,38 +335,80 @@
   color: #ff69b4;
 }
 
-/* Адаптивность для портфолио */
-@media (max-width: 768px) {
-  .project-links {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .project-link {
-    max-width: none;
-  }
-
-  .project-tags {
-    gap: 5px;
-  }
-
-  .project-tags span {
-    font-size: 0.65rem;
-    padding: 3px 6px;
-  }
+/* Стили для контактов */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
 }
 
-@media (max-width: 480px) {
-  .project-item {
-    padding: 15px;
-  }
-
-  .project-item h4 {
-    font-size: 1.1rem;
-  }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background: #ffb6c1;
+  border: 2px solid #ff1493;
+  transition: all 0.2s;
 }
 
-/* Стили для Pixel Paint */
+.contact-item:hover {
+  background: #ff69b4;
+  transform: translateX(5px);
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  color: #ff1493;
+  flex-shrink: 0;
+}
+
+.contact-text {
+  color: #333;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.contact-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  flex: 1;
+  transition: color 0.2s;
+}
+
+.contact-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.copy-btn {
+  padding: 6px 10px;
+  background: #fff;
+  border: 2px solid #ff1493;
+  color: #ff1493;
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.copy-btn:hover {
+  background: #ff1493;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.copy-icon {
+  font-size: 1rem;
+}
+
+/* Стили для Фоторедактора */
 .paint-tools {
   background: #ffb6c1;
   padding: 15px;
@@ -617,7 +527,6 @@
   cursor: crosshair;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   touch-action: none;
-  /* Квадратный холст */
   width: 400px;
   height: 400px;
 }
@@ -646,8 +555,98 @@
   line-height: 1.4;
 }
 
-/* Адаптивность для Pixel Paint */
+/* Перезагрузка */
+.restart-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #00ff00;
+  font-family: "Press Start 2P", monospace;
+}
+
+.restart-text {
+  font-size: 1.5rem;
+  animation: blink 1s infinite;
+}
+
+/* Анимации */
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
+  .desktop-icons {
+    padding: 15px 10px;
+    gap: 15px;
+  }
+
+  .desktop-icon {
+    width: 70px;
+    padding: 8px;
+  }
+
+  .desktop-icon span {
+    font-size: 0.6rem;
+    max-width: 70px;
+  }
+
+  .lock-overlay {
+    width: 16px;
+    height: 16px;
+  }
+
+  .lock-indicator {
+    font-size: 0.6rem;
+  }
+
+  .welcome-text {
+    font-size: 12px;
+    padding: 10px;
+    line-height: 1.5;
+  }
+
+  .profession {
+    font-size: 14px;
+  }
+
+  .project-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-link {
+    max-width: none;
+  }
+
+  .project-tags {
+    gap: 5px;
+  }
+
+  .project-tags span {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+
   .paint-tools {
     padding: 10px;
   }
@@ -681,6 +680,14 @@
 }
 
 @media (max-width: 480px) {
+  .project-item {
+    padding: 15px;
+  }
+
+  .project-item h4 {
+    font-size: 1.1rem;
+  }
+
   .paint-canvas {
     width: 250px;
     height: 250px;
