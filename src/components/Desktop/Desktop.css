@@ -51,6 +51,7 @@
   opacity: 0.3;
 }
 
+/* Стили для DesktopIcon */
 .desktop-icons {
   display: flex;
   flex-direction: column;
@@ -62,18 +63,19 @@
   height: 100%;
 }
 
-/* Стили для DesktopIcon компонента */
 .desktop-icon {
-  position: relative;
+  position: absolute !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80px;
   padding: 10px;
-  transition: background-color 0.2s, border 0.2s; /* Только цветовые переходы */
   z-index: 10;
   cursor: grab;
-  user-select: none; /* Запрещаем выделение текста */
+  user-select: none;
+  /* ЯВНО отключаем все переходы и трансформации */
+  transition: none !important;
+  transform: none !important;
 }
 
 .desktop-icon:active {
@@ -98,11 +100,10 @@
   pointer-events: none;
 }
 
-/* Ховер эффект - ТОЛЬКО изменение фона и границы */
+/* Ховер эффект - только визуальный */
 .desktop-icon:hover {
   background: rgba(255, 255, 255, 0.2);
   border: 2px dotted #fff;
-  /* НИКАКИХ transform! */
 }
 
 /* Заблокированные значки */
@@ -137,6 +138,15 @@
   font-size: 0.7rem;
   filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
   pointer-events: none;
+}
+
+/* Отключаем все анимации для motion компонентов если они остались */
+[data-framer-motion-div],
+[style*="transformStyle"],
+[style*="transformOrigin"] {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
 }
 
 /* Эффект тряски при попытке перетащить заблокированный значок */

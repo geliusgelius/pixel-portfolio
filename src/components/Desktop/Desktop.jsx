@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import Taskbar from "./Taskbar";
 import Window from "./Window";
@@ -37,6 +37,28 @@ const Desktop = () => {
   const [isRestarting, setIsRestarting] = useState(false);
   const [iconsLocked, setIconsLocked] = useState(false);
   const [iconPositions, setIconPositions] = useState({});
+
+  // Начальные позиции для значков (чтобы не накладывались друг на друга)
+  const defaultIconPositions = {
+    aboutMe: { x: 20, y: 20 },
+    skills: { x: 20, y: 120 },
+    portfolio: { x: 20, y: 220 },
+    photoEditor: { x: 20, y: 320 },
+    contact: { x: 20, y: 420 },
+  };
+
+  // Автоматически открываем окно "Обо мне" при загрузке
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      openWindow(
+        t("aboutMeTitle"),
+        <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
+        AboutMeContent
+      );
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const openWindow = (title, icon, ContentComponent) => {
     const id = Date.now().toString();
@@ -127,6 +149,7 @@ const Desktop = () => {
       setActiveWindow(null);
       setIconPositions({});
 
+      // При перезагрузке снова открываем окно "Обо мне"
       setTimeout(() => {
         openWindow(
           t("aboutMeTitle"),
@@ -137,15 +160,15 @@ const Desktop = () => {
     }, 1000);
   };
 
-  const toggleIconsLock = () => {
-    setIconsLocked(!iconsLocked);
-  };
-
   const handleIconPositionChange = (iconId, newPosition) => {
     setIconPositions((prev) => ({
       ...prev,
       [iconId]: newPosition,
     }));
+  };
+
+  const toggleIconsLock = () => {
+    setIconsLocked(!iconsLocked);
   };
 
   const updateWindowTitles = () => {
@@ -204,7 +227,9 @@ const Desktop = () => {
               onPositionChange={(position) =>
                 handleIconPositionChange("aboutMe", position)
               }
-              initialPosition={iconPositions.aboutMe || { x: 0, y: 0 }}
+              initialPosition={
+                iconPositions.aboutMe || defaultIconPositions.aboutMe
+              }
             />
 
             <DesktopIcon
@@ -222,7 +247,9 @@ const Desktop = () => {
               onPositionChange={(position) =>
                 handleIconPositionChange("skills", position)
               }
-              initialPosition={iconPositions.skills || { x: 0, y: 0 }}
+              initialPosition={
+                iconPositions.skills || defaultIconPositions.skills
+              }
             />
 
             <DesktopIcon
@@ -240,7 +267,9 @@ const Desktop = () => {
               onPositionChange={(position) =>
                 handleIconPositionChange("portfolio", position)
               }
-              initialPosition={iconPositions.portfolio || { x: 0, y: 0 }}
+              initialPosition={
+                iconPositions.portfolio || defaultIconPositions.portfolio
+              }
             />
 
             <DesktopIcon
@@ -260,7 +289,9 @@ const Desktop = () => {
               onPositionChange={(position) =>
                 handleIconPositionChange("photoEditor", position)
               }
-              initialPosition={iconPositions.photoEditor || { x: 0, y: 0 }}
+              initialPosition={
+                iconPositions.photoEditor || defaultIconPositions.photoEditor
+              }
             />
 
             <DesktopIcon
@@ -280,7 +311,9 @@ const Desktop = () => {
               onPositionChange={(position) =>
                 handleIconPositionChange("contact", position)
               }
-              initialPosition={iconPositions.contact || { x: 0, y: 0 }}
+              initialPosition={
+                iconPositions.contact || defaultIconPositions.contact
+              }
             />
           </div>
         </div>
@@ -340,7 +373,6 @@ const AboutMeContent = () => {
       <h3>{t("name")}</h3>
       <p className="profession">{t("profession")}</p>
       <div className="pixel-divider"></div>
-      {}
       <div className="welcome-text">{t("welcome")}</div>
     </div>
   );
@@ -398,7 +430,6 @@ const PortfolioContent = () => {
     <div className="window-content">
       <h3>{t("myProjects")}</h3>
       <div className="projects-list">
-        {}
         <div className="project-item pixel-border">
           <h4>{t("dollImpostorQuiz")}</h4>
           <p>Веб-приложение квиз по игре Doll Impostor</p>
@@ -428,7 +459,6 @@ const PortfolioContent = () => {
           </div>
         </div>
 
-        {}
         <div className="project-item pixel-border">
           <h4>{t("artistPortfolio")}</h4>
           <p>
@@ -460,7 +490,6 @@ const PortfolioContent = () => {
           </div>
         </div>
 
-        {}
         <div className="project-item pixel-border">
           <h4>{t("miniTrello")}</h4>
           <p>Минималистичный, но функциональный аналог Trello</p>
@@ -558,7 +587,6 @@ const ContactContent = () => {
         </div>
       </div>
 
-      {}
       <Notification
         message="Email скопирован в буфер обмена! 📧"
         isVisible={showNotification}

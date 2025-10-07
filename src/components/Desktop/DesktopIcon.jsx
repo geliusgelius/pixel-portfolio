@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
 
 const DesktopIcon = ({
   iconId,
@@ -12,50 +11,105 @@ const DesktopIcon = ({
 }) => {
   const [position, setPosition] = useState(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
+  const iconRef = useRef(null);
+  const startPos = useRef({ x: 0, y: 0 });
+  const dragStartOffset = useRef({ x: 0, y: 0 });
+  const wasDragged = useRef(false);
 
-  const handleDragStart = () => {
+  const handleMouseDown = (e) => {
+    if (isLocked) {
+      // Для заблокированных - просто запоминаем что кликнули
+      wasDragged.current = false;
+      return;
+    }
+
+    e.preventDefault();
+    e.stopPropagation();
+
     setIsDragging(true);
+    wasDragged.current = false;
+    startPos.current = { x: e.clientX, y: e.clientY };
+    dragStartOffset.current = { x: position.x, y: position.y };
+
+    document.body.style.cursor = "grabbing";
+    document.body.style.userSelect = "none";
   };
 
-  const handleDragEnd = (event, info) => {
-    setIsDragging(false);
+  const handleMouseMove = (e) => {
+    if (isLocked) return;
+
+    if (!isDragging) return;
+
+    const deltaX = e.clientX - startPos.current.x;
+    const deltaY = e.clientY - startPos.current.y;
+
+    if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+      wasDragged.current = true;
+    }
 
     const newPosition = {
-      x: position.x + info.offset.x,
-      y: position.y + info.offset.y,
+      x: dragStartOffset.current.x + deltaX,
+      y: dragStartOffset.current.y + deltaY,
     };
 
     setPosition(newPosition);
+  };
 
-    if (onPositionChange) {
-      onPositionChange(newPosition);
+  const handleMouseUp = (e) => {
+    if (isDragging) {
+      setIsDragging(false);
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+
+      if (onPositionChange && wasDragged.current) {
+        onPositionChange(position);
+      }
+
+      // Для разблокированных: если не было драга - клик
+      if (!wasDragged.current) {
+        onClick(e);
+      }
+
+      wasDragged.current = false;
     }
   };
 
+  // ОТДЕЛЬНЫЙ обработчик клика для заблокированных значков
   const handleClick = (e) => {
-    // Открываем окно только если не было драга
-    if (!isDragging) {
+    if (isLocked) {
       onClick(e);
     }
   };
 
+  useEffect(() => {
+    if (isDragging) {
+      const handleGlobalMouseMove = (e) => handleMouseMove(e);
+      const handleGlobalMouseUp = (e) => handleMouseUp(e);
+
+      document.addEventListener("mousemove", handleGlobalMouseMove);
+      document.addEventListener("mouseup", handleGlobalMouseUp);
+
+      return () => {
+        document.removeEventListener("mousemove", handleGlobalMouseMove);
+        document.removeEventListener("mouseup", handleGlobalMouseUp);
+        document.body.style.cursor = "";
+        document.body.style.userSelect = "";
+      };
+    }
+  }, [isDragging]);
+
   return (
-    <motion.div
+    <div
+      ref={iconRef}
       className="desktop-icon"
+      onMouseDown={handleMouseDown}
       onClick={handleClick}
-      drag={!isLocked}
-      dragMomentum={false}
-      dragElastic={0}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
-      // УБИРАЕМ ВСЕ АНИМАЦИИ ХОВЕРА И ТАПА
       style={{
-        cursor: isLocked ? "default" : "grab",
-        x: position.x,
-        y: position.y,
+        cursor: isLocked ? "pointer" : "grab",
+        position: "absolute",
+        left: `${position.x}px`,
+        top: `${position.y}px`,
       }}
-      // УБИРАЕМ ОГРАНИЧЕНИЯ ПЕРЕТАСКИВАНИЯ
-      dragConstraints={false}
     >
       <div className="icon">{icon}</div>
       <span>{title}</span>
@@ -64,7 +118,7 @@ const DesktopIcon = ({
           <span className="lock-indicator">🔒</span>
         </div>
       )}
-    </motion.div>
+    </div>
   );
 };
 
