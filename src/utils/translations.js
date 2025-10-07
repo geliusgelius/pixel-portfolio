@@ -10,12 +10,14 @@ export const translations = {
     skills: "Навыки",
     portfolio: "Портфолио",
     contact: "Контакты",
+    photoEditor: "Фоторедактор",
 
     // Window titles
     aboutMeTitle: "О себе",
     skillsTitle: "Навыки",
     portfolioTitle: "Портфолио",
     contactTitle: "Контакты",
+    photoEditorTitle: "Фоторедактор",
 
     // About Me content
     name: "Ангелина Смирнова",
@@ -85,12 +87,14 @@ export const translations = {
     skills: "Skills",
     portfolio: "Portfolio",
     contact: "Contact",
+    photoEditor: "Photo Editor",
 
     // Window titles
     aboutMeTitle: "About Me",
     skillsTitle: "Skills",
     portfolioTitle: "Portfolio",
     contactTitle: "Contact",
+    photoEditorTitle: "Photo Editor",
 
     // About Me content
     name: "Angelina Smirnova",

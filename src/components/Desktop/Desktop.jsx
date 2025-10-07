@@ -146,8 +146,8 @@ const Desktop = () => {
           newTitle = t("portfolioTitle");
         } else if (window.ContentComponent === ContactContent) {
           newTitle = t("contactTitle");
-        } else if (window.ContentComponent === PaintContent) {
-          newTitle = t("paintTitle");
+        } else if (window.ContentComponent === PhotoEditorContent) {
+          newTitle = t("photoEditorTitle");
         }
 
         return { ...window, title: newTitle };
@@ -226,18 +226,18 @@ const Desktop = () => {
               className="desktop-icon"
               onClick={() =>
                 openWindow(
-                  t("paintTitle"),
+                  t("photoEditorTitle"),
                   <StreamlinePixelDesignColorPaintingPalette
                     style={{ fontSize: "1rem" }}
                   />,
-                  PaintContent
+                  PhotoEditorContent
                 )
               }
             >
               <div className="icon">
                 <StreamlinePixelDesignColorPaintingPalette />
               </div>
-              <span>{t("paint")}</span>
+              <span>{t("photoEditor")}</span>
             </div>
 
             <div
@@ -536,7 +536,7 @@ const ContactContent = () => {
   );
 };
 
-const PaintContent = () => {
+const PhotoEditorContent = () => {
   const [color, setColor] = useState("#ff1493");
   const [brushSize, setBrushSize] = useState(5);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -662,7 +662,7 @@ const PaintContent = () => {
   const saveImage = () => {
     const canvas = canvasRef.current;
     const link = document.createElement("a");
-    link.download = "angelina-pixel-paint.png";
+    link.download = "angelina-photo-editor.png";
     link.href = canvas.toDataURL("image/png");
     link.click();
   };
@@ -688,7 +688,7 @@ const PaintContent = () => {
 
   return (
     <div className="window-content">
-      <h3>Pixel Paint</h3>
+      <h3>Фоторедактор / Photo Editor</h3>
       <div className="paint-tools">
         <div className="tool-section">
           <label>Цвет:</label>

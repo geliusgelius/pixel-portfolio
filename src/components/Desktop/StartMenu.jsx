@@ -73,14 +73,14 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
           style={{ fontSize: "1.5rem" }}
         />
       ),
-      title: t("paintTitle"),
+      title: t("photoEditorTitle"),
       action: () =>
         onOpenWindow(
-          t("paintTitle"),
+          t("photoEditorTitle"),
           <StreamlinePixelDesignColorPaintingPalette
             style={{ fontSize: "1rem" }}
           />,
-          PaintContent
+          PhotoEditorContent
         ),
     },
   ];
@@ -105,9 +105,9 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
     return <div>Contact Content</div>;
   };
 
-  const PaintContent = () => {
+  const PhotoEditorContent = () => {
     const { t } = useLanguage();
-    return <div>Paint Content</div>;
+    return <div>Photo Editor Content</div>;
   };
 
   return (
