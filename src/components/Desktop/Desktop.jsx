@@ -290,6 +290,11 @@ const Desktop = () => {
           onOpenWindow={openWindow}
           onClose={() => setShowStartMenu(false)}
           onShutdown={handleShutdown}
+          aboutMeContent={AboutMeContent}
+          skillsContent={SkillsContent}
+          portfolioContent={PortfolioContent}
+          contactContent={ContactContent}
+          photoEditorContent={PhotoEditorContent}
         />
       )}
 

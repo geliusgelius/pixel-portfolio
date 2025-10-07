@@ -1,6 +1,5 @@
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
-import { languageNames } from "../../utils/translations";
 import "./StartMenu.css";
 import {
   MaterialSymbolsAccountCircle,
@@ -10,7 +9,16 @@ import {
   StreamlinePixelDesignColorPaintingPalette,
 } from "./icones";
 
-const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
+const StartMenu = ({
+  onOpenWindow,
+  onClose,
+  onShutdown,
+  aboutMeContent,
+  skillsContent,
+  portfolioContent,
+  contactContent,
+  photoEditorContent,
+}) => {
   const { t, currentLanguage, switchLanguage } = useLanguage();
 
   const handleLanguageChange = (lang) => {
@@ -23,7 +31,7 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
     onShutdown();
   };
 
-  // Передаем компоненты вместо готового JSX
+  // Используем переданные компоненты
   const menuItems = [
     {
       icon: <MaterialSymbolsAccountCircle style={{ fontSize: "1.5rem" }} />,
@@ -32,7 +40,7 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
         onOpenWindow(
           t("aboutMeTitle"),
           <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
-          AboutMeContent
+          aboutMeContent
         ),
     },
     {
@@ -42,7 +50,7 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
         onOpenWindow(
           t("skillsTitle"),
           <MdiLightningBolt style={{ fontSize: "1rem" }} />,
-          SkillsContent
+          skillsContent
         ),
     },
     {
@@ -52,7 +60,7 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
         onOpenWindow(
           t("portfolioTitle"),
           <BytesizePortfolio style={{ fontSize: "1rem" }} />,
-          PortfolioContent
+          portfolioContent
         ),
     },
     {
@@ -64,7 +72,7 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
         onOpenWindow(
           t("contactTitle"),
           <MaterialSymbolsContactMailOutline style={{ fontSize: "1rem" }} />,
-          ContactContent
+          contactContent
         ),
     },
     {
@@ -80,35 +88,10 @@ const StartMenu = ({ onOpenWindow, onClose, onShutdown }) => {
           <StreamlinePixelDesignColorPaintingPalette
             style={{ fontSize: "1rem" }}
           />,
-          PhotoEditorContent
+          photoEditorContent
         ),
     },
   ];
-
-  const AboutMeContent = () => {
-    const { t } = useLanguage();
-    return <div>About Me Content</div>;
-  };
-
-  const SkillsContent = () => {
-    const { t } = useLanguage();
-    return <div>Skills Content</div>;
-  };
-
-  const PortfolioContent = () => {
-    const { t } = useLanguage();
-    return <div>Portfolio Content</div>;
-  };
-
-  const ContactContent = () => {
-    const { t } = useLanguage();
-    return <div>Contact Content</div>;
-  };
-
-  const PhotoEditorContent = () => {
-    const { t } = useLanguage();
-    return <div>Photo Editor Content</div>;
-  };
 
   return (
     <div className="start-menu" onClick={(e) => e.stopPropagation()}>
