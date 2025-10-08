@@ -38,19 +38,25 @@ const Taskbar = ({
     e.stopPropagation();
     onStartClick();
 
-    // Пасхалка: 5 кликов за 2 секунды
+    // Пасхалка BSOD: 5 кликов за 2 секунды
     const now = Date.now();
-    if (now - lastClickTime < 2000) {
-      setClickCount((prev) => prev + 1);
-    } else {
-      setClickCount(1);
-    }
-    setLastClickTime(now);
 
-    if (clickCount >= 4) {
-      onEasterEgg();
-      setClickCount(0);
+    if (now - lastClickTime > 2000) {
+      // Сброс если прошло больше 2 секунд
+      setClickCount(1);
+    } else {
+      // Увеличиваем счетчик
+      const newCount = clickCount + 1;
+      setClickCount(newCount);
+
+      // Проверяем на 5 кликов
+      if (newCount >= 5) {
+        onEasterEgg();
+        setClickCount(0);
+      }
     }
+
+    setLastClickTime(now);
   };
 
   const handleLanguageClick = (e) => {

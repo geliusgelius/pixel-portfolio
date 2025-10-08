@@ -1,0 +1,281 @@
+.bsod-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0078d7;
+  color: white;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000000;
+  cursor: default;
+}
+
+.bsod-content {
+  max-width: 800px;
+  padding: 40px;
+  width: 90%;
+}
+
+.bsod-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.bsod-face {
+  font-size: 4rem;
+  animation: sadFace 3s infinite;
+}
+
+.bsod-title p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.bsod-message {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.bsod-progress-section {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+.bsod-step-message {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #ff6b6b;
+}
+
+.bsod-percentage {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.bsod-progress-container {
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bsod-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.bsod-progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: progressShine 2s infinite;
+}
+
+.bsod-qr {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.qr-code {
+  background: white;
+  padding: 10px;
+  border: 2px solid #fff;
+  flex-shrink: 0;
+}
+
+.qr-pixels {
+  display: grid;
+  grid-template-columns: repeat(5, 12px);
+  grid-template-rows: repeat(5, 12px);
+  gap: 2px;
+  width: 64px;
+  height: 64px;
+}
+
+.qr-pixel {
+  background: #0078d7;
+  border: 1px solid #005a9e;
+}
+
+.qr-pixel:nth-child(odd) {
+  background: #005a9e;
+}
+
+.qr-text {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.bsod-website {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.bsod-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.bsod-collecting {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.collecting-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.dot {
+  animation: dotPulse 1.5s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Анимации */
+@keyframes sadFace {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-5deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(5deg) scale(1.1);
+  }
+}
+
+@keyframes progressShine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Эффект сканирования как у старого монитора */
+.bsod-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 51%
+  );
+  background-size: 100% 4px;
+  animation: scanline 0.8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+/* Мигающий курсор */
+.bsod-screen::after {
+  content: "";
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 10px;
+  height: 20px;
+  background: white;
+  animation: cursorBlink 1s infinite;
+}
+
+@keyframes cursorBlink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .bsod-content {
+    padding: 20px;
+  }
+
+  .bsod-face {
+    font-size: 3rem;
+  }
+
+  .bsod-message {
+    font-size: 0.9rem;
+  }
+
+  .bsod-qr {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .qr-text {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .bsod-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}

@@ -75,6 +75,25 @@ export const translations = {
     paint: "Pixel Paint",
     paintTitle: "Pixel Paint",
     paintDescription: "Редактор изображений",
+
+    // Синий экран смерти (BSOD)
+    bsodTitle: "Ваш компьютер запущен некорректно",
+    bsodMessage1:
+      "Необходимо перезагрузить компьютер. Выполняется автоматическое",
+    bsodMessage2: "восстановление системы и сбор диагностических данных.",
+    bsodErrorCode: "Код ошибки: PIXEL_CUTENESS_OVERLOAD",
+    bsodComplete: "завершено",
+    bsodMoreInfo: "Для получения дополнительной информации об этой ошибке",
+    bsodWebsite: "и возможных способов ее устранения посетите сайт:",
+    bsodSupport: "Если вы обратитесь в службу поддержки, сообщите им:",
+    bsodStopCode: "Код остановки: PIXEL_CUTENESS_OVERLOAD",
+    bsodCollecting: "Сбор данных",
+    bsodStep1: "Подготовка к перезагрузке...",
+    bsodStep2: "Сбор данных об ошибке...",
+    bsodStep3: "Анализ системных файлов...",
+    bsodStep4: "Восстановление параметров...",
+    bsodStep5: "Завершение процессов...",
+    bsodStep6: "Перезагрузка системы...",
   },
   en: {
     // Preloader
@@ -151,6 +170,24 @@ I am looking for a team where I can solve interesting tasks, grow under the guid
     paint: "Pixel Paint",
     paintTitle: "Pixel Paint",
     paintDescription: "Image Editor",
+
+    // Blue Screen of Death (BSOD)
+    bsodTitle: "Your PC ran into a problem",
+    bsodMessage1: "Your PC needs to be restarted. Automatic system recovery",
+    bsodMessage2: "and diagnostic data collection are in progress.",
+    bsodErrorCode: "Error code: PIXEL_CUTENESS_OVERLOAD",
+    bsodComplete: "complete",
+    bsodMoreInfo: "For more information about this error",
+    bsodWebsite: "and possible fixes visit:",
+    bsodSupport: "If you contact support, provide them with:",
+    bsodStopCode: "Stop code: PIXEL_CUTENESS_OVERLOAD",
+    bsodCollecting: "Collecting data",
+    bsodStep1: "Preparing for restart...",
+    bsodStep2: "Collecting error data...",
+    bsodStep3: "Analyzing system files...",
+    bsodStep4: "Restoring settings...",
+    bsodStep5: "Closing processes...",
+    bsodStep6: "Restarting system...",
   },
 };
 

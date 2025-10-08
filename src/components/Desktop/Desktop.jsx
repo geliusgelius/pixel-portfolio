@@ -7,6 +7,8 @@ import EasterEgg from "./EasterEgg";
 import ShutdownScreen from "./ShutdownScreen";
 import Notification from "./Notification";
 import DesktopIcon from "./DesktopIcon";
+import BSOD from "./BSOD";
+import Preloader from "../Preloader/Preloader";
 import "./Desktop.css";
 import {
   TablerBrandHtml5,
@@ -34,11 +36,13 @@ const Desktop = () => {
   const [showStartMenu, setShowStartMenu] = useState(false);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const [showShutdown, setShowShutdown] = useState(false);
+  const [showBSOD, setShowBSOD] = useState(false);
   const [isRestarting, setIsRestarting] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(false);
   const [iconsLocked, setIconsLocked] = useState(false);
   const [iconPositions, setIconPositions] = useState({});
 
-  // Начальные позиции для значков (чтобы не накладывались друг на друга)
+  // Начальные позиции для значков
   const defaultIconPositions = {
     aboutMe: { x: 20, y: 20 },
     skills: { x: 20, y: 120 },
@@ -131,8 +135,31 @@ const Desktop = () => {
   };
 
   const activateEasterEgg = () => {
-    setShowEasterEgg(true);
-    setTimeout(() => setShowEasterEgg(false), 5000);
+    setShowBSOD(true);
+  };
+
+  const handleBSODRestart = () => {
+    // Закрываем BSOD и запускаем перезагрузку
+    setShowBSOD(false);
+    setShowPreloader(true);
+
+    // Через 3 секунды показываем прелоадер и перезагружаем систему
+    setTimeout(() => {
+      setShowPreloader(false);
+      // Полностью сбрасываем состояние
+      setWindows([]);
+      setActiveWindow(null);
+      setIconPositions({});
+
+      // Снова открываем окно "Обо мне" как при первой загрузке
+      setTimeout(() => {
+        openWindow(
+          t("aboutMeTitle"),
+          <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
+          AboutMeContent
+        );
+      }, 1000);
+    }, 3000);
   };
 
   const handleShutdown = () => {
@@ -203,6 +230,10 @@ const Desktop = () => {
         <div className="restart-text">{t("restart")}</div>
       </div>
     );
+  }
+
+  if (showPreloader) {
+    return <Preloader />;
   }
 
   return (
@@ -361,6 +392,13 @@ const Desktop = () => {
       {showEasterEgg && <EasterEgg />}
 
       {showShutdown && <ShutdownScreen onRestart={handleRestart} />}
+
+      {showBSOD && (
+        <BSOD
+          onClose={() => setShowBSOD(false)}
+          onRestart={handleBSODRestart}
+        />
+      )}
     </div>
   );
 };
