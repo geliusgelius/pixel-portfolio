@@ -67,10 +67,6 @@ export const translations = {
     // Start menu
     shutdown: "🚪 Выключение",
 
-    // Easter egg
-    secretFound: "🎉 Ты что здесь делаешь?!",
-    secretMessage: "Опа, все сломалось! 💫",
-
     // Пиксельный редактор:
     paint: "Pixel Paint",
     paintTitle: "Pixel Paint",
@@ -161,10 +157,6 @@ I am looking for a team where I can solve interesting tasks, grow under the guid
 
     // Start menu
     shutdown: "🚪 Shutdown",
-
-    // Easter egg
-    secretFound: "🎉 Secret feature activated!",
-    secretMessage: "Oops, everything is broken! 💫",
 
     // Pixel Paint:
     paint: "Pixel Paint",
