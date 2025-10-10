@@ -300,3 +300,66 @@
     font-size: 0.7rem;
   }
 }
+
+/* Стили для кнопки смены фона */
+.background-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.background-button {
+  width: 32px;
+  height: 32px;
+  background: #ffb6c1;
+  border: 2px solid;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-right: 8px;
+}
+
+.background-button:hover {
+  background: #ff69b4;
+  transform: scale(1.1);
+}
+
+.background-icon {
+  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
+}
+
+/* Подсказка при наведении */
+.background-button::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 20, 147, 0.9);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 10001;
+}
+
+.background-button:hover::after {
+  opacity: 1;
+}
+
+/* Адаптивность для кнопки смены фона */
+@media (max-width: 768px) {
+  .background-button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+    margin-right: 5px;
+  }
+}

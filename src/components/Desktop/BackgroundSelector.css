@@ -1,0 +1,233 @@
+.background-selector-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100001;
+}
+
+.background-selector-window {
+  width: 800px;
+  max-width: 90vw;
+  height: 600px;
+  max-height: 90vh;
+  background: #ffb6c1;
+  border: 4px solid;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.background-selector-header {
+  background: linear-gradient(45deg, #ff1493, #ff69b4);
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #fff;
+}
+
+.background-selector-header h3 {
+  color: white;
+  text-shadow: 1px 1px 0px #db7093;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.close-btn {
+  width: 25px;
+  height: 25px;
+  border: 2px solid;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  background: #ffb6c1;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.close-btn:hover {
+  background: #ff69b4;
+  color: white;
+}
+
+.background-selector-content {
+  flex: 1;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.background-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.background-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 10px;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.background-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.background-item.selected {
+  background: rgba(255, 20, 147, 0.2);
+  border: 2px solid #ff1493;
+}
+
+.background-preview {
+  width: 100%;
+  height: 80px;
+  border: 2px solid #fff;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.background-name {
+  font-size: 0.7rem;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+}
+
+.background-preview-large {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.preview-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.preview-desktop {
+  width: 100%;
+  height: 200px;
+  border: 3px solid #ff1493;
+  background: linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093);
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-icons {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.preview-icon {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ff1493;
+}
+
+.current-background-info {
+  font-size: 0.8rem;
+  color: #333;
+  text-align: center;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #ff1493;
+}
+
+.background-selector-footer {
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #ff1493;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.apply-btn,
+.cancel-btn {
+  padding: 8px 20px;
+  border: 2px solid;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  min-width: 80px;
+}
+
+.apply-btn {
+  background: #ff1493;
+  border-color: #fff #db7093 #db7093 #fff;
+  color: white;
+}
+
+.apply-btn:hover {
+  background: #db7093;
+  transform: scale(1.05);
+}
+
+.apply-btn:active {
+  background: #c71585;
+  transform: scale(0.95);
+}
+
+.cancel-btn {
+  background: #ffb6c1;
+  border-color: #fff #ff1493 #ff1493 #fff;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background: #ff69b4;
+  color: white;
+}
+
+.cancel-btn:active {
+  background: #db7093;
+  transform: scale(0.95);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .background-selector-content {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .background-preview-large {
+    width: 100%;
+    height: auto;
+  }
+
+  .preview-desktop {
+    height: 120px;
+  }
+
+  .background-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 200px;
+  }
+}

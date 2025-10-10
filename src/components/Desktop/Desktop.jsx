@@ -41,6 +41,9 @@ const Desktop = () => {
   const [showPreloader, setShowPreloader] = useState(false);
   const [iconsLocked, setIconsLocked] = useState(false);
   const [iconPositions, setIconPositions] = useState({});
+  const [currentBackground, setCurrentBackground] = useState(
+    "linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093)"
+  );
 
   // Начальные позиции для значков
   const defaultIconPositions = {
@@ -198,6 +201,11 @@ const Desktop = () => {
     setIconsLocked(!iconsLocked);
   };
 
+  const handleBackgroundChange = (newBackground) => {
+    console.log("Changing background to:", newBackground);
+    setCurrentBackground(newBackground);
+  };
+
   const updateWindowTitles = () => {
     setWindows((prev) =>
       prev.map((window) => {
@@ -240,7 +248,10 @@ const Desktop = () => {
     <div className="desktop" onClick={() => setShowStartMenu(false)}>
       <div className="crt-effect">
         <div className="scanlines"></div>
-        <div className="desktop-background">
+        <div
+          className="desktop-background"
+          style={{ background: currentBackground }}
+        >
           <div className="pixel-grid"></div>
           <div className="desktop-icons">
             <DesktopIcon
@@ -374,6 +385,8 @@ const Desktop = () => {
         onEasterEgg={activateEasterEgg}
         iconsLocked={iconsLocked}
         onToggleIconsLock={toggleIconsLock}
+        currentBackground={currentBackground}
+        onBackgroundChange={handleBackgroundChange}
       />
 
       {showStartMenu && (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../context/LanguageContext";
+import BackgroundSelector from "./BackgroundSelector";
 import "./Taskbar.css";
 
 const Taskbar = ({
@@ -10,12 +11,15 @@ const Taskbar = ({
   onEasterEgg,
   iconsLocked,
   onToggleIconsLock,
+  currentBackground,
+  onBackgroundChange,
 }) => {
   const { t, currentLanguage, switchLanguage } = useLanguage();
   const [currentTime, setCurrentTime] = useState("00:00");
   const [clickCount, setClickCount] = useState(0);
   const [lastClickTime, setLastClickTime] = useState(0);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+  const [showBackgroundSelector, setShowBackgroundSelector] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -74,6 +78,11 @@ const Taskbar = ({
     onToggleIconsLock();
   };
 
+  const handleBackgroundClick = (e) => {
+    e.stopPropagation();
+    setShowBackgroundSelector(true);
+  };
+
   return (
     <div className="taskbar">
       <div className="start-button pixel-border" onClick={handleStartClick}>
@@ -97,6 +106,17 @@ const Taskbar = ({
       </div>
 
       <div className="system-tray pixel-border-inset">
+        {/* Кнопка смены фона */}
+        <div className="background-button-container">
+          <button
+            className="background-button"
+            onClick={handleBackgroundClick}
+            title="Сменить фон рабочего стола"
+          >
+            <span className="background-icon">🎨</span>
+          </button>
+        </div>
+
         {/* Кнопка блокировки значков */}
         <div className="lock-button-container">
           <button
@@ -139,6 +159,14 @@ const Taskbar = ({
 
         <div className="tray-time">{currentTime}</div>
       </div>
+
+      {showBackgroundSelector && (
+        <BackgroundSelector
+          currentBackground={currentBackground}
+          onBackgroundChange={onBackgroundChange}
+          onClose={() => setShowBackgroundSelector(false)}
+        />
+      )}
     </div>
   );
 };
