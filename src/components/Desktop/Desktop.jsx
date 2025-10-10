@@ -799,7 +799,7 @@ const PhotoEditorContent = () => {
 
   return (
     <div className="window-content">
-      <h3>Фоторедактор / Photo Editor</h3>
+      <h3>Photo Editor</h3>
       <div className="paint-tools">
         <div className="tool-section">
           <label>Цвет:</label>
