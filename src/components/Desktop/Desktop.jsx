@@ -648,6 +648,7 @@ const ContactContent = () => {
 };
 
 const PhotoEditorContent = () => {
+  const { t } = useLanguage(); // Добавлен хук useLanguage
   const [color, setColor] = useState("#ff1493");
   const [brushSize, setBrushSize] = useState(5);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -705,12 +706,7 @@ const PhotoEditorContent = () => {
       ctx.fillStyle = "#ff1493";
       ctx.font = "14px Arial";
       ctx.textAlign = "center";
-      ctx.fillText(
-        "Фотография не найдена",
-        canvas.width / 2,
-        canvas.height / 2
-      );
-      ctx.fillText(canvas.width / 2, canvas.height / 2 + 25);
+      ctx.fillText(t("imageNotFound"), canvas.width / 2, canvas.height / 2);
     }
   };
 
@@ -799,10 +795,10 @@ const PhotoEditorContent = () => {
 
   return (
     <div className="window-content">
-      <h3>Photo Editor</h3>
+      <h3>{t("photoEditorTitle")}</h3>
       <div className="paint-tools">
         <div className="tool-section">
-          <label>Цвет:</label>
+          <label>{t("color")}:</label>
           <div className="color-palette">
             {colors.map((col) => (
               <button
@@ -821,7 +817,9 @@ const PhotoEditorContent = () => {
         </div>
 
         <div className="tool-section">
-          <label>Размер кисти: {brushSize}px</label>
+          <label>
+            {t("brushSize")}: {brushSize}px
+          </label>
           <input
             type="range"
             min="1"
@@ -834,13 +832,13 @@ const PhotoEditorContent = () => {
 
         <div className="tool-buttons">
           <button onClick={restoreOriginal} className="paint-btn">
-            🖼️ Восстановить фото
+            🖼️ {t("restorePhoto")}
           </button>
           <button onClick={clearToWhiteCanvas} className="paint-btn">
-            ⬜ Очистить холст
+            ⬜ {t("clearCanvas")}
           </button>
           <button onClick={saveImage} className="paint-btn">
-            💾 Сохранить
+            💾 {t("save")}
           </button>
         </div>
       </div>
@@ -866,17 +864,16 @@ const PhotoEditorContent = () => {
           onTouchEnd={stopDrawing}
         />
         {!imageLoaded && (
-          <div className="image-loading">Загрузка изображения...</div>
+          <div className="image-loading">{t("loadingImage")}</div>
         )}
       </div>
 
       <div className="paint-hint">
-        💡 <strong>Восстановить фото</strong> - вернет оригинальную фотографию
+        💡 <strong>{t("restorePhoto")}</strong> - {t("restorePhotoHint")}
         <br />
-        💡 <strong>Очистить холст</strong> - полностью очистит холст белым
-        цветом
+        💡 <strong>{t("clearCanvas")}</strong> - {t("clearCanvasHint")}
         <br />
-        {!imageLoaded && ""}
+        {!imageLoaded && t("imageNotFound")}
       </div>
     </div>
   );

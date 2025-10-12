@@ -72,6 +72,17 @@ export const translations = {
     paintTitle: "Pixel Paint",
     paintDescription: "Редактор изображений",
 
+    // Photo Editor translations
+    color: "Цвет",
+    brushSize: "Размер кисти",
+    restorePhoto: "Восстановить фото",
+    clearCanvas: "Очистить холст",
+    save: "Сохранить",
+    loadingImage: "Загрузка изображения...",
+    restorePhotoHint: "вернет оригинальную фотографию",
+    clearCanvasHint: "полностью очистит холст белым цветом",
+    imageNotFound: "Изображение не найдено",
+
     // Синий экран смерти (BSOD)
     bsodTitle: "Ваш компьютер запущен некорректно",
     bsodMessage1:
@@ -162,6 +173,17 @@ I am looking for a team where I can solve interesting tasks, grow under the guid
     paint: "Pixel Paint",
     paintTitle: "Pixel Paint",
     paintDescription: "Image Editor",
+
+    // Photo Editor translations
+    color: "Color",
+    brushSize: "Brush size",
+    restorePhoto: "Restore photo",
+    clearCanvas: "Clear canvas",
+    save: "Save",
+    loadingImage: "Loading image...",
+    restorePhotoHint: "will restore the original photo",
+    clearCanvasHint: "will completely clear the canvas with white",
+    imageNotFound: "Image not found",
 
     // Blue Screen of Death (BSOD)
     bsodTitle: "Your PC ran into a problem",
