@@ -509,7 +509,7 @@ const PortfolioContent = () => {
       <div className="projects-list">
         <div className="project-item pixel-border">
           <h4>{t("dollImpostorQuiz")}</h4>
-          <p>Веб-приложение квиз по игре Doll Impostor</p>
+          <p>{t("project1Description")}</p>
           <div className="project-links">
             <a
               href="https://doll-impostor-quiz.vercel.app/"
@@ -517,7 +517,7 @@ const PortfolioContent = () => {
               rel="noopener noreferrer"
               className="project-link"
             >
-              Демо
+              {t("demo")}
             </a>
             <a
               href="https://github.com/geliusgelius/doll-impostor-quiz"
@@ -525,7 +525,7 @@ const PortfolioContent = () => {
               rel="noopener noreferrer"
               className="project-link"
             >
-              Код
+              {t("code")}
             </a>
           </div>
           <div className="project-tags">
@@ -538,10 +538,7 @@ const PortfolioContent = () => {
 
         <div className="project-item pixel-border">
           <h4>{t("artistPortfolio")}</h4>
-          <p>
-            Лендинг-портфолио для художника с адаптивным дизайном и галереей
-            работ
-          </p>
+          <p>{t("project2Description")}</p>
           <div className="project-links">
             <a
               href="https://geliusgelius.github.io/art-portfolio/"
@@ -549,7 +546,7 @@ const PortfolioContent = () => {
               rel="noopener noreferrer"
               className="project-link"
             >
-              Демо
+              {t("demo")}
             </a>
             <a
               href="https://github.com/geliusgelius/art-portfolio"
@@ -557,7 +554,7 @@ const PortfolioContent = () => {
               rel="noopener noreferrer"
               className="project-link"
             >
-              Код
+              {t("code")}
             </a>
           </div>
           <div className="project-tags">
@@ -569,7 +566,7 @@ const PortfolioContent = () => {
 
         <div className="project-item pixel-border">
           <h4>{t("miniTrello")}</h4>
-          <p>Минималистичный, но функциональный аналог Trello</p>
+          <p>{t("project3Description")}</p>
           <div className="project-links">
             <a
               href="https://geliusgelius.github.io/trello-mini/"
@@ -577,7 +574,7 @@ const PortfolioContent = () => {
               rel="noopener noreferrer"
               className="project-link"
             >
-              Демо
+              {t("demo")}
             </a>
             <a
               href="https://github.com/geliusgelius/trello-mini"
@@ -585,13 +582,13 @@ const PortfolioContent = () => {
               rel="noopener noreferrer"
               className="project-link"
             >
-              Код
+              {t("code")}
             </a>
           </div>
           <div className="project-tags">
             <span>HTML/CSS</span>
             <span>JavaScript</span>
-            <span>Адаптивная верстка</span>
+            <span>{t("responsiveDesign")}</span>
           </div>
         </div>
       </div>

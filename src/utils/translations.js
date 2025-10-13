@@ -44,6 +44,13 @@ export const translations = {
     miniTrello: "Mini Trello",
     artistPortfolio: "Сайт-портфолио художника",
     dollImpostorQuiz: "Квиз по игре Doll Impostor",
+    project1Description: "Веб-приложение квиз по игре Doll Impostor",
+    project2Description:
+      "Лендинг-портфолио для художника с адаптивным дизайном и галереей работ",
+    project3Description: "Минималистичный, но функциональный аналог Trello",
+    demo: "Демо",
+    code: "Код",
+    responsiveDesign: "Адаптивная верстка",
 
     // Contact content
     getInTouch: "Свяжитесь со мной",
@@ -184,6 +191,13 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     miniTrello: "Mini Trello",
     artistPortfolio: "Artist Portfolio Website",
     dollImpostorQuiz: "Doll Impostor Quiz",
+    project1Description: "Web quiz application for Doll Impostor game",
+    project2Description:
+      "Landing portfolio for an artist with responsive design and artwork gallery",
+    project3Description: "Minimalistic but functional Trello analog",
+    demo: "Demo",
+    code: "Code",
+    responsiveDesign: "Responsive design",
 
     // Contact content
     getInTouch: "Get In Touch",
