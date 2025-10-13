@@ -689,7 +689,7 @@ const PhotoEditorContent = () => {
     // Загружаем изображение
     const img = new Image();
     img.crossOrigin = "anonymous";
-    img.src = "/src/assets/images/avatar.jpg";
+    img.src = "/avatar.jpg";
     img.onload = () => {
       setOriginalImage(img);
       setImageLoaded(true);
