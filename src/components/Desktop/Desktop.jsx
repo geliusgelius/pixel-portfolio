@@ -671,7 +671,7 @@ const ContactContent = () => {
 };
 
 const PhotoEditorContent = () => {
-  const { t } = useLanguage(); // Добавлен хук useLanguage
+  const { t } = useLanguage();
   const [color, setColor] = useState("#ff1493");
   const [brushSize, setBrushSize] = useState(5);
   const [isDrawing, setIsDrawing] = useState(false);
