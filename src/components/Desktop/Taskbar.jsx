@@ -42,18 +42,18 @@ const Taskbar = ({
     e.stopPropagation();
     onStartClick();
 
-    // Пасхалка BSOD: 5 кликов за 2 секунды
+    // Easter Egg BSOD: 5 clicks in 2 seconds
     const now = Date.now();
 
     if (now - lastClickTime > 2000) {
-      // Сброс если прошло больше 2 секунд
+      // Reset if more than 2 seconds have passed
       setClickCount(1);
     } else {
-      // Увеличиваем счетчик
+      // Increment counter
       const newCount = clickCount + 1;
       setClickCount(newCount);
 
-      // Проверяем на 5 кликов
+      // Check for 5 clicks
       if (newCount >= 5) {
         onEasterEgg();
         setClickCount(0);
@@ -106,25 +106,23 @@ const Taskbar = ({
       </div>
 
       <div className="system-tray pixel-border-inset">
-        {/* Кнопка смены фона */}
+        {/* Background change button */}
         <div className="background-button-container">
           <button
             className="background-button"
             onClick={handleBackgroundClick}
-            title="Сменить фон рабочего стола"
+            title={t("changeBackground")}
           >
             <span className="background-icon">🎨</span>
           </button>
         </div>
 
-        {/* Кнопка блокировки значков */}
+        {/* Icon lock button */}
         <div className="lock-button-container">
           <button
             className={`lock-button ${iconsLocked ? "locked" : "unlocked"}`}
             onClick={handleLockClick}
-            title={
-              iconsLocked ? "Разблокировать значки" : "Заблокировать значки"
-            }
+            title={iconsLocked ? t("unlockIcons") : t("lockIcons")}
           >
             <span className="lock-icon">{iconsLocked ? "🔒" : "🔓"}</span>
           </button>

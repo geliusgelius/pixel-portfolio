@@ -27,7 +27,9 @@ import {
   BytesizePortfolio,
   StreamlinePixelDesignColorPaintingPalette,
   MaterialSymbolsContactMailOutline,
+  FluentTetrisApp20Regular,
 } from "./icones";
+import TetrisGame from "./TetrisGame";
 
 const Desktop = () => {
   const { t, currentLanguage } = useLanguage();
@@ -52,6 +54,7 @@ const Desktop = () => {
     portfolio: { x: 20, y: 220 },
     photoEditor: { x: 20, y: 320 },
     contact: { x: 20, y: 420 },
+    games: { x: 20, y: 520 },
   };
 
   // Автоматически открываем окно "Обо мне" при загрузке
@@ -221,6 +224,8 @@ const Desktop = () => {
           newTitle = t("contactTitle");
         } else if (window.ContentComponent === PhotoEditorContent) {
           newTitle = t("photoEditorTitle");
+        } else if (window.ContentComponent === GamesContent) {
+          newTitle = t("gamesTitle");
         }
 
         return { ...window, title: newTitle };
@@ -357,6 +362,26 @@ const Desktop = () => {
                 iconPositions.contact || defaultIconPositions.contact
               }
             />
+
+            <DesktopIcon
+              iconId="games"
+              icon={<FluentTetrisApp20Regular />}
+              title={t("games")}
+              onClick={() =>
+                openWindow(
+                  t("gamesTitle"),
+                  <FluentTetrisApp20Regular style={{ fontSize: "1rem" }} />,
+                  GamesContent
+                )
+              }
+              isLocked={iconsLocked}
+              onPositionChange={(position) =>
+                handleIconPositionChange("games", position)
+              }
+              initialPosition={
+                iconPositions.games || defaultIconPositions.games
+              }
+            />
           </div>
         </div>
       </div>
@@ -399,6 +424,7 @@ const Desktop = () => {
           portfolioContent={PortfolioContent}
           contactContent={ContactContent}
           photoEditorContent={PhotoEditorContent}
+          gamesContent={GamesContent}
         />
       )}
 
@@ -875,6 +901,14 @@ const PhotoEditorContent = () => {
         <br />
         {!imageLoaded && t("imageNotFound")}
       </div>
+    </div>
+  );
+};
+
+const GamesContent = () => {
+  return (
+    <div className="window-content">
+      <TetrisGame />
     </div>
   );
 };

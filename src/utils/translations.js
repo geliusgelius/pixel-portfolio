@@ -11,6 +11,7 @@ export const translations = {
     portfolio: "Портфолио",
     contact: "Контакты",
     photoEditor: "Фото редактор",
+    games: "Тетрис",
 
     // Window titles
     aboutMeTitle: "О себе",
@@ -18,11 +19,12 @@ export const translations = {
     portfolioTitle: "Портфолио",
     contactTitle: "Контакты",
     photoEditorTitle: "Фоторедактор",
+    gamesTitle: "Тетрис",
 
     // About Me content
     name: "Ангелина Смирнова",
     profession: "Фронтенд Разработчик",
-    welcome: `Frontend-разработчик, который превращает идеи в быстрые и интуитивные интерфейсы.
+    welcome: `Фронтенд-разработчик, который превращает идеи в быстрые и интуитивные интерфейсы.
 
 Создаю современный, производительный код на React, Next.js и TypeScript. Я не просто верстаю макеты, а думаю о том, как пользователь будет взаимодействовать с продуктом, и как мой код повлияет на бизнес-метрики, такие как скорость загрузки и конверсия.
 
@@ -54,6 +56,24 @@ export const translations = {
     // Taskbar
     start: "Пуск",
     time: "00:00",
+    changeBackground: "Сменить фон рабочего стола",
+    lockIcons: "Заблокировать значки",
+    unlockIcons: "Разблокировать значки",
+
+    // Background Selector
+    selectDesktopBackground: "Выбор фона рабочего стола",
+    preview: "Предпросмотр",
+    currentBackground: "Текущий фон",
+    apply: "Применить",
+    cancel: "Отмена",
+    bgPinkGradient: "Розовый градиент",
+    bgBlueGradient: "Синий градиент",
+    bgGreenGradient: "Зеленый градиент",
+    bgPurpleGradient: "Фиолетовый градиент",
+    bgSunset: "Закат",
+    bgOcean: "Океан",
+    bgForest: "Лес",
+    bgCottonCandy: "Сахарная вата",
 
     // Shutdown screen
     shutdownSaving: "Сохранение ваших данных...",
@@ -101,6 +121,23 @@ export const translations = {
     bsodStep4: "Восстановление параметров...",
     bsodStep5: "Завершение процессов...",
     bsodStep6: "Перезагрузка системы...",
+
+    // Тетрис
+    tetris: "Тетрис",
+    tetrisScore: "Счет: ",
+    tetrisLevel: "Уровень: ",
+    tetrisStart: "Начать игру",
+    tetrisPause: "Пауза",
+    tetrisGameOver: "Игра окончена!",
+    tetrisRestart: "Играть снова",
+    tetrisContinue: "Продолжить",
+    tetrisHardDrop: "Быстро падать",
+    tetrisFinalScore: "Финальный счет: ",
+    tetrisControlsTitle: "Управление:",
+    tetrisControlsMove: "← → - движение",
+    tetrisControlsSoftDrop: "↓ - ускорить падение",
+    tetrisControlsHardDrop: "↑ - быстрое падение",
+    tetrisControlsRotate: "Пробел - поворот",
   },
   en: {
     // Preloader
@@ -114,6 +151,7 @@ export const translations = {
     portfolio: "Portfolio",
     contact: "Contact",
     photoEditor: "Photo Editor",
+    games: "Tetris",
 
     // Window titles
     aboutMeTitle: "About Me",
@@ -121,21 +159,23 @@ export const translations = {
     portfolioTitle: "Portfolio",
     contactTitle: "Contact",
     photoEditorTitle: "Photo Editor",
+    gamesTitle: "Tetris",
 
     // About Me content
     name: "Angelina Smirnova",
     profession: "Frontend Developer",
-    welcome: `Frontend is a developer who turns ideas into fast and intuitive interfaces.
+    welcome: `Frontend developer who turns ideas into fast and intuitive interfaces.
 
-I create modern, productive code for React, Next.js and TypeScript. I'm not just designing layouts, but thinking about how the user will interact with the product, and how my code will affect business metrics such as download speed and conversion.
+I create modern, high-performance code using React, Next.js and TypeScript. I don't just create layouts, but think about how users will interact with the product and how my code will impact business metrics like loading speed and conversion.
 
 What I bring to the project:
 
-Confident work with JavaScript (ES6+), React (hooks, functional components), Next.js for SSR/SSG.
+Proficient work with JavaScript (ES6+), React (hooks, functional components), Next.js for SSR/SSG.
 
-It's important to me that the interface is not only beautiful, but also accessible, cross-browser, and properly indexed by search engines.
+It's important to me that the interface is not only beautiful but also accessible, cross-browser compatible, and properly indexed by search engines.
 
-I am looking for a team where I can solve interesting tasks, grow under the guidance of experienced colleagues and make a real contribution to the overall product.`,
+I'm looking for a team where I can solve interesting challenges, grow under the guidance of experienced colleagues, and make a real contribution to the overall product.`,
+
     // Skills content
     technicalSkills: "Technical Skills",
 
@@ -156,6 +196,24 @@ I am looking for a team where I can solve interesting tasks, grow under the guid
     // Taskbar
     start: "Start",
     time: "00:00",
+    changeBackground: "Change desktop background",
+    lockIcons: "Lock icons",
+    unlockIcons: "Unlock icons",
+
+    // Background Selector
+    selectDesktopBackground: "Select Desktop Background",
+    preview: "Preview",
+    currentBackground: "Current background",
+    apply: "Apply",
+    cancel: "Cancel",
+    bgPinkGradient: "Pink Gradient",
+    bgBlueGradient: "Blue Gradient",
+    bgGreenGradient: "Green Gradient",
+    bgPurpleGradient: "Purple Gradient",
+    bgSunset: "Sunset",
+    bgOcean: "Ocean",
+    bgForest: "Forest",
+    bgCottonCandy: "Cotton Candy",
 
     // Shutdown screen
     shutdownSaving: "Saving your data...",
@@ -202,6 +260,23 @@ I am looking for a team where I can solve interesting tasks, grow under the guid
     bsodStep4: "Restoring settings...",
     bsodStep5: "Closing processes...",
     bsodStep6: "Restarting system...",
+
+    // Tetris
+    tetris: "Tetris",
+    tetrisScore: "Score: ",
+    tetrisLevel: "Level: ",
+    tetrisStart: "Start Game",
+    tetrisPause: "Pause",
+    tetrisGameOver: "Game Over!",
+    tetrisRestart: "Play Again",
+    tetrisContinue: "Continue",
+    tetrisHardDrop: "Hard Drop",
+    tetrisFinalScore: "Final Score: ",
+    tetrisControlsTitle: "Controls:",
+    tetrisControlsMove: "← → - move",
+    tetrisControlsSoftDrop: "↓ - soft drop",
+    tetrisControlsHardDrop: "↑ - hard drop",
+    tetrisControlsRotate: "Space - rotate",
   },
 };
 

@@ -7,6 +7,7 @@ import {
   BytesizePortfolio,
   MaterialSymbolsContactMailOutline,
   StreamlinePixelDesignColorPaintingPalette,
+  FluentTetrisApp20Regular,
 } from "./icones";
 
 const StartMenu = ({
@@ -18,6 +19,7 @@ const StartMenu = ({
   portfolioContent,
   contactContent,
   photoEditorContent,
+  gamesContent,
 }) => {
   const { t, currentLanguage, switchLanguage } = useLanguage();
 
@@ -89,6 +91,16 @@ const StartMenu = ({
             style={{ fontSize: "1rem" }}
           />,
           photoEditorContent
+        ),
+    },
+    {
+      icon: <FluentTetrisApp20Regular style={{ fontSize: "1.5rem" }} />,
+      title: t("gamesTitle"),
+      action: () =>
+        onOpenWindow(
+          t("gamesTitle"),
+          <FluentTetrisApp20Regular style={{ fontSize: "1rem" }} />,
+          gamesContent
         ),
     },
   ];
