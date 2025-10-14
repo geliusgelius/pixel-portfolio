@@ -21,6 +21,11 @@ const Window = ({
     width: 0,
     height: 0,
   });
+  const [isMaximized, setIsMaximized] = useState(false);
+  const [originalState, setOriginalState] = useState({
+    position: { x: 0, y: 0 },
+    size: { width: 0, height: 0 },
+  });
 
   const contentKey = `${windowData.id}-${currentLanguage}`;
 
@@ -106,6 +111,35 @@ const Window = ({
     });
   };
 
+  const toggleMaximize = () => {
+    if (!isMaximized) {
+      // Сохраняем оригинальное состояние
+      setOriginalState({
+        position: { ...windowData.position },
+        size: { ...windowData.size },
+      });
+
+      // Максимизируем окно
+      setIsMaximized(true);
+      onPositionChange({ x: 0, y: 0 });
+      onSizeChange({
+        width: window.innerWidth,
+        height: window.innerHeight - 60, // учитываем таскбар
+      });
+    } else {
+      // Восстанавливаем оригинальное состояние
+      setIsMaximized(false);
+      onPositionChange(originalState.position);
+      onSizeChange(originalState.size);
+    }
+  };
+
+  const handleDoubleClick = (e) => {
+    if (e.target.closest(".window-header")) {
+      toggleMaximize();
+    }
+  };
+
   if (windowData.isMinimized) {
     return null;
   }
@@ -114,7 +148,9 @@ const Window = ({
 
   return (
     <motion.div
-      className={`window ${isActive ? "active" : ""}`}
+      className={`window ${isActive ? "active" : ""} ${
+        isMaximized ? "maximized" : ""
+      }`}
       style={{
         left: windowData.position.x,
         top: windowData.position.y,
@@ -126,7 +162,11 @@ const Window = ({
       animate={{ scale: 1, opacity: 1 }}
       onClick={onBringToFront}
     >
-      <div className="window-header" onMouseDown={handleMouseDown}>
+      <div
+        className="window-header"
+        onMouseDown={handleMouseDown}
+        onDoubleClick={handleDoubleClick}
+      >
         <div className="window-title">
           <span className="window-icon">{windowData.icon}</span>
           {windowData.title}
@@ -134,6 +174,13 @@ const Window = ({
         <div className="window-controls">
           <button className="control-btn minimize" onClick={onMinimize}>
             −
+          </button>
+          <button
+            className="control-btn maximize"
+            onClick={toggleMaximize}
+            title={isMaximized ? "Восстановить" : "Развернуть"}
+          >
+            {isMaximized ? "❐" : "⛶"}
           </button>
           <button className="control-btn close" onClick={onClose}>
             ×
@@ -145,23 +192,31 @@ const Window = ({
         <WindowContent key={contentKey} />
       </div>
 
-      {}
-      <div
-        className="window-resize-handle"
-        onMouseDown={handleResizeStart}
-        title="Изменить размер"
-      >
-        <div className="resize-corner">
-          <div className="resize-line horizontal"></div>
-          <div className="resize-line vertical"></div>
-        </div>
-      </div>
+      {!isMaximized && (
+        <>
+          <div
+            className="window-resize-handle"
+            onMouseDown={handleResizeStart}
+            title="Изменить размер"
+          >
+            <div className="resize-corner">
+              <div className="resize-line horizontal"></div>
+              <div className="resize-line vertical"></div>
+            </div>
+          </div>
 
-      {}
-      <div className="resize-border top" onMouseDown={handleResizeStart} />
-      <div className="resize-border right" onMouseDown={handleResizeStart} />
-      <div className="resize-border bottom" onMouseDown={handleResizeStart} />
-      <div className="resize-border left" onMouseDown={handleResizeStart} />
+          <div className="resize-border top" onMouseDown={handleResizeStart} />
+          <div
+            className="resize-border right"
+            onMouseDown={handleResizeStart}
+          />
+          <div
+            className="resize-border bottom"
+            onMouseDown={handleResizeStart}
+          />
+          <div className="resize-border left" onMouseDown={handleResizeStart} />
+        </>
+      )}
     </motion.div>
   );
 };

@@ -43,9 +43,7 @@ const Desktop = () => {
   const [showPreloader, setShowPreloader] = useState(false);
   const [iconsLocked, setIconsLocked] = useState(false);
   const [iconPositions, setIconPositions] = useState({});
-  const [currentBackground, setCurrentBackground] = useState(
-    "linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093)"
-  );
+  const [currentTheme, setCurrentTheme] = useState("pink");
 
   // Начальные позиции для значков
   const defaultIconPositions = {
@@ -63,20 +61,41 @@ const Desktop = () => {
       openWindow(
         t("aboutMeTitle"),
         <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
-        AboutMeContent
+        AboutMeContent,
+        "aboutMe"
       );
     }, 500);
 
     return () => clearTimeout(timer);
   }, []);
 
-  const openWindow = (title, icon, ContentComponent) => {
+  const openWindow = (title, icon, ContentComponent, windowType) => {
+    // Проверяем, не открыто ли уже такое окно
+    const existingWindow = windows.find(
+      (window) => window.windowType === windowType
+    );
+
+    if (existingWindow) {
+      // Если окно уже открыто, сворачиваем/разворачиваем его
+      if (existingWindow.isMinimized) {
+        // Если свернуто - восстанавливаем
+        restoreWindow(existingWindow.id);
+      } else {
+        // Если открыто - сворачиваем
+        minimizeWindow(existingWindow.id);
+      }
+      setShowStartMenu(false);
+      return;
+    }
+
+    // Создаем новое окно
     const id = Date.now().toString();
     const newWindow = {
       id,
       title,
       icon,
       ContentComponent,
+      windowType,
       position: { x: 50 + windows.length * 30, y: 50 + windows.length * 30 },
       size: { width: 600, height: 400 },
       isMinimized: false,
@@ -145,24 +164,21 @@ const Desktop = () => {
   };
 
   const handleBSODRestart = () => {
-    // Закрываем BSOD и запускаем перезагрузку
     setShowBSOD(false);
     setShowPreloader(true);
 
-    // Через 3 секунды показываем прелоадер и перезагружаем систему
     setTimeout(() => {
       setShowPreloader(false);
-      // Полностью сбрасываем состояние
       setWindows([]);
       setActiveWindow(null);
       setIconPositions({});
 
-      // Снова открываем окно "Обо мне" как при первой загрузке
       setTimeout(() => {
         openWindow(
           t("aboutMeTitle"),
           <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
-          AboutMeContent
+          AboutMeContent,
+          "aboutMe"
         );
       }, 1000);
     }, 3000);
@@ -182,12 +198,12 @@ const Desktop = () => {
       setActiveWindow(null);
       setIconPositions({});
 
-      // При перезагрузке снова открываем окно "Обо мне"
       setTimeout(() => {
         openWindow(
           t("aboutMeTitle"),
           <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
-          AboutMeContent
+          AboutMeContent,
+          "aboutMe"
         );
       }, 1000);
     }, 1000);
@@ -204,9 +220,9 @@ const Desktop = () => {
     setIconsLocked(!iconsLocked);
   };
 
-  const handleBackgroundChange = (newBackground) => {
-    console.log("Changing background to:", newBackground);
-    setCurrentBackground(newBackground);
+  const handleThemeChange = (newTheme) => {
+    console.log("Changing theme to:", newTheme);
+    setCurrentTheme(newTheme);
   };
 
   const updateWindowTitles = () => {
@@ -253,10 +269,7 @@ const Desktop = () => {
     <div className="desktop" onClick={() => setShowStartMenu(false)}>
       <div className="crt-effect">
         <div className="scanlines"></div>
-        <div
-          className="desktop-background"
-          style={{ background: currentBackground }}
-        >
+        <div className={`desktop-background theme-${currentTheme}`}>
           <div className="pixel-grid"></div>
           <div className="desktop-icons">
             <DesktopIcon
@@ -267,7 +280,8 @@ const Desktop = () => {
                 openWindow(
                   t("aboutMeTitle"),
                   <MaterialSymbolsAccountCircle style={{ fontSize: "1rem" }} />,
-                  AboutMeContent
+                  AboutMeContent,
+                  "aboutMe"
                 )
               }
               isLocked={iconsLocked}
@@ -287,7 +301,8 @@ const Desktop = () => {
                 openWindow(
                   t("skillsTitle"),
                   <MdiLightningBolt style={{ fontSize: "1rem" }} />,
-                  SkillsContent
+                  SkillsContent,
+                  "skills"
                 )
               }
               isLocked={iconsLocked}
@@ -307,7 +322,8 @@ const Desktop = () => {
                 openWindow(
                   t("portfolioTitle"),
                   <BytesizePortfolio style={{ fontSize: "1rem" }} />,
-                  PortfolioContent
+                  PortfolioContent,
+                  "portfolio"
                 )
               }
               isLocked={iconsLocked}
@@ -329,7 +345,8 @@ const Desktop = () => {
                   <StreamlinePixelDesignColorPaintingPalette
                     style={{ fontSize: "1rem" }}
                   />,
-                  PhotoEditorContent
+                  PhotoEditorContent,
+                  "photoEditor"
                 )
               }
               isLocked={iconsLocked}
@@ -351,7 +368,8 @@ const Desktop = () => {
                   <MaterialSymbolsContactMailOutline
                     style={{ fontSize: "1rem" }}
                   />,
-                  ContactContent
+                  ContactContent,
+                  "contact"
                 )
               }
               isLocked={iconsLocked}
@@ -371,7 +389,8 @@ const Desktop = () => {
                 openWindow(
                   t("gamesTitle"),
                   <FluentTetrisApp20Regular style={{ fontSize: "1rem" }} />,
-                  GamesContent
+                  GamesContent,
+                  "games"
                 )
               }
               isLocked={iconsLocked}
@@ -410,8 +429,8 @@ const Desktop = () => {
         onEasterEgg={activateEasterEgg}
         iconsLocked={iconsLocked}
         onToggleIconsLock={toggleIconsLock}
-        currentBackground={currentBackground}
-        onBackgroundChange={handleBackgroundChange}
+        currentTheme={currentTheme}
+        onThemeChange={handleThemeChange}
       />
 
       {showStartMenu && (

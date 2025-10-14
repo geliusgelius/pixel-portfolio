@@ -11,8 +11,8 @@ const Taskbar = ({
   onEasterEgg,
   iconsLocked,
   onToggleIconsLock,
-  currentBackground,
-  onBackgroundChange,
+  currentTheme,
+  onThemeChange,
 }) => {
   const { t, currentLanguage, switchLanguage } = useLanguage();
   const [currentTime, setCurrentTime] = useState("00:00");
@@ -160,8 +160,8 @@ const Taskbar = ({
 
       {showBackgroundSelector && (
         <BackgroundSelector
-          currentBackground={currentBackground}
-          onBackgroundChange={onBackgroundChange}
+          currentTheme={currentTheme}
+          onThemeChange={onThemeChange}
           onClose={() => setShowBackgroundSelector(false)}
         />
       )}

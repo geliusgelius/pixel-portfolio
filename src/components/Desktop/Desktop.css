@@ -31,9 +31,41 @@
 .desktop-background {
   width: 100%;
   height: calc(100% - 60px);
-  background: linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093);
   position: relative;
-  overflow: visible; /* Меняем на visible для перетаскивания */
+  overflow: visible;
+}
+
+/* Темы */
+.theme-pink {
+  background: linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093);
+}
+
+.theme-blue {
+  background: linear-gradient(45deg, #87ceeb, #4682b4, #1e90ff);
+}
+
+.theme-green {
+  background: linear-gradient(45deg, #98fb98, #32cd32, #228b22);
+}
+
+.theme-purple {
+  background: linear-gradient(45deg, #d8bfd8, #9370db, #8a2be2);
+}
+
+.theme-sunset {
+  background: linear-gradient(45deg, #ff7f50, #ff6347, #ff4500);
+}
+
+.theme-ocean {
+  background: linear-gradient(45deg, #00bfff, #1e90ff, #0000cd);
+}
+
+.theme-forest {
+  background: linear-gradient(45deg, #90ee90, #228b22, #006400);
+}
+
+.theme-cotton-candy {
+  background: linear-gradient(45deg, #ffb6c1, #87ceeb, #dda0dd);
 }
 
 .pixel-grid {
@@ -73,7 +105,6 @@
   z-index: 10;
   cursor: grab;
   user-select: none;
-  /* ЯВНО отключаем все переходы и трансформации */
   transition: none !important;
   transform: none !important;
 }
@@ -85,13 +116,13 @@
 .desktop-icon .icon {
   font-size: 2rem;
   margin-bottom: 5px;
-  filter: drop-shadow(2px 2px 0px #ff1493);
+  filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.3));
   pointer-events: none;
 }
 
 .desktop-icon span {
   color: white;
-  text-shadow: 2px 2px 0px #ff1493;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
   font-size: 0.65rem;
   text-align: center;
   line-height: 1.2;
@@ -122,7 +153,7 @@
   position: absolute;
   top: 5px;
   right: 5px;
-  background: rgba(255, 20, 147, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -174,6 +205,31 @@
   height: 100%;
   background: white;
   overflow-y: auto;
+}
+
+/* Стили для скроллбаров во всем приложении */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff1493 #ffb6c1;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffb6c1;
+  border: 2px solid #ff1493;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #ff1493;
+  border: 2px solid #ffb6c1;
+  border-radius: 0;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
 }
 
 .window-content h3 {

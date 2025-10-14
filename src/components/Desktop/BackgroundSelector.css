@@ -1,233 +1,225 @@
-.background-selector-overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 100001;
+  justify-content: center;
+  z-index: 10000;
 }
 
-.background-selector-window {
-  width: 800px;
-  max-width: 90vw;
-  height: 600px;
-  max-height: 90vh;
+.modal-content {
   background: #ffb6c1;
   border: 4px solid;
   border-color: #fff #ff1493 #ff1493 #fff;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px #fff;
-  display: flex;
-  flex-direction: column;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
-.background-selector-header {
+.modal-header {
   background: linear-gradient(45deg, #ff1493, #ff69b4);
-  padding: 12px 15px;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #fff;
 }
 
-.background-selector-header h3 {
+.modal-header h2 {
   color: white;
-  text-shadow: 1px 1px 0px #db7093;
-  font-size: 1rem;
+  text-shadow: 2px 2px 0px #db7093;
   margin: 0;
+  font-size: 1.2rem;
 }
 
-.close-btn {
-  width: 25px;
-  height: 25px;
-  border: 2px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  background: #ffb6c1;
-  color: #333;
-  font-weight: bold;
+.modal-close {
+  background: none;
+  border: 2px solid #fff;
+  color: white;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
-}
-
-.close-btn:hover {
-  background: #ff69b4;
-  color: white;
-}
-
-.background-selector-content {
-  flex: 1;
-  display: flex;
-  padding: 20px;
-  gap: 20px;
-  overflow: hidden;
-}
-
-.background-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-
-.background-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  padding: 10px;
-  border: 2px solid transparent;
   transition: all 0.2s;
 }
 
-.background-item:hover {
-  background: rgba(255, 255, 255, 0.3);
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
 }
 
-.background-item.selected {
-  background: rgba(255, 20, 147, 0.2);
-  border: 2px solid #ff1493;
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 20px;
 }
 
-.background-preview {
-  width: 100%;
+.theme-option {
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 3px solid transparent;
+}
+
+.theme-option:hover {
+  transform: translateY(-2px);
+}
+
+.theme-option.selected {
+  border-color: #ff1493;
+  box-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+}
+
+.theme-preview {
   height: 80px;
   border: 2px solid #fff;
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
-}
-
-.background-name {
-  font-size: 0.7rem;
-  text-align: center;
-  color: #333;
-  font-weight: bold;
-}
-
-.background-preview-large {
-  width: 300px;
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.preview-title {
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-}
-
-.preview-desktop {
-  width: 100%;
-  height: 200px;
-  border: 3px solid #ff1493;
-  background: linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093);
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
 }
 
-.preview-icons {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
+.theme-preview-content {
   display: flex;
-  gap: 5px;
+  gap: 8px;
+  padding: 8px;
 }
 
 .preview-icon {
-  width: 8px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #ff1493;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 4px;
+  border-radius: 2px;
 }
 
-.current-background-info {
+.theme-name {
+  color: #ff1493;
+  text-shadow: 1px 1px 0px #fff;
+  font-weight: bold;
   font-size: 0.8rem;
-  color: #333;
   text-align: center;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid #ff1493;
+  padding: 8px 5px;
+  background: rgba(255, 255, 255, 0.8);
+  margin-top: 4px;
+  border: 2px solid #fff;
 }
 
-.background-selector-footer {
+/* Стили превью для каждой темы */
+.theme-pink.theme-preview {
+  background: linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093);
+}
+
+.theme-blue.theme-preview {
+  background: linear-gradient(45deg, #87ceeb, #4682b4, #1e90ff);
+}
+
+.theme-green.theme-preview {
+  background: linear-gradient(45deg, #98fb98, #32cd32, #228b22);
+}
+
+.theme-purple.theme-preview {
+  background: linear-gradient(45deg, #d8bfd8, #9370db, #8a2be2);
+}
+
+.theme-sunset.theme-preview {
+  background: linear-gradient(45deg, #ff7f50, #ff6347, #ff4500);
+}
+
+.theme-ocean.theme-preview {
+  background: linear-gradient(45deg, #00bfff, #1e90ff, #0000cd);
+}
+
+.theme-forest.theme-preview {
+  background: linear-gradient(45deg, #90ee90, #228b22, #006400);
+}
+
+.theme-cotton-candy.theme-preview {
+  background: linear-gradient(45deg, #ffb6c1, #87ceeb, #dda0dd);
+}
+
+.modal-footer {
   padding: 15px 20px;
-  background: rgba(255, 255, 255, 0.3);
-  border-top: 2px solid #ff1493;
+  background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+  border-top: 2px solid #fff;
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
 
-.apply-btn,
-.cancel-btn {
-  padding: 8px 20px;
-  border: 2px solid;
+.modal-button {
+  padding: 10px 20px;
+  border: 3px solid;
   cursor: pointer;
-  font-family: inherit;
-  font-size: 0.8rem;
+  font-weight: bold;
   transition: all 0.2s;
-  min-width: 80px;
+  font-size: 0.9rem;
 }
 
-.apply-btn {
-  background: #ff1493;
-  border-color: #fff #db7093 #db7093 #fff;
-  color: white;
-}
-
-.apply-btn:hover {
-  background: #db7093;
-  transform: scale(1.05);
-}
-
-.apply-btn:active {
-  background: #c71585;
-  transform: scale(0.95);
-}
-
-.cancel-btn {
+.modal-button.cancel {
   background: #ffb6c1;
+  color: #ff1493;
   border-color: #fff #ff1493 #ff1493 #fff;
-  color: #333;
 }
 
-.cancel-btn:hover {
+.modal-button.cancel:hover {
   background: #ff69b4;
   color: white;
+  transform: translateY(-1px);
 }
 
-.cancel-btn:active {
-  background: #db7093;
-  transform: scale(0.95);
+.modal-button.apply {
+  background: #ff1493;
+  color: white;
+  border-color: #fff #ff69b4 #ff69b4 #fff;
+  text-shadow: 1px 1px 0px #db7093;
+}
+
+.modal-button.apply:hover {
+  background: #ff69b4;
+  transform: translateY(-1px);
+}
+
+/* Стили скроллбара для модального окна */
+.modal-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #ffb6c1;
+  border: 2px solid #ff1493;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #ff1493;
+  border: 2px solid #ffb6c1;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #ff69b4;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
-  .background-selector-content {
-    flex-direction: column;
-    padding: 10px;
+  .modal-content {
+    width: 95%;
+    margin: 10px;
   }
 
-  .background-preview-large {
-    width: 100%;
-    height: auto;
-  }
-
-  .preview-desktop {
-    height: 120px;
-  }
-
-  .background-grid {
+  .themes-grid {
     grid-template-columns: repeat(2, 1fr);
-    max-height: 200px;
+  }
+
+  .theme-preview {
+    height: 60px;
   }
 }

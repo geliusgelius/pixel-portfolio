@@ -17,6 +17,15 @@
   border-color: #ff69b4 #fff #fff #ff69b4;
 }
 
+.window.maximized {
+  left: 0 !important;
+  top: 0 !important;
+  width: 100vw !important;
+  height: calc(100vh - 60px) !important;
+  border: none;
+  box-shadow: none;
+}
+
 .window-header {
   background: linear-gradient(45deg, #ff1493, #ff69b4);
   padding: 8px 12px;
@@ -72,6 +81,12 @@
 
 .control-btn.close:hover {
   background: #ff0000;
+  transform: scale(1.1);
+}
+
+.control-btn.maximize:hover {
+  background: #ff69b4;
+  color: white;
   transform: scale(1.1);
 }
 
@@ -231,4 +246,10 @@
 
 .window-body::-webkit-scrollbar-thumb:hover {
   background: #ff69b4;
+}
+
+/* Стили скроллбара для Firefox */
+.window-body {
+  scrollbar-width: thin;
+  scrollbar-color: #ff1493 #ffb6c1;
 }
