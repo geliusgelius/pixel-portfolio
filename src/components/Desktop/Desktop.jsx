@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../context/LanguageContext";
+import { themes } from "../../utils/themes";
 import Taskbar from "./Taskbar";
 import Window from "./Window";
 import StartMenu from "./StartMenu";
@@ -43,7 +44,9 @@ const Desktop = () => {
   const [showPreloader, setShowPreloader] = useState(false);
   const [iconsLocked, setIconsLocked] = useState(false);
   const [iconPositions, setIconPositions] = useState({});
-  const [currentTheme, setCurrentTheme] = useState("pink");
+  const [currentTheme, setCurrentTheme] = useState(() => {
+    return localStorage.getItem("selectedTheme") || "pink";
+  });
 
   // Начальные позиции для значков
   const defaultIconPositions = {
@@ -54,6 +57,29 @@ const Desktop = () => {
     contact: { x: 20, y: 420 },
     games: { x: 20, y: 520 },
   };
+
+  // Функция для применения темы ко всему сайту
+  const applyTheme = (themeId) => {
+    console.log("Applying theme:", themeId);
+    const theme = themes[themeId] || themes.pink;
+    const root = document.documentElement;
+
+    // Устанавливаем CSS переменные
+    root.style.setProperty("--theme-primary", theme.colors.primary);
+    root.style.setProperty("--theme-secondary", theme.colors.secondary);
+    root.style.setProperty("--theme-accent", theme.colors.accent);
+    root.style.setProperty("--theme-background", theme.colors.background);
+    root.style.setProperty("--theme-text", theme.colors.text);
+    root.style.setProperty("--theme-border", theme.colors.border);
+    root.style.setProperty("--theme-shadow", theme.colors.shadow);
+
+    console.log("Theme applied:", theme.colors.background);
+  };
+
+  // Применяем тему при загрузке
+  useEffect(() => {
+    applyTheme(currentTheme);
+  }, [currentTheme]);
 
   // Автоматически открываем окно "Обо мне" при загрузке
   useEffect(() => {
@@ -223,6 +249,10 @@ const Desktop = () => {
   const handleThemeChange = (newTheme) => {
     console.log("Changing theme to:", newTheme);
     setCurrentTheme(newTheme);
+    applyTheme(newTheme);
+    localStorage.setItem("selectedTheme", newTheme);
+
+    setWindows((prev) => [...prev]);
   };
 
   const updateWindowTitles = () => {
@@ -269,7 +299,7 @@ const Desktop = () => {
     <div className="desktop" onClick={() => setShowStartMenu(false)}>
       <div className="crt-effect">
         <div className="scanlines"></div>
-        <div className={`desktop-background theme-${currentTheme}`}>
+        <div className="desktop-background">
           <div className="pixel-grid"></div>
           <div className="desktop-icons">
             <DesktopIcon

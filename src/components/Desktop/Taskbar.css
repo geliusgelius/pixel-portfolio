@@ -4,362 +4,324 @@
   left: 0;
   width: 100%;
   height: 60px;
-  background: linear-gradient(45deg, #ff1493, #ff69b4);
-  border-top: 4px solid #fff;
+  background: linear-gradient(
+    45deg,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
+  border-top: 2px solid var(--theme-border);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 10px;
-  gap: 10px;
   z-index: 10000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .start-button {
-  background: #ffb6c1;
+  background: linear-gradient(
+    45deg,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
+  border: 2px solid;
+  border-color: #fff var(--theme-border) var(--theme-border) #fff;
+  color: white;
   padding: 8px 15px;
   cursor: pointer;
+  font-weight: bold;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: bold;
-  color: #333;
-  border: 2px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  min-width: 80px;
+  transition: all 0.2s;
+  text-shadow: 1px 1px 0px var(--theme-shadow);
+  min-width: 120px;
+  flex-shrink: 0;
 }
 
 .start-button:hover {
-  background: #ff69b4;
-  color: white;
+  background: linear-gradient(
+    45deg,
+    var(--theme-secondary),
+    var(--theme-primary)
+  );
+  transform: translateY(-1px);
 }
 
 .start-icon {
   font-size: 1.2rem;
+  filter: drop-shadow(1px 1px 0px var(--theme-shadow));
 }
 
 .taskbar-items {
   display: flex;
   gap: 5px;
   flex: 1;
+  margin: 0 15px;
   overflow-x: auto;
+  min-width: 0;
 }
 
 .taskbar-item {
-  background: #ffb6c1;
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
   padding: 8px 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 2px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  min-width: 120px;
   transition: all 0.2s;
+  min-width: 160px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .taskbar-item:hover {
-  background: #ff69b4;
+  background: var(--theme-secondary);
   color: white;
+  transform: translateY(-1px);
 }
 
 .taskbar-item.active {
-  background: #fff;
-  border-color: #ff1493 #fff #fff #ff1493;
+  background: var(--theme-primary);
+  color: white;
+  border-color: #fff;
 }
 
 .taskbar-icon {
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
 }
 
 .taskbar-title {
   font-size: 0.8rem;
-  white-space: nowrap;
+  font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .system-tray {
-  background: #ffb6c1;
-  padding: 8px 12px;
   display: flex;
   align-items: center;
-  gap: 15px;
-  position: relative;
-  height: 100%;
+  gap: 8px;
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
+  padding: 5px 10px;
+  height: 40px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.background-button-container,
+.lock-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.background-button,
+.lock-button {
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  border-radius: 3px;
+  width: 32px;
+  height: 32px;
+}
+
+.background-button:hover,
+.lock-button:hover {
+  background: var(--theme-primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+.lock-button.locked {
+  background: var(--theme-primary);
+  color: white;
+}
+
+.background-icon,
+.lock-icon {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .language-selector {
   position: relative;
+  flex-shrink: 0;
 }
 
 .language-button {
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
   padding: 6px 10px;
-  background: #ff69b4;
-  border: 2px solid #ff1493;
+  margin-top: 15px;
   cursor: pointer;
-  font-size: 0.8rem;
-  color: white;
-  text-shadow: 1px 1px 0px #ff1493;
+  font-weight: bold;
   transition: all 0.2s;
-  min-width: 60px;
+  min-width: 50px;
   text-align: center;
-  margin-top: 13px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .language-button:hover {
-  background: #ff1493;
-  transform: scale(1.05);
+  background: var(--theme-primary);
+  color: white;
 }
 
 .language-menu {
   position: absolute;
   bottom: 100%;
   right: 0;
-  background: linear-gradient(45deg, #ff69b4, #ff1493);
-  border: 3px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
+  border-bottom: none;
+  margin-bottom: 2px;
+  min-width: 60px;
   z-index: 10001;
-  min-width: 120px;
 }
 
 .language-option {
-  padding: 10px 15px;
+  padding: 8px 12px;
   cursor: pointer;
-  color: white;
-  font-size: 0.8rem;
-  text-shadow: 1px 1px 0px #ff1493;
-  transition: all 0.2s;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.language-option:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.language-option.active {
-  background: rgba(255, 255, 255, 0.3);
+  color: var(--theme-primary);
   font-weight: bold;
-}
-
-.language-option:last-child {
-  border-bottom: none;
-}
-
-.tray-time {
-  font-size: 0.9rem;
-  color: #333;
-  text-shadow: 1px 1px 0px #fff;
-  padding: 5px 10px;
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid #ff1493;
-  min-width: 80px;
+  transition: all 0.2s;
+  border-bottom: 1px solid var(--theme-primary);
   text-align: center;
 }
 
-/* Стили для кнопки блокировки */
-.lock-button-container {
-  display: flex;
-  align-items: center;
+.language-option:hover {
+  background: var(--theme-secondary);
+  color: white;
 }
 
-.lock-button {
-  width: 32px;
+.language-option.active {
+  background: var(--theme-primary);
+  color: white;
+}
+
+.tray-time {
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+  padding: 6px 10px;
+  font-weight: bold;
+  min-width: 70px;
+  text-align: center;
+  font-family: "Courier New", monospace;
   height: 32px;
-  background: #ffb6c1;
-  border: 2px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  margin-right: 8px;
+  flex-shrink: 0;
 }
 
-.lock-button:hover {
-  background: #ff69b4;
-  transform: scale(1.1);
+/* Стили для скроллбара в таскбаре */
+.taskbar-items::-webkit-scrollbar {
+  height: 6px;
 }
 
-.lock-button.locked {
-  background: #ff1493;
-  border-color: #fff #ff69b4 #ff69b4 #fff;
-  color: white;
+.taskbar-items::-webkit-scrollbar-track {
+  background: var(--theme-accent);
+  border: 1px solid var(--theme-primary);
 }
 
-.lock-button.locked:hover {
-  background: #db7093;
+.taskbar-items::-webkit-scrollbar-thumb {
+  background: var(--theme-primary);
+  border: 1px solid var(--theme-accent);
 }
 
-.lock-button.unlocked {
-  background: #ffb6c1;
-  border-color: #fff #ff1493 #ff1493 #fff;
-}
-
-.lock-icon {
-  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
-}
-
-/* Анимация для кнопки блокировки */
-@keyframes lockPulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.lock-button.locked .lock-icon {
-  animation: lockPulse 2s infinite;
-}
-
-/* Подсказка при наведении */
-.lock-button::after {
-  content: attr(title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 20, 147, 0.9);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-  z-index: 10001;
-}
-
-.lock-button:hover::after {
-  opacity: 1;
-}
-
-/* Адаптивность для системного трея */
-.system-tray {
-  background: #ffb6c1;
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  position: relative;
-  height: 100%;
-}
-
-/* Для мобильных устройств */
-@media (max-width: 768px) {
-  .lock-button {
-    width: 28px;
-    height: 28px;
-    font-size: 0.9rem;
-    margin-right: 5px;
-  }
-
-  .system-tray {
-    gap: 6px;
-    padding: 6px 8px;
-  }
+.taskbar-items::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-secondary);
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
   .taskbar {
     padding: 0 5px;
-    gap: 5px;
+    height: 50px;
   }
 
   .start-button {
     padding: 6px 10px;
-    min-width: 60px;
+    min-width: 100px;
     font-size: 0.8rem;
   }
 
+  .taskbar-items {
+    margin: 0 10px;
+  }
+
   .taskbar-item {
-    min-width: 100px;
     padding: 6px 8px;
+    min-width: 140px;
+  }
+
+  .taskbar-title {
+    font-size: 0.7rem;
   }
 
   .system-tray {
-    gap: 8px;
-    padding: 6px 8px;
+    padding: 5px;
+    gap: 6px;
+  }
+
+  .background-button,
+  .lock-button {
+    padding: 4px;
+    width: 28px;
+    height: 28px;
   }
 
   .language-button {
-    min-width: 50px;
-    font-size: 0.7rem;
+    padding: 4px 8px;
+    min-width: 40px;
+    font-size: 0.8rem;
+    height: 28px;
   }
 
   .tray-time {
+    padding: 4px 8px;
     min-width: 60px;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+    height: 28px;
   }
 }
 
-/* Стили для кнопки смены фона */
-.background-button-container {
-  display: flex;
-  align-items: center;
-}
+@media (max-width: 480px) {
+  .taskbar-items {
+    display: none;
+  }
 
-.background-button {
-  width: 32px;
-  height: 32px;
-  background: #ffb6c1;
-  border: 2px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  margin-right: 8px;
-}
+  .start-button {
+    min-width: 80px;
+  }
 
-.background-button:hover {
-  background: #ff69b4;
-  transform: scale(1.1);
-}
+  .system-tray {
+    gap: 4px;
+  }
 
-.background-icon {
-  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.3));
-}
+  .language-button {
+    min-width: 35px;
+    padding: 3px 6px;
+  }
 
-/* Подсказка при наведении */
-.background-button::after {
-  content: attr(title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 20, 147, 0.9);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-  z-index: 10001;
-}
-
-.background-button:hover::after {
-  opacity: 1;
-}
-
-/* Адаптивность для кнопки смены фона */
-@media (max-width: 768px) {
-  .background-button {
-    width: 28px;
-    height: 28px;
-    font-size: 0.9rem;
-    margin-right: 5px;
+  .tray-time {
+    min-width: 50px;
+    padding: 3px 6px;
   }
 }

@@ -1,23 +1,16 @@
 import React, { useState } from "react";
 import { useLanguage } from "../../context/LanguageContext";
+import { themes } from "../../utils/themes";
 import "./BackgroundSelector.css";
 
 const BackgroundSelector = ({ onClose, currentTheme, onThemeChange }) => {
   const { t } = useLanguage();
   const [selectedTheme, setSelectedTheme] = useState(currentTheme);
 
-  const themes = [
-    { id: "pink", name: t("bgPinkGradient") },
-    { id: "blue", name: t("bgBlueGradient") },
-    { id: "green", name: t("bgGreenGradient") },
-    { id: "purple", name: t("bgPurpleGradient") },
-    { id: "sunset", name: t("bgSunset") },
-    { id: "ocean", name: t("bgOcean") },
-    { id: "forest", name: t("bgForest") },
-    { id: "cotton-candy", name: t("bgCottonCandy") },
-  ];
+  const themeList = Object.values(themes);
 
   const handleApply = () => {
+    console.log("Applying theme:", selectedTheme);
     onThemeChange(selectedTheme);
     onClose();
   };
@@ -33,15 +26,21 @@ const BackgroundSelector = ({ onClose, currentTheme, onThemeChange }) => {
         </div>
 
         <div className="themes-grid">
-          {themes.map((theme) => (
+          {themeList.map((theme) => (
             <div
               key={theme.id}
               className={`theme-option ${
                 selectedTheme === theme.id ? "selected" : ""
               }`}
-              onClick={() => setSelectedTheme(theme.id)}
+              onClick={() => {
+                console.log("Selected theme:", theme.id, theme.name);
+                setSelectedTheme(theme.id);
+              }}
             >
-              <div className={`theme-preview theme-${theme.id}`}>
+              <div
+                className="theme-preview"
+                style={{ background: theme.colors.background }}
+              >
                 <div className="theme-preview-content">
                   <div className="preview-icon">🖥️</div>
                   <div className="preview-icon">📁</div>

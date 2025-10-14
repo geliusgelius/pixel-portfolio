@@ -1,3 +1,14 @@
+:root {
+  --theme-primary: #ff1493;
+  --theme-secondary: #ff69b4;
+  --theme-accent: #ffb6c1;
+  --theme-background: linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093);
+  --theme-text: #333333;
+  --theme-border: #ff1493;
+  --theme-shadow: #db7093;
+  --theme-text-inverted: #ffffff;
+}
+
 .desktop {
   width: 100vw;
   height: 100vh;
@@ -33,39 +44,7 @@
   height: calc(100% - 60px);
   position: relative;
   overflow: visible;
-}
-
-/* Темы */
-.theme-pink {
-  background: linear-gradient(45deg, #ffb6c1, #ff69b4, #db7093);
-}
-
-.theme-blue {
-  background: linear-gradient(45deg, #87ceeb, #4682b4, #1e90ff);
-}
-
-.theme-green {
-  background: linear-gradient(45deg, #98fb98, #32cd32, #228b22);
-}
-
-.theme-purple {
-  background: linear-gradient(45deg, #d8bfd8, #9370db, #8a2be2);
-}
-
-.theme-sunset {
-  background: linear-gradient(45deg, #ff7f50, #ff6347, #ff4500);
-}
-
-.theme-ocean {
-  background: linear-gradient(45deg, #00bfff, #1e90ff, #0000cd);
-}
-
-.theme-forest {
-  background: linear-gradient(45deg, #90ee90, #228b22, #006400);
-}
-
-.theme-cotton-candy {
-  background: linear-gradient(45deg, #ffb6c1, #87ceeb, #dda0dd);
+  background: var(--theme-background) !important;
 }
 
 .pixel-grid {
@@ -121,7 +100,7 @@
 }
 
 .desktop-icon span {
-  color: white;
+  color: var(--theme-text-inverted);
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
   font-size: 0.65rem;
   text-align: center;
@@ -201,7 +180,7 @@
 /* Стили для контента окон */
 .window-content {
   padding: 20px;
-  color: #333;
+  color: var(--theme-text);
   height: 100%;
   background: white;
   overflow-y: auto;
@@ -210,7 +189,7 @@
 /* Стили для скроллбаров во всем приложении */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #ff1493 #ffb6c1;
+  scrollbar-color: var(--theme-primary) var(--theme-accent);
 }
 
 *::-webkit-scrollbar {
@@ -218,22 +197,22 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: #ffb6c1;
-  border: 2px solid #ff1493;
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #ff1493;
-  border: 2px solid #ffb6c1;
+  background: var(--theme-primary);
+  border: 2px solid var(--theme-accent);
   border-radius: 0;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: #ff69b4;
+  background: var(--theme-secondary);
 }
 
 .window-content h3 {
-  color: #ff1493;
+  color: var(--theme-primary);
   margin-bottom: 15px;
   text-shadow: 1px 1px 0px #fff;
   text-align: center;
@@ -244,20 +223,20 @@
   font-size: 4rem;
   text-align: center;
   margin-bottom: 15px;
-  filter: drop-shadow(2px 2px 0px #ff1493);
+  filter: drop-shadow(2px 2px 0px var(--theme-primary));
 }
 
 .pixel-divider {
   height: 4px;
-  background: #ff1493;
+  background: var(--theme-primary);
   margin: 15px 0;
   border: 2px solid #fff;
-  box-shadow: 0 2px 0px #ff69b4;
+  box-shadow: 0 2px 0px var(--theme-secondary);
 }
 
 .profession {
   font-weight: bold;
-  color: #ff1493;
+  color: var(--theme-primary);
   margin: 10px 0;
   font-size: 16px;
   text-shadow: 1px 1px 0px #fff;
@@ -271,12 +250,13 @@
   text-align: left;
   max-width: 100%;
   font-size: 14px;
-  color: #333;
+  color: var(--theme-text);
   background: #fff;
   padding: 15px;
-  border: 2px solid #ffb6c1;
+  border: 2px solid var(--theme-accent);
   border-radius: 4px;
-  box-shadow: inset 2px 2px 0px #ff1493, inset -2px -2px 0px #ff69b4;
+  box-shadow: inset 2px 2px 0px var(--theme-primary),
+    inset -2px -2px 0px var(--theme-secondary);
 }
 
 .about-me-content {
@@ -297,13 +277,13 @@
   align-items: center;
   gap: 10px;
   padding: 10px;
-  background: #ffb6c1;
-  border: 2px solid #ff1493;
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
   transition: all 0.2s;
 }
 
 .skill-item:hover {
-  background: #ff69b4;
+  background: var(--theme-secondary);
   color: white;
   transform: translateX(5px);
 }
@@ -322,21 +302,21 @@
 
 .project-item {
   padding: 20px;
-  background: #ffb6c1;
-  border: 3px solid #ff1493;
+  background: var(--theme-accent);
+  border: 3px solid var(--theme-primary);
   transition: all 0.3s ease;
   position: relative;
 }
 
 .project-item:hover {
-  background: #ff69b4;
+  background: var(--theme-secondary);
   color: white;
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+  box-shadow: 0 5px 15px var(--theme-primary);
 }
 
 .project-item h4 {
-  color: #ff1493;
+  color: var(--theme-primary);
   margin-bottom: 10px;
   font-size: 1.2rem;
   text-shadow: 1px 1px 0px #fff;
@@ -344,7 +324,7 @@
 
 .project-item:hover h4 {
   color: white;
-  text-shadow: 1px 1px 0px #ff1493;
+  text-shadow: 1px 1px 0px var(--theme-primary);
 }
 
 .project-item p {
@@ -362,9 +342,9 @@
 .project-link {
   padding: 8px 16px;
   background: #fff;
-  color: #ff1493;
+  color: var(--theme-primary);
   text-decoration: none;
-  border: 2px solid #ff1493;
+  border: 2px solid var(--theme-primary);
   border-radius: 4px;
   font-size: 0.8rem;
   font-weight: bold;
@@ -375,7 +355,7 @@
 }
 
 .project-link:hover {
-  background: #ff1493;
+  background: var(--theme-primary);
   color: white;
   transform: scale(1.05);
 }
@@ -389,8 +369,8 @@
 .project-tags span {
   padding: 4px 8px;
   background: rgba(255, 255, 255, 0.8);
-  color: #ff1493;
-  border: 1px solid #ff1493;
+  color: var(--theme-primary);
+  border: 1px solid var(--theme-primary);
   border-radius: 3px;
   font-size: 0.7rem;
   font-weight: bold;
@@ -398,7 +378,7 @@
 
 .project-item:hover .project-tags span {
   background: rgba(255, 255, 255, 0.9);
-  color: #ff69b4;
+  color: var(--theme-secondary);
 }
 
 /* Стили для контактов */
@@ -414,30 +394,30 @@
   align-items: center;
   gap: 12px;
   padding: 12px 15px;
-  background: #ffb6c1;
-  border: 2px solid #ff1493;
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
   transition: all 0.2s;
 }
 
 .contact-item:hover {
-  background: #ff69b4;
+  background: var(--theme-secondary);
   transform: translateX(5px);
 }
 
 .contact-icon {
   font-size: 1.5rem;
-  color: #ff1493;
+  color: var(--theme-primary);
   flex-shrink: 0;
 }
 
 .contact-text {
-  color: #333;
+  color: var(--theme-text);
   font-size: 0.9rem;
   flex: 1;
 }
 
 .contact-link {
-  color: #333;
+  color: var(--theme-text);
   text-decoration: none;
   font-size: 0.9rem;
   flex: 1;
@@ -452,8 +432,8 @@
 .copy-btn {
   padding: 6px 10px;
   background: #fff;
-  border: 2px solid #ff1493;
-  color: #ff1493;
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
   font-family: inherit;
   font-size: 0.8rem;
   cursor: pointer;
@@ -465,7 +445,7 @@
 }
 
 .copy-btn:hover {
-  background: #ff1493;
+  background: var(--theme-primary);
   color: #fff;
   transform: scale(1.05);
 }
@@ -476,9 +456,9 @@
 
 /* Стили для Фоторедактора */
 .paint-tools {
-  background: #ffb6c1;
+  background: var(--theme-accent);
   padding: 15px;
-  border: 2px solid #ff1493;
+  border: 2px solid var(--theme-primary);
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
@@ -492,7 +472,7 @@
 }
 
 .tool-section label {
-  color: #333;
+  color: var(--theme-text);
   font-weight: bold;
   min-width: 120px;
 }
@@ -526,7 +506,7 @@
 .brush-slider {
   flex: 1;
   max-width: 200px;
-  background: #ff69b4;
+  background: var(--theme-secondary);
   height: 6px;
   border-radius: 3px;
   outline: none;
@@ -537,7 +517,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #ff1493;
+  background: var(--theme-primary);
   border: 2px solid #fff;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -547,7 +527,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #ff1493;
+  background: var(--theme-primary);
   border: 2px solid #fff;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -562,8 +542,8 @@
 .paint-btn {
   padding: 10px 15px;
   background: #fff;
-  border: 2px solid #ff1493;
-  color: #ff1493;
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
   cursor: pointer;
   font-family: inherit;
   font-size: 0.8rem;
@@ -575,7 +555,7 @@
 }
 
 .paint-btn:hover {
-  background: #ff1493;
+  background: var(--theme-primary);
   color: white;
   transform: scale(1.05);
 }
@@ -588,7 +568,7 @@
 }
 
 .paint-canvas {
-  border: 3px solid #ff1493;
+  border: 3px solid var(--theme-primary);
   background: white;
   cursor: crosshair;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -604,9 +584,9 @@
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.9);
   padding: 10px 20px;
-  border: 2px solid #ff1493;
+  border: 2px solid var(--theme-primary);
   border-radius: 5px;
-  color: #ff1493;
+  color: var(--theme-primary);
   font-weight: bold;
 }
 
@@ -614,9 +594,9 @@
   text-align: center;
   color: #666;
   font-size: 0.8rem;
-  background: #ffb6c1;
+  background: var(--theme-accent);
   padding: 10px;
-  border: 1px solid #ff69b4;
+  border: 1px solid var(--theme-secondary);
   border-radius: 4px;
   line-height: 1.4;
 }
@@ -758,4 +738,135 @@
     width: 250px;
     height: 250px;
   }
+}
+
+/* Стили для Taskbar */
+.taskbar {
+  background: linear-gradient(
+    45deg,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
+  border-top: 2px solid var(--theme-border);
+}
+
+.start-button {
+  background: linear-gradient(
+    45deg,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
+  border: 2px solid;
+  border-color: #fff var(--theme-border) var(--theme-border) #fff;
+}
+
+.start-button:hover {
+  background: linear-gradient(
+    45deg,
+    var(--theme-secondary),
+    var(--theme-primary)
+  );
+}
+
+.taskbar-item {
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+}
+
+.taskbar-item.active {
+  background: var(--theme-primary);
+  color: white;
+}
+
+.taskbar-item:hover {
+  background: var(--theme-secondary);
+  color: white;
+}
+
+/* Стили для Window */
+.window {
+  border: 3px solid;
+  border-color: var(--theme-primary) var(--theme-secondary)
+    var(--theme-secondary) var(--theme-primary);
+  box-shadow: 4px 4px 0px var(--theme-shadow);
+}
+
+.window-header {
+  background: linear-gradient(
+    45deg,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
+  border-bottom: 2px solid var(--theme-border);
+}
+
+.window-title {
+  color: white;
+  text-shadow: 1px 1px 0px var(--theme-shadow);
+}
+
+.window-controls button {
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+}
+
+.window-controls button:hover {
+  background: var(--theme-primary);
+  color: white;
+}
+
+/* Остальные стили остаются такими же как в предыдущей версии */
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-effect {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 51%
+  );
+  background-size: 100% 4px;
+  animation: scanline 0.8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.desktop-background {
+  width: 100%;
+  height: calc(100% - 60px);
+  position: relative;
+  overflow: visible;
+  background: var(--theme-background) !important;
+}
+
+.pixel-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
 }

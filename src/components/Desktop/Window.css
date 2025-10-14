@@ -1,20 +1,19 @@
 .window {
   position: absolute;
-  background: #ffb6c1;
-  border: 4px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2), inset 2px 2px 0px #fff,
-    inset -2px -2px 0px #ff1493;
-  min-width: 300px;
-  min-height: 200px;
+  background: white;
+  border: 3px solid;
+  border-color: var(--theme-primary) var(--theme-secondary)
+    var(--theme-secondary) var(--theme-primary);
+  box-shadow: 4px 4px 0px var(--theme-shadow);
   display: flex;
   flex-direction: column;
-  resize: none;
+  min-width: 300px;
+  min-height: 200px;
   overflow: hidden;
 }
 
 .window.active {
-  border-color: #ff69b4 #fff #fff #ff69b4;
+  box-shadow: 6px 6px 0px var(--theme-shadow);
 }
 
 .window.maximized {
@@ -22,138 +21,119 @@
   top: 0 !important;
   width: 100vw !important;
   height: calc(100vh - 60px) !important;
-  border: none;
-  box-shadow: none;
+  border-width: 2px;
 }
 
 .window-header {
-  background: linear-gradient(45deg, #ff1493, #ff69b4);
+  background: linear-gradient(
+    45deg,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
   padding: 8px 12px;
+  cursor: move;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: move;
+  border-bottom: 2px solid var(--theme-border);
   user-select: none;
-  border-bottom: 2px solid #fff;
-  position: relative;
-  z-index: 10;
+  min-height: 35px;
 }
 
 .window-title {
   color: white;
-  text-shadow: 1px 1px 0px #db7093;
+  font-weight: bold;
   display: flex;
   align-items: center;
   gap: 8px;
+  text-shadow: 1px 1px 0px var(--theme-shadow);
   font-size: 0.9rem;
 }
 
 .window-icon {
-  font-size: 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  filter: drop-shadow(1px 1px 0px var(--theme-shadow));
 }
 
 .window-controls {
   display: flex;
-  gap: 4px;
+  gap: 5px;
 }
 
 .control-btn {
-  width: 20px;
-  height: 20px;
-  border: 2px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  background: #ffb6c1;
-  color: #333;
-  font-weight: bold;
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
-  transition: all 0.1s;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.2s;
+  border-radius: 2px;
 }
 
 .control-btn:hover {
-  background: #ff69b4;
+  background: var(--theme-primary);
   color: white;
   transform: scale(1.1);
 }
 
 .control-btn.close:hover {
-  background: #ff0000;
-  transform: scale(1.1);
-}
-
-.control-btn.maximize:hover {
-  background: #ff69b4;
-  color: white;
-  transform: scale(1.1);
+  background: #ff4444;
+  border-color: #ff4444;
 }
 
 .window-body {
   flex: 1;
-  padding: 0;
   overflow: auto;
-  background: #fff;
-  border: 2px solid #ffb6c1;
-  margin: 2px;
-  position: relative;
+  background: white;
 }
 
-/* Угловой маркер для изменения размера */
+/* Стили для изменения размера */
 .window-resize-handle {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 20px;
-  height: 20px;
+  bottom: 2px;
+  right: 2px;
+  width: 15px;
+  height: 15px;
   cursor: nwse-resize;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 10;
 }
 
 .resize-corner {
   position: relative;
-  width: 12px;
-  height: 12px;
+  width: 100%;
+  height: 100%;
 }
 
 .resize-line {
   position: absolute;
-  background: #ff1493;
-  border: 1px solid #fff;
+  background: var(--theme-primary);
 }
 
 .resize-line.horizontal {
-  top: 50%;
-  left: 0;
-  width: 100%;
+  bottom: 2px;
+  left: 2px;
+  width: 8px;
   height: 2px;
-  transform: translateY(-50%);
 }
 
 .resize-line.vertical {
-  left: 50%;
-  top: 0;
+  top: 2px;
+  right: 2px;
   width: 2px;
-  height: 100%;
-  transform: translateX(-50%);
+  height: 8px;
 }
 
-.window-resize-handle:hover .resize-corner {
-  transform: scale(1.2);
-}
-
-.window-resize-handle:hover .resize-line {
-  background: #ff69b4;
-  box-shadow: 0 0 5px rgba(255, 105, 180, 0.8);
-}
-
-/* Бордеры для изменения размера со всех сторон */
 .resize-border {
   position: absolute;
+  background: transparent;
   z-index: 5;
 }
 
@@ -189,67 +169,79 @@
   cursor: w-resize;
 }
 
-/* Эффекты при изменении размера */
-.resize-border:hover,
-.window-resize-handle:hover ~ .resize-border {
-  background: rgba(255, 20, 147, 0.3);
-}
-
-/* Анимация курсора при наведении на угловой маркер */
-.window-resize-handle:hover {
-  animation: resizePulse 1s infinite;
-}
-
-@keyframes resizePulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* Адаптивность для маленьких окон */
-@media (max-width: 768px) {
-  .window {
-    min-width: 250px;
-    min-height: 150px;
-  }
-
-  .window-resize-handle {
-    width: 25px;
-    height: 25px;
-  }
-
-  .resize-corner {
-    width: 15px;
-    height: 15px;
-  }
-}
-
 /* Стили для скроллбара в окне */
 .window-body::-webkit-scrollbar {
   width: 12px;
 }
 
 .window-body::-webkit-scrollbar-track {
-  background: #ffb6c1;
-  border: 2px solid #ff1493;
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
 }
 
 .window-body::-webkit-scrollbar-thumb {
-  background: #ff1493;
-  border: 2px solid #ffb6c1;
-  border-radius: 0;
+  background: var(--theme-primary);
+  border: 2px solid var(--theme-accent);
 }
 
 .window-body::-webkit-scrollbar-thumb:hover {
-  background: #ff69b4;
+  background: var(--theme-secondary);
 }
 
-/* Стили скроллбара для Firefox */
-.window-body {
-  scrollbar-width: thin;
-  scrollbar-color: #ff1493 #ffb6c1;
+/* Анимации */
+.window {
+  transition: box-shadow 0.2s ease;
+}
+
+.window.active {
+  transition: box-shadow 0.3s ease;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .window {
+    min-width: 280px;
+    min-height: 180px;
+  }
+
+  .window-header {
+    padding: 6px 10px;
+    min-height: 30px;
+  }
+
+  .window-title {
+    font-size: 0.8rem;
+  }
+
+  .control-btn {
+    width: 22px;
+    height: 22px;
+    font-size: 0.9rem;
+  }
+
+  .window-resize-handle {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .window.maximized {
+    height: calc(100vh - 50px) !important;
+  }
+
+  .window-header {
+    padding: 5px 8px;
+  }
+
+  .window-title {
+    font-size: 0.75rem;
+    gap: 5px;
+  }
+
+  .control-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+  }
 }
