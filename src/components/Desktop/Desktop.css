@@ -572,6 +572,11 @@ textarea,
   flex: 1;
   min-width: 120px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
 }
 
 .paint-btn:hover {
