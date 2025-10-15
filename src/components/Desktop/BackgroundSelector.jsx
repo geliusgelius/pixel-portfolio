@@ -9,6 +9,30 @@ const BackgroundSelector = ({ onClose, currentTheme, onThemeChange }) => {
 
   const themeList = Object.values(themes);
 
+  // Функция для получения переведенного названия темы
+  const getTranslatedThemeName = (themeId) => {
+    const translationMap = {
+      pink: "bgPink",
+      cottonCandy: "bgCottonCandy",
+      ocean: "bgOcean",
+      forest: "bgForest",
+      sunset: "bgSunset",
+      galaxy: "bgGalaxy",
+    };
+
+    const translationKey = translationMap[themeId];
+
+    if (translationKey) {
+      const translated = t(translationKey);
+      // Если перевод найден, используем его
+      return translated;
+    }
+
+    // Запасной вариант - возвращаем оригинальное имя из темы
+    const theme = themes[themeId];
+    return theme?.name || themeId;
+  };
+
   const handleApply = () => {
     console.log("Applying theme:", selectedTheme);
     onThemeChange(selectedTheme);
@@ -37,7 +61,6 @@ const BackgroundSelector = ({ onClose, currentTheme, onThemeChange }) => {
                 selectedTheme === theme.id ? "selected" : ""
               }`}
               onClick={() => {
-                // Только выбираем тему, но не применяем
                 setSelectedTheme(theme.id);
               }}
             >
@@ -51,7 +74,9 @@ const BackgroundSelector = ({ onClose, currentTheme, onThemeChange }) => {
                   <div className="preview-icon">📄</div>
                 </div>
               </div>
-              <div className="theme-name">{theme.name}</div>
+              <div className="theme-name">
+                {getTranslatedThemeName(theme.id)}
+              </div>
             </div>
           ))}
         </div>

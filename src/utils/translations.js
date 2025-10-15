@@ -69,18 +69,14 @@ export const translations = {
 
     // Background Selector
     selectDesktopBackground: "Выбор фона рабочего стола",
-    preview: "Предпросмотр",
-    currentBackground: "Текущий фон",
     apply: "Применить",
     cancel: "Отмена",
-    bgPinkGradient: "Розовый градиент",
-    bgBlueGradient: "Синий градиент",
-    bgGreenGradient: "Зеленый градиент",
-    bgPurpleGradient: "Фиолетовый градиент",
-    bgSunset: "Закат",
+    bgPink: "Розовый",
+    bgCottonCandy: "Сахарная вата",
     bgOcean: "Океан",
     bgForest: "Лес",
-    bgCottonCandy: "Сахарная вата",
+    bgSunset: "Закат",
+    bgGalaxy: "Галактика",
 
     // Shutdown screen
     shutdownSaving: "Сохранение ваших данных...",
@@ -216,18 +212,14 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
 
     // Background Selector
     selectDesktopBackground: "Select Desktop Background",
-    preview: "Preview",
-    currentBackground: "Current background",
     apply: "Apply",
     cancel: "Cancel",
-    bgPinkGradient: "Pink Gradient",
-    bgBlueGradient: "Blue Gradient",
-    bgGreenGradient: "Green Gradient",
-    bgPurpleGradient: "Purple Gradient",
-    bgSunset: "Sunset",
+    bgPink: "Pink",
+    bgCottonCandy: "Cotton Candy",
     bgOcean: "Ocean",
     bgForest: "Forest",
-    bgCottonCandy: "Cotton Candy",
+    bgSunset: "Sunset",
+    bgGalaxy: "Galaxy",
 
     // Shutdown screen
     shutdownSaving: "Saving your data...",
