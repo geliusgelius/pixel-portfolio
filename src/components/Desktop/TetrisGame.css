@@ -222,8 +222,71 @@
   }
 }
 
+/* Мобильные элементы управления */
+.tetris-mobile-controls {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  max-width: 300px;
+  width: 100%;
+}
+
+.tetris-mobile-btn {
+  background: linear-gradient(
+    45deg,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
+  border: 3px solid;
+  border-color: #fff var(--theme-shadow) var(--theme-shadow) #fff;
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  text-shadow: 1px 1px 0px var(--theme-shadow);
+  min-height: 60px;
+}
+
+.tetris-mobile-btn:active {
+  background: linear-gradient(45deg, var(--theme-shadow), var(--theme-primary));
+  transform: scale(0.95);
+}
+
+.mobile-rotate {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.mobile-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.mobile-down {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.mobile-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.mobile-drop {
+  grid-column: 2;
+  grid-row: 3;
+}
+
 /* Адаптивность */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .tetris-content {
     flex-direction: column;
     gap: 20px;
@@ -232,9 +295,15 @@
 
   .tetris-controls {
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
   }
 
+  .tetris-mobile-controls {
+    display: grid;
+  }
+}
+
+@media (max-width: 768px) {
   .tetris-cell {
     width: 20px;
     height: 20px;
@@ -250,6 +319,16 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
+  }
+
+  .tetris-instructions {
+    font-size: 0.7rem;
+  }
+
+  .tetris-mobile-btn {
+    padding: 12px;
+    font-size: 1rem;
+    min-height: 50px;
   }
 }
 
@@ -268,6 +347,30 @@
   }
 
   .tetris-instructions {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+    padding: 10px;
+  }
+
+  .tetris-mobile-btn {
+    padding: 10px;
+    font-size: 0.9rem;
+    min-height: 45px;
+  }
+
+  .tetris-controls {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .tetris-cell {
+    width: 12px;
+    height: 12px;
+  }
+
+  .tetris-mobile-btn {
+    padding: 8px;
+    min-height: 40px;
+    font-size: 0.8rem;
   }
 }

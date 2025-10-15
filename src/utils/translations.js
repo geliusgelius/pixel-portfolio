@@ -141,6 +141,14 @@ export const translations = {
     tetrisControlsSoftDrop: "↓/S - ускорить падение",
     tetrisControlsHardDrop: "Space - быстрое падение",
     tetrisControlsRotate: "↑/W - поворот",
+    tetrisControlsPause: "P - пауза",
+
+    // Мобильные элементы управления
+    mobileLeft: "← Влево",
+    mobileRight: "→ Вправо",
+    mobileRotate: "↻ Повернуть",
+    mobileDown: "↓ Вниз",
+    mobileDrop: "⚡ Быстро",
   },
   en: {
     // Preloader
@@ -283,6 +291,14 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     tetrisControlsSoftDrop: "↓/S - soft drop",
     tetrisControlsHardDrop: "Space - hard drop",
     tetrisControlsRotate: "↑/W - rotate",
+    tetrisControlsPause: "P - pause",
+
+    // Mobile controls
+    mobileLeft: "← Left",
+    mobileRight: "→ Right",
+    mobileRotate: "↻ Rotate",
+    mobileDown: "↓ Down",
+    mobileDrop: "⚡ Drop",
   },
 };
 
