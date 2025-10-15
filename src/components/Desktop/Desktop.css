@@ -8,6 +8,26 @@
   --theme-shadow: #db7093;
   --theme-text-inverted: #ffffff;
 }
+/* Запрет выделения и копирования текста */
+* {
+  -webkit-user-select: none; /* Chrome, Safari, Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version */
+
+  -webkit-touch-callout: none; /* Запрет контекстного меню на iOS */
+  -webkit-tap-highlight-color: transparent; /* Убрать подсветку при касании */
+}
+
+/* Разрешить выделение в полях ввода и текстовых областях */
+input,
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 
 .desktop {
   width: 100vw;
