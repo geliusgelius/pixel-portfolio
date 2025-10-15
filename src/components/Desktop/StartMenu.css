@@ -3,26 +3,30 @@
   bottom: 60px;
   left: 10px;
   width: 300px;
-  background: linear-gradient(45deg, #ff69b4, #ff1493);
+  background: var(--theme-background);
   border: 4px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px #fff;
-  z-index: 10001;
+  border-color: #fff var(--theme-primary) var(--theme-primary) #fff;
+  box-shadow: 4px 4px 0px var(--theme-shadow), inset 2px 2px 0px #fff;
+  z-index: 1000;
 }
 
 .start-menu-header {
-  background: linear-gradient(45deg, #ff1493, #db7093);
+  background: linear-gradient(
+    45deg,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
   padding: 15px;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--theme-border);
 }
 
 .start-menu-title {
   font-weight: bold;
-  text-shadow: 1px 1px 0px #ff1493;
+  text-shadow: 1px 1px 0px var(--theme-shadow);
 }
 
 .start-menu-version {
@@ -32,6 +36,7 @@
 
 .start-menu-items {
   padding: 10px 0;
+  background: var(--theme-accent);
 }
 
 .start-menu-item {
@@ -40,11 +45,13 @@
   padding: 12px 15px;
   cursor: pointer;
   transition: all 0.2s;
-  color: white;
+  color: var(--theme-text);
+  border-bottom: 1px solid var(--theme-secondary);
 }
 
 .start-menu-item:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--theme-primary);
+  color: white;
 }
 
 .start-menu-icon {
@@ -59,7 +66,7 @@
 }
 
 .start-menu-footer {
-  border-top: 2px solid #ff1493;
+  border-top: 2px solid var(--theme-primary);
   padding: 15px;
   background: rgba(255, 255, 255, 0.1);
 }
@@ -70,7 +77,7 @@
 
 .language-selector span {
   display: block;
-  color: white;
+  color: var(--theme-text);
   margin-bottom: 8px;
   font-size: 0.8rem;
 }
@@ -83,29 +90,34 @@
 .lang-btn {
   flex: 1;
   padding: 8px;
-  background: #ffb6c1;
-  border: 2px solid #ff1493;
+  background: var(--theme-accent);
+  border: 2px solid var(--theme-primary);
   cursor: pointer;
   font-size: 0.7rem;
   transition: all 0.2s;
+  color: var(--theme-primary);
 }
 
 .lang-btn:hover {
-  background: #ff69b4;
+  background: var(--theme-secondary);
   color: white;
 }
 
 .lang-btn.active {
-  background: #ff1493;
+  background: var(--theme-primary);
   color: white;
-  border-color: #fff;
+  border-color: var(--theme-border);
 }
 
 .shutdown-btn {
   width: 100%;
   padding: 10px;
-  background: linear-gradient(45deg, #ff1493, #db7093);
-  border: 2px solid #fff;
+  background: linear-gradient(
+    45deg,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
+  border: 2px solid var(--theme-border);
   color: white;
   cursor: pointer;
   font-size: 0.8rem;
@@ -113,6 +125,10 @@
 }
 
 .shutdown-btn:hover {
-  background: linear-gradient(45deg, #db7093, #ff1493);
+  background: linear-gradient(
+    45deg,
+    var(--theme-secondary),
+    var(--theme-primary)
+  );
   transform: scale(1.05);
 }

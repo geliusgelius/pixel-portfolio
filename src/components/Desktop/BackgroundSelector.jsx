@@ -15,12 +15,16 @@ const BackgroundSelector = ({ onClose, currentTheme, onThemeChange }) => {
     onClose();
   };
 
+  const handleCancel = () => {
+    onClose();
+  };
+
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay" onClick={handleCancel}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>{t("selectDesktopBackground")}</h2>
-          <button className="modal-close" onClick={onClose}>
+          <button className="modal-close" onClick={handleCancel}>
             ×
           </button>
         </div>
@@ -33,7 +37,7 @@ const BackgroundSelector = ({ onClose, currentTheme, onThemeChange }) => {
                 selectedTheme === theme.id ? "selected" : ""
               }`}
               onClick={() => {
-                console.log("Selected theme:", theme.id, theme.name);
+                // Только выбираем тему, но не применяем
                 setSelectedTheme(theme.id);
               }}
             >
@@ -53,7 +57,7 @@ const BackgroundSelector = ({ onClose, currentTheme, onThemeChange }) => {
         </div>
 
         <div className="modal-footer">
-          <button className="modal-button cancel" onClick={onClose}>
+          <button className="modal-button cancel" onClick={handleCancel}>
             {t("cancel")}
           </button>
           <button className="modal-button apply" onClick={handleApply}>

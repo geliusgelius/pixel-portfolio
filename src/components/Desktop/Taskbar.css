@@ -230,6 +230,17 @@
   flex-shrink: 0;
 }
 
+/* Добавленные классы для границ */
+.pixel-border {
+  border: 2px solid;
+  border-color: #fff var(--theme-primary) var(--theme-primary) #fff;
+}
+
+.pixel-border-inset {
+  border: 2px solid;
+  border-color: var(--theme-primary) #fff #fff var(--theme-primary);
+}
+
 /* Стили для скроллбара в таскбаре */
 .taskbar-items::-webkit-scrollbar {
   height: 6px;

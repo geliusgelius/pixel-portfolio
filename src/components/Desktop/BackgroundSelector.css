@@ -18,14 +18,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 10001;
 }
 
 .modal-content {
   background: var(--theme-accent);
   border: 4px solid;
   border-color: #fff var(--theme-primary) var(--theme-primary) #fff;
-  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 8px 8px 0px var(--theme-shadow);
   width: 90%;
   max-width: 700px;
   max-height: 80vh;
@@ -42,7 +42,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--theme-border);
 }
 
 .modal-header h2 {
@@ -135,7 +135,7 @@
     var(--theme-secondary),
     var(--theme-accent)
   );
-  border-top: 2px solid #fff;
+  border-top: 2px solid var(--theme-border);
   display: flex;
   justify-content: flex-end;
   gap: 10px;

@@ -7,28 +7,32 @@
 }
 
 .notification-content {
-  background: linear-gradient(45deg, #ffb6c1, #ff69b4);
+  background: linear-gradient(
+    45deg,
+    var(--theme-accent),
+    var(--theme-secondary)
+  );
   padding: 15px 20px;
   display: flex;
   align-items: center;
   gap: 12px;
   min-width: 250px;
   border: 3px solid;
-  border-color: #fff #ff1493 #ff1493 #fff;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px #fff;
+  border-color: #fff var(--theme-primary) var(--theme-primary) #fff;
+  box-shadow: 4px 4px 0px var(--theme-shadow), inset 2px 2px 0px #fff;
   animation: notificationPulse 2s infinite;
 }
 
 .notification-icon {
   font-size: 1.5rem;
   color: #fff;
-  text-shadow: 2px 2px 0px #ff1493;
+  text-shadow: 2px 2px 0px var(--theme-shadow);
   animation: bounce 1s infinite;
 }
 
 .notification-text {
   color: white;
-  text-shadow: 1px 1px 0px #ff1493;
+  text-shadow: 1px 1px 0px var(--theme-shadow);
   font-size: 0.8rem;
   flex: 1;
 }
@@ -48,17 +52,17 @@
 }
 
 .notification-close:hover {
-  background: #ff1493;
+  background: var(--theme-primary);
   transform: scale(1.1);
 }
 
 @keyframes notificationPulse {
   0%,
   100% {
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px #fff;
+    box-shadow: 4px 4px 0px var(--theme-shadow), inset 2px 2px 0px #fff;
   }
   50% {
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px #fff,
+    box-shadow: 4px 4px 0px var(--theme-shadow), inset 2px 2px 0px #fff,
       0 0 15px rgba(255, 20, 147, 0.5);
   }
 }

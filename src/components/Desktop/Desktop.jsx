@@ -76,7 +76,7 @@ const Desktop = () => {
     console.log("Theme applied:", theme.colors.background);
   };
 
-  // Применяем тему при загрузке
+  // Применяем тему при загрузке и при изменении currentTheme
   useEffect(() => {
     applyTheme(currentTheme);
   }, [currentTheme]);
@@ -96,7 +96,6 @@ const Desktop = () => {
   }, []);
 
   const openWindow = (title, icon, ContentComponent, windowType) => {
-    // Проверяем, не открыто ли уже такое окно
     const existingWindow = windows.find(
       (window) => window.windowType === windowType
     );
@@ -465,6 +464,7 @@ const Desktop = () => {
 
       {showStartMenu && (
         <StartMenu
+          key={`startmenu-${currentTheme}`}
           onOpenWindow={openWindow}
           onClose={() => setShowStartMenu(false)}
           onShutdown={handleShutdown}

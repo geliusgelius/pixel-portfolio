@@ -870,3 +870,13 @@
   background-size: 20px 20px;
   opacity: 0.3;
 }
+
+.pixel-border {
+  border: 2px solid;
+  border-color: #fff var(--theme-primary) var(--theme-primary) #fff;
+}
+
+.pixel-border-inset {
+  border: 2px solid;
+  border-color: var(--theme-primary) #fff #fff var(--theme-primary);
+}
