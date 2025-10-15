@@ -63,7 +63,7 @@
   }
   50% {
     box-shadow: 4px 4px 0px var(--theme-shadow), inset 2px 2px 0px #fff,
-      0 0 15px rgba(255, 20, 147, 0.5);
+      0 0 15px var(--theme-shadow);
   }
 }
 

@@ -451,10 +451,7 @@ const TetrisGame = () => {
 
         <div className="tetris-controls">
           {!isPlaying && !gameOver && (
-            <button
-              className="tetris-start-btn pixel-border"
-              onClick={startGame}
-            >
+            <button className="tetris-start-btn" onClick={startGame}>
               {t("tetrisStart")}
             </button>
           )}
@@ -466,10 +463,7 @@ const TetrisGame = () => {
                 {t("tetrisFinalScore")}
                 {score}
               </div>
-              <button
-                className="tetris-restart-btn pixel-border"
-                onClick={startGame}
-              >
+              <button className="tetris-restart-btn" onClick={startGame}>
                 {t("tetrisRestart")}
               </button>
             </div>
@@ -478,17 +472,12 @@ const TetrisGame = () => {
           {isPlaying && (
             <div className="tetris-game-buttons">
               <button
-                className={`tetris-pause-btn pixel-border ${
-                  isPaused ? "paused" : ""
-                }`}
+                className={`tetris-pause-btn ${isPaused ? "paused" : ""}`}
                 onClick={togglePause}
               >
                 {isPaused ? t("tetrisContinue") : t("tetrisPause")}
               </button>
-              <button
-                className="tetris-drop-btn pixel-border"
-                onClick={hardDrop}
-              >
+              <button className="tetris-drop-btn" onClick={hardDrop}>
                 {t("tetrisHardDrop")} (↑)
               </button>
             </div>

@@ -556,7 +556,7 @@ const PortfolioContent = () => {
     <div className="window-content">
       <h3>{t("myProjects")}</h3>
       <div className="projects-list">
-        <div className="project-item pixel-border">
+        <div className="project-item">
           <h4>{t("dollImpostorQuiz")}</h4>
           <p>{t("project1Description")}</p>
           <div className="project-links">
@@ -585,7 +585,7 @@ const PortfolioContent = () => {
           </div>
         </div>
 
-        <div className="project-item pixel-border">
+        <div className="project-item">
           <h4>{t("artistPortfolio")}</h4>
           <p>{t("project2Description")}</p>
           <div className="project-links">
@@ -613,7 +613,7 @@ const PortfolioContent = () => {
           </div>
         </div>
 
-        <div className="project-item pixel-border">
+        <div className="project-item">
           <h4>{t("miniTrello")}</h4>
           <p>{t("project3Description")}</p>
           <div className="project-links">

@@ -85,7 +85,7 @@ const Taskbar = ({
 
   return (
     <div className="taskbar">
-      <div className="start-button pixel-border" onClick={handleStartClick}>
+      <div className="start-button" onClick={handleStartClick}>
         <span className="start-icon">★</span>
         {t("start")}
       </div>
@@ -105,7 +105,7 @@ const Taskbar = ({
         ))}
       </div>
 
-      <div className="system-tray pixel-border-inset">
+      <div className="system-tray">
         {/* Background change button */}
         <div className="background-button-container">
           <button

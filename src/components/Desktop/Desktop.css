@@ -817,6 +817,21 @@
   color: white;
 }
 
+/* Стили для кнопок тетриса без pixel-border класса */
+.tetris-start-btn,
+.tetris-restart-btn,
+.tetris-pause-btn,
+.tetris-drop-btn {
+  border: 3px solid;
+  border-color: #fff var(--theme-shadow) var(--theme-shadow) #fff;
+}
+
+/* Стили для system-tray без pixel-border-inset класса */
+.system-tray {
+  border: 2px solid;
+  border-color: var(--theme-primary) #fff #fff var(--theme-primary);
+}
+
 /* Остальные стили остаются такими же как в предыдущей версии */
 .desktop {
   width: 100vw;
@@ -869,14 +884,4 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
   opacity: 0.3;
-}
-
-.pixel-border {
-  border: 2px solid;
-  border-color: #fff var(--theme-primary) var(--theme-primary) #fff;
-}
-
-.pixel-border-inset {
-  border: 2px solid;
-  border-color: var(--theme-primary) #fff #fff var(--theme-primary);
 }
