@@ -324,27 +324,45 @@ const TetrisGame = () => {
 
       switch (e.key) {
         case "ArrowLeft":
+        case "a":
+        case "A":
+        case "ф":
+        case "Ф":
           e.preventDefault();
           if (!isPausedRef.current) movePlayer({ x: -1, y: 0 });
           break;
         case "ArrowRight":
+        case "d":
+        case "D":
+        case "в":
+        case "В":
           e.preventDefault();
           if (!isPausedRef.current) movePlayer({ x: 1, y: 0 });
           break;
         case "ArrowDown":
+        case "s":
+        case "S":
+        case "ы":
+        case "Ы":
           e.preventDefault();
           if (!isPausedRef.current) movePlayer({ x: 0, y: 1 });
           break;
         case "ArrowUp":
-          e.preventDefault();
-          if (!isPausedRef.current) hardDrop();
-          break;
-        case " ":
+        case "w":
+        case "W":
+        case "ц":
+        case "Ц":
           e.preventDefault();
           if (!isPausedRef.current) rotatePlayer();
           break;
+        case " ":
+          e.preventDefault();
+          if (!isPausedRef.current) hardDrop();
+          break;
         case "p":
         case "P":
+        case "з":
+        case "З":
           e.preventDefault();
           // Переключаем паузу используя актуальное состояние из ref
           setIsPaused((prev) => !prev);
@@ -478,7 +496,7 @@ const TetrisGame = () => {
                 {isPaused ? t("tetrisContinue") : t("tetrisPause")}
               </button>
               <button className="tetris-drop-btn" onClick={hardDrop}>
-                {t("tetrisHardDrop")} (↑)
+                {t("tetrisHardDrop")} (Space)
               </button>
             </div>
           )}

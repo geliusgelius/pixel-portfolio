@@ -137,10 +137,10 @@ export const translations = {
     tetrisHardDrop: "Быстро падать",
     tetrisFinalScore: "Финальный счет: ",
     tetrisControlsTitle: "Управление:",
-    tetrisControlsMove: "← → - движение",
-    tetrisControlsSoftDrop: "↓ - ускорить падение",
-    tetrisControlsHardDrop: "↑ - быстрое падение",
-    tetrisControlsRotate: "Пробел - поворот",
+    tetrisControlsMove: "←/A или →/D - движение",
+    tetrisControlsSoftDrop: "↓/S - ускорить падение",
+    tetrisControlsHardDrop: "Space - быстрое падение",
+    tetrisControlsRotate: "↑/W - поворот",
   },
   en: {
     // Preloader
@@ -279,10 +279,10 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     tetrisHardDrop: "Hard Drop",
     tetrisFinalScore: "Final Score: ",
     tetrisControlsTitle: "Controls:",
-    tetrisControlsMove: "← → - move",
-    tetrisControlsSoftDrop: "↓ - soft drop",
-    tetrisControlsHardDrop: "↑ - hard drop",
-    tetrisControlsRotate: "Space - rotate",
+    tetrisControlsMove: "←/A or →/D - move",
+    tetrisControlsSoftDrop: "↓/S - soft drop",
+    tetrisControlsHardDrop: "Space - hard drop",
+    tetrisControlsRotate: "↑/W - rotate",
   },
 };
 
