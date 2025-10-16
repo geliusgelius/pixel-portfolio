@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { LanguageProvider } from "./context/LanguageContext";
 import Preloader from "./components/Preloader/Preloader";
 import Desktop from "./components/Desktop/Desktop";
 import "./App.css";
@@ -14,7 +15,11 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  return <div className="app">{isLoading ? <Preloader /> : <Desktop />}</div>;
+  return (
+    <LanguageProvider>
+      <div className="app">{isLoading ? <Preloader /> : <Desktop />}</div>
+    </LanguageProvider>
+  );
 }
 
 export default App;

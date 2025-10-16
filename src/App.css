@@ -8,12 +8,14 @@ body {
   font-family: "Press Start 2P", cursive, monospace;
   background: #ff69b4;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 .app {
   width: 100vw;
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 .pixel-border {
@@ -28,4 +30,54 @@ body {
   border-width: 4px;
   border-color: #ff1493 #ffb6c1 #ffb6c1 #ff1493;
   box-shadow: inset -2px -2px 0px #fff, inset 2px 2px 0px #ff1493;
+}
+
+/* Мобильные стили */
+.app.mobile {
+  font-size: 14px;
+}
+
+.app.mobile .window {
+  min-width: 300px;
+  max-width: 95vw;
+}
+
+.app.mobile .window-content {
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* Предотвращение масштабирования на мобильных */
+@media (max-width: 768px) {
+  * {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Предотвращает масштабирование в iOS */
+  }
+}
+
+/* Улучшения для очень маленьких экранов */
+@media (max-width: 360px) {
+  .app.mobile .window {
+    min-width: 280px;
+  }
+}
+
+/* Портретная ориентация */
+@media (max-height: 600px) and (orientation: portrait) {
+  .app {
+    height: 100vh;
+  }
+}
+
+/* Ландшафтная ориентация для мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+  .app.mobile {
+    font-size: 12px;
+  }
 }

@@ -8,15 +8,15 @@
   --theme-shadow: #db7093;
   --theme-text-inverted: #ffffff;
 }
+
 /* Запрет выделения и копирования текста */
 * {
-  -webkit-user-select: none; /* Chrome, Safari, Opera */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version */
-
-  -webkit-touch-callout: none; /* Запрет контекстного меню на iOS */
-  -webkit-tap-highlight-color: transparent; /* Убрать подсветку при касании */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Разрешить выделение в полях ввода и текстовых областях */
@@ -34,6 +34,7 @@ textarea,
   height: 100vh;
   position: relative;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 .crt-effect {
@@ -92,6 +93,7 @@ textarea,
   position: relative;
   z-index: 2;
   height: 100%;
+  touch-action: manipulation;
 }
 
 .desktop-icon {
@@ -106,6 +108,7 @@ textarea,
   user-select: none;
   transition: none !important;
   transform: none !important;
+  touch-action: none;
 }
 
 .desktop-icon:active {
@@ -204,6 +207,7 @@ textarea,
   height: 100%;
   background: white;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Стили для скроллбаров во всем приложении */
@@ -510,6 +514,7 @@ textarea,
   cursor: pointer;
   transition: all 0.2s;
   border-radius: 3px;
+  touch-action: manipulation;
 }
 
 .color-btn:hover {
@@ -577,6 +582,7 @@ textarea,
   align-items: center;
   gap: 8px;
   text-align: center;
+  touch-action: manipulation;
 }
 
 .paint-btn:hover {
@@ -590,6 +596,7 @@ textarea,
   justify-content: center;
   margin-bottom: 15px;
   position: relative;
+  touch-action: none;
 }
 
 .paint-canvas {
@@ -600,6 +607,7 @@ textarea,
   touch-action: none;
   width: 400px;
   height: 400px;
+  max-width: 100%;
 }
 
 .image-loading {
@@ -664,8 +672,8 @@ textarea,
   }
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
+/* Улучшенная адаптивность для мобильных устройств */
+@media (max-width: 1024px) {
   .desktop-icons {
     padding: 15px 10px;
     gap: 15px;
@@ -681,6 +689,52 @@ textarea,
     max-width: 70px;
   }
 
+  .window-content {
+    padding: 15px;
+  }
+
+  .welcome-text {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-links {
+    flex-direction: column;
+  }
+
+  .project-link {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-background {
+    height: calc(100% - 50px);
+  }
+
+  .desktop-icons {
+    padding: 10px 8px;
+    gap: 12px;
+  }
+
+  .desktop-icon {
+    width: 65px;
+    padding: 6px;
+  }
+
+  .desktop-icon .icon {
+    font-size: 1.5rem;
+  }
+
+  .desktop-icon span {
+    font-size: 0.55rem;
+    max-width: 65px;
+  }
+
   .lock-overlay {
     width: 16px;
     height: 16px;
@@ -690,23 +744,34 @@ textarea,
     font-size: 0.6rem;
   }
 
-  .welcome-text {
-    font-size: 12px;
-    padding: 10px;
-    line-height: 1.5;
+  .window-content {
+    padding: 12px;
+  }
+
+  .window-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .pixel-avatar {
+    font-size: 3rem;
   }
 
   .profession {
     font-size: 14px;
   }
 
-  .project-links {
-    flex-direction: column;
-    gap: 10px;
+  .welcome-text {
+    font-size: 12px;
+    padding: 10px;
+    line-height: 1.5;
   }
 
-  .project-link {
-    max-width: none;
+  .project-item {
+    padding: 15px;
+  }
+
+  .project-item h4 {
+    font-size: 1.1rem;
   }
 
   .project-tags {
@@ -725,6 +790,7 @@ textarea,
   .tool-section {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
   }
 
   .tool-section label {
@@ -747,166 +813,159 @@ textarea,
 
   .paint-btn {
     min-width: auto;
+    padding: 12px;
   }
 }
 
 @media (max-width: 480px) {
+  .desktop-background {
+    height: calc(100% - 45px);
+  }
+
+  .desktop-icons {
+    padding: 8px 5px;
+    gap: 10px;
+  }
+
+  .desktop-icon {
+    width: 60px;
+    padding: 5px;
+  }
+
+  .desktop-icon .icon {
+    font-size: 1.3rem;
+  }
+
+  .desktop-icon span {
+    font-size: 0.5rem;
+    max-width: 60px;
+  }
+
+  .window-content {
+    padding: 10px;
+  }
+
+  .window-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .pixel-avatar {
+    font-size: 2.5rem;
+  }
+
+  .profession {
+    font-size: 12px;
+  }
+
+  .welcome-text {
+    font-size: 11px;
+    padding: 8px;
+  }
+
   .project-item {
-    padding: 15px;
+    padding: 12px;
   }
 
   .project-item h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
+  }
+
+  .project-links {
+    gap: 8px;
+  }
+
+  .project-link {
+    padding: 6px 12px;
+    font-size: 0.7rem;
   }
 
   .paint-canvas {
     width: 250px;
     height: 250px;
   }
+
+  .color-btn {
+    width: 20px;
+    height: 20px;
+  }
+
+  .paint-btn {
+    padding: 10px;
+    font-size: 0.7rem;
+  }
 }
 
-/* Стили для Taskbar */
-.taskbar {
-  background: linear-gradient(
-    45deg,
-    var(--theme-primary),
-    var(--theme-secondary)
-  );
-  border-top: 2px solid var(--theme-border);
+@media (max-width: 360px) {
+  .desktop-icon {
+    width: 55px;
+  }
+
+  .desktop-icon span {
+    font-size: 0.45rem;
+    max-width: 55px;
+  }
+
+  .paint-canvas {
+    width: 220px;
+    height: 220px;
+  }
+
+  .color-palette {
+    gap: 3px;
+  }
+
+  .color-btn {
+    width: 18px;
+    height: 18px;
+  }
 }
 
-.start-button {
-  background: linear-gradient(
-    45deg,
-    var(--theme-primary),
-    var(--theme-secondary)
-  );
-  border: 2px solid;
-  border-color: #fff var(--theme-border) var(--theme-border) #fff;
+/* Портретная ориентация */
+@media (max-height: 600px) and (orientation: portrait) {
+  .desktop-icons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .desktop-icon {
+    position: relative !important;
+    margin-bottom: 10px;
+  }
 }
 
-.start-button:hover {
-  background: linear-gradient(
-    45deg,
-    var(--theme-secondary),
-    var(--theme-primary)
-  );
+/* Ландшафтная ориентация для мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+  .desktop-background {
+    height: calc(100% - 40px);
+  }
+
+  .desktop-icons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .desktop-icon {
+    position: relative !important;
+    margin-bottom: 5px;
+  }
 }
 
-.taskbar-item {
-  background: var(--theme-accent);
-  border: 2px solid var(--theme-primary);
-  color: var(--theme-primary);
-}
+/* Улучшения для очень маленьких экранов */
+@media (max-width: 320px) {
+  .desktop-icon {
+    width: 50px;
+  }
 
-.taskbar-item.active {
-  background: var(--theme-primary);
-  color: white;
-}
+  .desktop-icon span {
+    font-size: 0.4rem;
+    max-width: 50px;
+  }
 
-.taskbar-item:hover {
-  background: var(--theme-secondary);
-  color: white;
-}
-
-/* Стили для Window */
-.window {
-  border: 3px solid;
-  border-color: var(--theme-primary) var(--theme-secondary)
-    var(--theme-secondary) var(--theme-primary);
-  box-shadow: 4px 4px 0px var(--theme-shadow);
-}
-
-.window-header {
-  background: linear-gradient(
-    45deg,
-    var(--theme-primary),
-    var(--theme-secondary)
-  );
-  border-bottom: 2px solid var(--theme-border);
-}
-
-.window-title {
-  color: white;
-  text-shadow: 1px 1px 0px var(--theme-shadow);
-}
-
-.window-controls button {
-  background: var(--theme-accent);
-  border: 2px solid var(--theme-primary);
-  color: var(--theme-primary);
-}
-
-.window-controls button:hover {
-  background: var(--theme-primary);
-  color: white;
-}
-
-/* Стили для кнопок тетриса без pixel-border класса */
-.tetris-start-btn,
-.tetris-restart-btn,
-.tetris-pause-btn,
-.tetris-drop-btn {
-  border: 3px solid;
-  border-color: #fff var(--theme-shadow) var(--theme-shadow) #fff;
-}
-
-/* Стили для system-tray без pixel-border-inset класса */
-.system-tray {
-  border: 2px solid;
-  border-color: var(--theme-primary) #fff #fff var(--theme-primary);
-}
-
-/* Остальные стили остаются такими же как в предыдущей версии */
-.desktop {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-.crt-effect {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.scanlines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    transparent 50%,
-    rgba(0, 0, 0, 0.1) 51%
-  );
-  background-size: 100% 4px;
-  animation: scanline 0.8s linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.desktop-background {
-  width: 100%;
-  height: calc(100% - 60px);
-  position: relative;
-  overflow: visible;
-  background: var(--theme-background) !important;
-}
-
-.pixel-grid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.1) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.3;
+  .paint-canvas {
+    width: 200px;
+    height: 200px;
+  }
 }

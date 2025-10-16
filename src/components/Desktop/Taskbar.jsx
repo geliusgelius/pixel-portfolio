@@ -91,7 +91,8 @@ const Taskbar = ({
       </div>
 
       <div className="taskbar-items">
-        {windows.map((window) => (
+        {}
+        {(windows || []).map((window) => (
           <div
             key={window.id}
             className={`taskbar-item ${
