@@ -245,3 +245,160 @@
     font-size: 0.8rem;
   }
 }
+
+/* Мобильная адаптация для окон */
+@media (max-width: 768px) {
+  .window {
+    position: fixed !important;
+    left: 5px !important;
+    top: 5px !important;
+    right: 5px !important;
+    bottom: 65px !important;
+    width: calc(100vw - 10px) !important;
+    height: calc(100vh - 70px) !important;
+    min-width: unset !important;
+    min-height: unset !important;
+    max-width: none !important;
+    max-height: none !important;
+    z-index: 10000;
+  }
+
+  .window.maximized {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 60px) !important;
+    border-width: 2px;
+  }
+
+  .window-header {
+    padding: 10px 12px;
+    min-height: 40px;
+  }
+
+  .window-title {
+    font-size: 0.9rem;
+  }
+
+  .window-body {
+    height: calc(100% - 40px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Улучшенная поддержка безопасных зон для iPhone X и новее */
+  @supports (padding: max(0px)) {
+    .window {
+      left: max(5px, env(safe-area-inset-left)) !important;
+      right: max(5px, env(safe-area-inset-right)) !important;
+      top: max(5px, env(safe-area-inset-top)) !important;
+      bottom: max(65px, env(safe-area-inset-bottom)) !important;
+      width: calc(
+        100vw -
+          max(10px, env(safe-area-inset-left) + env(safe-area-inset-right))
+      ) !important;
+      height: calc(
+        100vh -
+          max(70px, env(safe-area-inset-top) + env(safe-area-inset-bottom))
+      ) !important;
+    }
+
+    .window.maximized {
+      left: env(safe-area-inset-left) !important;
+      right: env(safe-area-inset-right) !important;
+      top: env(safe-area-inset-top) !important;
+      bottom: max(60px, env(safe-area-inset-bottom)) !important;
+      width: calc(
+        100vw - env(safe-area-inset-left) - env(safe-area-inset-right)
+      ) !important;
+      height: calc(
+        100vh - env(safe-area-inset-top) -
+          max(60px, env(safe-area-inset-bottom))
+      ) !important;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .window {
+    left: 2px !important;
+    top: 2px !important;
+    right: 2px !important;
+    bottom: 52px !important;
+    width: calc(100vw - 4px) !important;
+    height: calc(100vh - 54px) !important;
+  }
+
+  .window.maximized {
+    height: calc(100vh - 50px) !important;
+  }
+
+  .window-header {
+    padding: 8px 10px;
+    min-height: 35px;
+  }
+
+  .window-title {
+    font-size: 0.8rem;
+  }
+
+  .control-btn {
+    width: 25px;
+    height: 25px;
+    font-size: 0.9rem;
+  }
+
+  @supports (padding: max(0px)) {
+    .window {
+      left: max(2px, env(safe-area-inset-left)) !important;
+      right: max(2px, env(safe-area-inset-right)) !important;
+      top: max(2px, env(safe-area-inset-top)) !important;
+      bottom: max(52px, env(safe-area-inset-bottom)) !important;
+      width: calc(
+        100vw - max(4px, env(safe-area-inset-left) + env(safe-area-inset-right))
+      ) !important;
+      height: calc(
+        100vh -
+          max(54px, env(safe-area-inset-top) + env(safe-area-inset-bottom))
+      ) !important;
+    }
+
+    .window.maximized {
+      bottom: max(50px, env(safe-area-inset-bottom)) !important;
+      height: calc(
+        100vh - env(safe-area-inset-top) -
+          max(50px, env(safe-area-inset-bottom))
+      ) !important;
+    }
+  }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 360px) {
+  .window-header {
+    padding: 6px 8px;
+    min-height: 32px;
+  }
+
+  .window-title {
+    font-size: 0.75rem;
+  }
+
+  .control-btn {
+    width: 22px;
+    height: 22px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Предотвращение выхода окон за пределы экрана на всех устройствах */
+.window {
+  max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 80px);
+}
+
+/* Улучшение скролла на мобильных */
+.window-body {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
