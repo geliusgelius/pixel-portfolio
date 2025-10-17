@@ -969,3 +969,31 @@ textarea,
     height: 200px;
   }
 }
+
+/* Улучшение для мобильных окон в Desktop.css */
+@media (max-width: 768px) {
+  .window-content {
+    padding: 15px;
+    height: calc(100% - 30px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .desktop-background {
+    height: calc(100% - 60px);
+    overflow: hidden;
+  }
+}
+
+/* Предотвращение масштабирования при фокусе на мобильных */
+@media (max-width: 768px) {
+  .window {
+    touch-action: pan-x pan-y;
+  }
+
+  .window-body input,
+  .window-body textarea,
+  .window-body [contenteditable="true"] {
+    font-size: 16px; /* Предотвращает зум в iOS */
+  }
+}
