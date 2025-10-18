@@ -47,7 +47,7 @@ const GamesFolder = () => {
       <div className="game-fullscreen">
         <div className="game-header">
           <button className="back-button" onClick={handleBack}>
-            ← {t("backToGames")}
+            ← {}
           </button>
           <h3 className="game-title">
             <span className="game-icon">{selectedGame.icon}</span>
