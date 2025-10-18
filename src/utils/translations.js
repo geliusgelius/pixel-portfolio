@@ -88,7 +88,7 @@ export const translations = {
     restart: "Перезагрузка...",
 
     // Start menu
-    shutdown: "🚪 Выключение",
+    shutdown: "Выключение",
 
     // Пиксельный редактор:
     paint: "Pixel Paint",
