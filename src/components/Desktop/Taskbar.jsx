@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import BackgroundSelector from "./BackgroundSelector";
 import "./Taskbar.css";
+import {
+  MdiFullscreen,
+  MdiPaletteOutline,
+  MdiLockOutline,
+  MdiLockOpenOutline,
+  MdiLanguage,
+} from "./icones";
 
 const Taskbar = ({
   windows,
@@ -83,6 +90,18 @@ const Taskbar = ({
     setShowBackgroundSelector(true);
   };
 
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => {
+        console.log(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  };
+
   return (
     <div className="taskbar">
       <div className="start-button" onClick={handleStartClick}>
@@ -107,6 +126,17 @@ const Taskbar = ({
       </div>
 
       <div className="system-tray">
+        {/* Fullscreen button */}
+        <div className="fullscreen-button-container">
+          <button
+            className="fullscreen-button"
+            onClick={toggleFullscreen}
+            title={t("fullscreen")}
+          >
+            <MdiFullscreen className="fullscreen-icon" />
+          </button>
+        </div>
+
         {/* Background change button */}
         <div className="background-button-container">
           <button
@@ -114,7 +144,7 @@ const Taskbar = ({
             onClick={handleBackgroundClick}
             title={t("changeBackground")}
           >
-            <span className="background-icon">🎨</span>
+            <MdiPaletteOutline className="background-icon" />
           </button>
         </div>
 
@@ -125,12 +155,17 @@ const Taskbar = ({
             onClick={handleLockClick}
             title={iconsLocked ? t("unlockIcons") : t("lockIcons")}
           >
-            <span className="lock-icon">{iconsLocked ? "🔒" : "🔓"}</span>
+            {iconsLocked ? (
+              <MdiLockOutline className="lock-icon" />
+            ) : (
+              <MdiLockOpenOutline className="lock-icon" />
+            )}
           </button>
         </div>
 
         <div className="language-selector">
           <div className="language-button" onClick={handleLanguageClick}>
+            <MdiLanguage className="language-icon" />
             {currentLanguage === "ru" ? "RU" : "EN"}
           </div>
 

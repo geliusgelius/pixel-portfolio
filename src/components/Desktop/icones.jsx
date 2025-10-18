@@ -334,3 +334,122 @@ export function FluentTetrisApp20Regular(props) {
     </svg>
   );
 }
+
+export function MdiFullscreen(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M5 5h5v2H7v3H5zm5 14H5v-5h2v3h3zm9-9h-2V7h-3V5h5zm-3 9h3v-5h-2v3h-1z"
+      />
+    </svg>
+  );
+}
+
+export function MdiFullscreenExit(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M14 14h5v2h-3v3h-2zm-9 0h5v5h2v-5h3v-2H5zm3-9h2v3h3v2H8v3H5V8h3z"
+      />
+    </svg>
+  );
+}
+
+export function MdiLockOutline(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 0 4m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5a5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"
+      />
+    </svg>
+  );
+}
+
+export function MdiLockOpenOutline(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M18 20V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h9V6a3 3 0 0 0-3-3a3 3 0 0 0-3 3H7a5 5 0 0 1 5-5a5 5 0 0 1 5 5v2zm-6 9a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2a2 2 0 0 0 2 2"
+      />
+    </svg>
+  );
+}
+
+export function MdiPaletteOutline(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 22A10 10 0 0 1 2 12A10 10 0 0 1 12 2c5.5 0 10 4 10 9a6 6 0 0 1-6 6h-1.77c-.28.37-.62.71-1.03 1c-1.36.91-2.29 1.5-3.2 1.5m0-18a8 8 0 0 0-8 8a8 8 0 0 0 8 8c.39 0 .87-.21 1.61-.67c.52-.35 1.02-.72 1.39-.93V16a4 4 0 0 0 4-4a4 4 0 0 0-4-4h-2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m-2 6a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2m4 4a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2m-8 0a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2"
+      />
+    </svg>
+  );
+}
+
+export function MdiLanguage(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="m12.87 15.07l-2.54-2.51l.03-.03A17.8 17.8 0 0 0 14.5 6.5A8.25 8.25 0 0 0 6.5 0A8.25 8.25 0 0 0 0 6.5a8.25 8.25 0 0 0 6.5 6.5c1.91 0 3.68-.59 5.16-1.61l-2.54 2.51zM10 4a2 2 0 1 1 0 4a2 2 0 0 1 0-4m12 16.5a2.5 2.5 0 0 1-2.5 2.5a2.5 2.5 0 0 1-2.5-2.5a2.5 2.5 0 0 1 2.5-2.5a2.5 2.5 0 0 1 2.5 2.5"
+      />
+    </svg>
+  );
+}
+
+export function MdiShutdown(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1m6.36 2.64a1 1 0 0 1 0 1.41a8 8 0 0 1 0 11.31a1 1 0 0 1-1.41-1.41a6 6 0 0 0 0-8.49a1 1 0 0 1 1.41-1.41zM5.64 3.64a1 1 0 0 1 1.41 0a6 6 0 0 0 0 8.49a1 1 0 0 1-1.41 1.41a8 8 0 0 1 0-11.31a1 1 0 0 1 0-1.41z"
+      />
+    </svg>
+  );
+}
