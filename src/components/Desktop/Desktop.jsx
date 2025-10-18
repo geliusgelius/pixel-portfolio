@@ -103,7 +103,7 @@ const Desktop = () => {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [t]);
+  }, []);
 
   const openWindow = (title, icon, ContentComponent, windowType) => {
     const existingWindow = windows.find(
