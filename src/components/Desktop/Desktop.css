@@ -672,6 +672,12 @@ textarea,
   }
 }
 
+/* Стили для иконки папки */
+.folder-icon {
+  font-size: 2rem;
+  filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.3));
+}
+
 /* Улучшенная адаптивность для мобильных устройств */
 @media (max-width: 1024px) {
   .desktop-icons {

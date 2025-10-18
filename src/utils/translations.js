@@ -6,24 +6,24 @@ export const translations = {
     ready: "★ Готово к работе ★",
 
     // Desktop icons
-    aboutMe: "О себе",
+    aboutMe: "Обо мне",
     skills: "Навыки",
     portfolio: "Портфолио",
     contact: "Контакты",
-    photoEditor: "Фото редактор",
-    games: "Тетрис",
+    photoEditor: "Фоторедактор",
+    games: "Игры",
 
     // Window titles
-    aboutMeTitle: "О себе",
+    aboutMeTitle: "Обо мне",
     skillsTitle: "Навыки",
     portfolioTitle: "Портфолио",
     contactTitle: "Контакты",
     photoEditorTitle: "Фоторедактор",
-    gamesTitle: "Тетрис",
+    gamesTitle: "Игры",
 
     // About Me content
     name: "Ангелина Смирнова",
-    profession: "Фронтенд Разработчик",
+    profession: "Фронтенд-разработчик",
     welcome: `Фронтенд-разработчик, который превращает идеи в быстрые и интуитивные интерфейсы.
 
 Создаю современный, производительный код на React, Next.js и TypeScript. Я не просто верстаю макеты, а думаю о том, как пользователь будет взаимодействовать с продуктом, и как мой код повлияет на бизнес-метрики, такие как скорость загрузки и конверсия.
@@ -37,10 +37,10 @@ export const translations = {
 Ищу команду, где можно решать интересные задачи, расти под руководством опытных коллег и вносить реальный вклад в общий продукт.`,
 
     // Skills content
-    technicalSkills: "Технические Навыки",
+    technicalSkills: "Технические навыки",
 
     // Portfolio content
-    myProjects: "Мои Проекты",
+    myProjects: "Мои проекты",
     miniTrello: "Mini Trello",
     artistPortfolio: "Сайт-портфолио художника",
     dollImpostorQuiz: "Квиз по игре Doll Impostor",
@@ -50,7 +50,7 @@ export const translations = {
     project3Description: "Минималистичный, но функциональный аналог Trello",
     demo: "Демо",
     code: "Код",
-    responsiveDesign: "Адаптивная верстка",
+    responsiveDesign: "Адаптивный дизайн",
 
     // Contact content
     getInTouch: "Свяжитесь со мной",
@@ -134,7 +134,7 @@ export const translations = {
     tetrisGameOver: "Игра окончена!",
     tetrisRestart: "Играть снова",
     tetrisContinue: "Продолжить",
-    tetrisHardDrop: "Быстро падать",
+    tetrisHardDrop: "Быстрое падение",
     tetrisFinalScore: "Финальный счет: ",
     tetrisControlsTitle: "Управление:",
     tetrisControlsMove: "←/A или →/D - движение",
@@ -149,12 +149,41 @@ export const translations = {
     mobileRotate: "↻ Повернуть",
     mobileDown: "↓ Вниз",
     mobileDrop: "⚡ Быстро",
+
+    // Games Folder translations
+    tetrisDescription: "Классический тетрис - собирайте линии",
+    comingSoon: "Скоро",
+    moreGamesComing: "Больше игр в разработке",
+    game: "Игра",
+    folder: "Папка",
+    file: "Файл",
+    edit: "Правка",
+    view: "Вид",
+    tools: "Сервис",
+    help: "Справка",
+    desktop: "Рабочий стол",
+    favorites: "Избранное",
+    downloads: "Загрузки",
+    recentPlaces: "Недавние места",
+    thisPC: "Этот компьютер",
+    localDiskC: "Локальный диск (C:)",
+    localDiskD: "Локальный диск (D:)",
+    devicesAndDrives: "Устройства и диски",
+    largeIcons: "Крупные значки",
+    list: "Список",
+    details: "Таблица",
+    selectedObjects: "Выбрано объектов",
+    totalSize: "Общий размер",
+    objects: "объекта",
+    selectObjectForDescription: "Выберите объект для просмотра его описания",
+    doubleClickToLaunch: "Дважды щелкните для запуска",
+    newGamesComingSoon: "Скоро здесь появятся новые игры!",
   },
   en: {
     // Preloader
     initializing: "Initializing portfolio system...",
     loadingGraphics: "Loading pixel graphics...",
-    ready: "★ Ready to code ★",
+    ready: "★ Ready to work ★",
 
     // Desktop icons
     aboutMe: "About Me",
@@ -162,7 +191,7 @@ export const translations = {
     portfolio: "Portfolio",
     contact: "Contact",
     photoEditor: "Photo Editor",
-    games: "Tetris",
+    games: "Games",
 
     // Window titles
     aboutMeTitle: "About Me",
@@ -170,7 +199,7 @@ export const translations = {
     portfolioTitle: "Portfolio",
     contactTitle: "Contact",
     photoEditorTitle: "Photo Editor",
-    gamesTitle: "Tetris",
+    gamesTitle: "Games",
 
     // About Me content
     name: "Angelina Smirnova",
@@ -201,7 +230,7 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     project3Description: "Minimalistic but functional Trello analog",
     demo: "Demo",
     code: "Code",
-    responsiveDesign: "Responsive design",
+    responsiveDesign: "Responsive Design",
 
     // Contact content
     getInTouch: "Get In Touch",
@@ -299,6 +328,35 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     mobileRotate: "↻ Rotate",
     mobileDown: "↓ Down",
     mobileDrop: "⚡ Drop",
+
+    // Games Folder translations
+    tetrisDescription: "Classic Tetris - clear lines",
+    comingSoon: "Coming Soon",
+    moreGamesComing: "More games in development",
+    game: "Game",
+    folder: "Folder",
+    file: "File",
+    edit: "Edit",
+    view: "View",
+    tools: "Tools",
+    help: "Help",
+    desktop: "Desktop",
+    favorites: "Favorites",
+    downloads: "Downloads",
+    recentPlaces: "Recent Places",
+    thisPC: "This PC",
+    localDiskC: "Local Disk (C:)",
+    localDiskD: "Local Disk (D:)",
+    devicesAndDrives: "Devices and Drives",
+    largeIcons: "Large Icons",
+    list: "List",
+    details: "Details",
+    selectedObjects: "Selected objects",
+    totalSize: "Total size",
+    objects: "objects",
+    selectObjectForDescription: "Select an object to view its description",
+    doubleClickToLaunch: "Double click to launch",
+    newGamesComingSoon: "New games coming soon!",
   },
 };
 

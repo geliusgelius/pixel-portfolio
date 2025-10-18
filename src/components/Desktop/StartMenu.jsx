@@ -25,9 +25,7 @@ const StartMenu = ({
 
   // Принудительно обновляем стили при монтировании
   useEffect(() => {
-    // Даем браузеру время применить CSS переменные
     const timer = setTimeout(() => {
-      // Форсируем перерисовку через изменение стилей
       const startMenu = document.querySelector(".start-menu");
       if (startMenu) {
         startMenu.style.display = "none";

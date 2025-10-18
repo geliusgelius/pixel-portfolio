@@ -10,6 +10,7 @@ import Notification from "./Notification";
 import DesktopIcon from "./DesktopIcon";
 import BSOD from "./BSOD";
 import Preloader from "../Preloader/Preloader";
+import BackgroundSelector from "./BackgroundSelector";
 import "./Desktop.css";
 import {
   TablerBrandHtml5,
@@ -28,9 +29,8 @@ import {
   BytesizePortfolio,
   StreamlinePixelDesignColorPaintingPalette,
   MaterialSymbolsContactMailOutline,
-  FluentTetrisApp20Regular,
 } from "./icones";
-import TetrisGame from "./TetrisGame";
+import GamesFolder from "./GamesFolder";
 
 const Desktop = () => {
   const { t, currentLanguage } = useLanguage();
@@ -47,6 +47,11 @@ const Desktop = () => {
   const [currentTheme, setCurrentTheme] = useState(() => {
     return localStorage.getItem("selectedTheme") || "pink";
   });
+  const [showBackgroundSelector, setShowBackgroundSelector] = useState(false);
+  const [notification, setNotification] = useState({
+    message: "",
+    isVisible: false,
+  });
 
   // Начальные позиции для значков
   const defaultIconPositions = {
@@ -60,11 +65,9 @@ const Desktop = () => {
 
   // Функция для применения темы ко всему сайту
   const applyTheme = (themeId) => {
-    console.log("Applying theme:", themeId);
     const theme = themes[themeId] || themes.pink;
     const root = document.documentElement;
 
-    // Устанавливаем CSS переменные
     root.style.setProperty("--theme-primary", theme.colors.primary);
     root.style.setProperty("--theme-secondary", theme.colors.secondary);
     root.style.setProperty("--theme-accent", theme.colors.accent);
@@ -72,14 +75,21 @@ const Desktop = () => {
     root.style.setProperty("--theme-text", theme.colors.text);
     root.style.setProperty("--theme-border", theme.colors.border);
     root.style.setProperty("--theme-shadow", theme.colors.shadow);
-
-    console.log("Theme applied:", theme.colors.background);
+    root.style.setProperty("--theme-text-inverted", theme.colors.textInverted);
   };
 
   // Применяем тему при загрузке и при изменении currentTheme
   useEffect(() => {
     applyTheme(currentTheme);
   }, [currentTheme]);
+
+  // Показ уведомлений
+  const showNotification = (message) => {
+    setNotification({ message, isVisible: true });
+    setTimeout(() => {
+      setNotification({ message: "", isVisible: false });
+    }, 3000);
+  };
 
   // Автоматически открываем окно "Обо мне" при загрузке
   useEffect(() => {
@@ -93,7 +103,7 @@ const Desktop = () => {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [t]);
 
   const openWindow = (title, icon, ContentComponent, windowType) => {
     const existingWindow = windows.find(
@@ -101,19 +111,15 @@ const Desktop = () => {
     );
 
     if (existingWindow) {
-      // Если окно уже открыто, сворачиваем/разворачиваем его
       if (existingWindow.isMinimized) {
-        // Если свернуто - восстанавливаем
         restoreWindow(existingWindow.id);
       } else {
-        // Если открыто - сворачиваем
         minimizeWindow(existingWindow.id);
       }
       setShowStartMenu(false);
       return;
     }
 
-    // Создаем новое окно
     const id = Date.now().toString();
     const newWindow = {
       id,
@@ -124,9 +130,13 @@ const Desktop = () => {
       position: { x: 50 + windows.length * 30, y: 50 + windows.length * 30 },
       size: { width: 600, height: 400 },
       isMinimized: false,
+      isActive: true,
     };
 
-    setWindows((prev) => [...prev, newWindow]);
+    setWindows((prev) => [
+      ...prev.map((w) => ({ ...w, isActive: false })),
+      newWindow,
+    ]);
     setActiveWindow(id);
     setShowStartMenu(false);
   };
@@ -143,7 +153,9 @@ const Desktop = () => {
   const minimizeWindow = (id) => {
     setWindows((prev) =>
       prev.map((window) =>
-        window.id === id ? { ...window, isMinimized: true } : window
+        window.id === id
+          ? { ...window, isMinimized: true, isActive: false }
+          : window
       )
     );
     if (activeWindow === id) {
@@ -154,7 +166,9 @@ const Desktop = () => {
   const restoreWindow = (id) => {
     setWindows((prev) =>
       prev.map((window) =>
-        window.id === id ? { ...window, isMinimized: false } : window
+        window.id === id
+          ? { ...window, isMinimized: false, isActive: true }
+          : window
       )
     );
     setActiveWindow(id);
@@ -162,6 +176,13 @@ const Desktop = () => {
   };
 
   const bringToFront = (id) => {
+    setWindows((prev) =>
+      prev.map((window) =>
+        window.id === id
+          ? { ...window, isActive: true }
+          : { ...window, isActive: false }
+      )
+    );
     setActiveWindow(id);
     setShowStartMenu(false);
   };
@@ -242,16 +263,18 @@ const Desktop = () => {
   };
 
   const toggleIconsLock = () => {
-    setIconsLocked(!iconsLocked);
+    const newLockState = !iconsLocked;
+    setIconsLocked(newLockState);
+    showNotification(
+      newLockState ? "Значки заблокированы" : "Значки разблокированы"
+    );
   };
 
   const handleThemeChange = (newTheme) => {
-    console.log("Changing theme to:", newTheme);
     setCurrentTheme(newTheme);
     applyTheme(newTheme);
     localStorage.setItem("selectedTheme", newTheme);
-
-    setWindows((prev) => [...prev]);
+    showNotification(`Тема изменена на: ${themes[newTheme]?.name || newTheme}`);
   };
 
   const updateWindowTitles = () => {
@@ -278,9 +301,9 @@ const Desktop = () => {
     );
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     updateWindowTitles();
-  }, [currentLanguage]);
+  }, [currentLanguage, t]);
 
   if (isRestarting) {
     return (
@@ -412,12 +435,14 @@ const Desktop = () => {
 
             <DesktopIcon
               iconId="games"
-              icon={<FluentTetrisApp20Regular />}
+              icon={<span className="folder-icon">📁</span>}
               title={t("games")}
               onClick={() =>
                 openWindow(
                   t("gamesTitle"),
-                  <FluentTetrisApp20Regular style={{ fontSize: "1rem" }} />,
+                  <span className="folder-icon" style={{ fontSize: "1rem" }}>
+                    📁
+                  </span>,
                   GamesContent,
                   "games"
                 )
@@ -460,11 +485,11 @@ const Desktop = () => {
         onToggleIconsLock={toggleIconsLock}
         currentTheme={currentTheme}
         onThemeChange={handleThemeChange}
+        onBackgroundChange={() => setShowBackgroundSelector(true)}
       />
 
       {showStartMenu && (
         <StartMenu
-          key={`startmenu-${currentTheme}`}
           onOpenWindow={openWindow}
           onClose={() => setShowStartMenu(false)}
           onShutdown={handleShutdown}
@@ -487,10 +512,25 @@ const Desktop = () => {
           onRestart={handleBSODRestart}
         />
       )}
+
+      {showBackgroundSelector && (
+        <BackgroundSelector
+          onClose={() => setShowBackgroundSelector(false)}
+          currentTheme={currentTheme}
+          onThemeChange={handleThemeChange}
+        />
+      )}
+
+      <Notification
+        message={notification.message}
+        isVisible={notification.isVisible}
+        onClose={() => setNotification({ message: "", isVisible: false })}
+      />
     </div>
   );
 };
 
+// Компоненты контента окон
 const AboutMeContent = () => {
   const { t } = useLanguage();
   return (
@@ -515,34 +555,33 @@ const SkillsContent = () => {
           <span>HTML5</span>
         </div>
         <div className="skill-item">
-          <TablerBrandCss3 style={{ fontSize: "32px", color: " #1572B6" }} />
+          <TablerBrandCss3 style={{ fontSize: "32px", color: "#1572B6" }} />
           <span>CSS3</span>
         </div>
         <div className="skill-item">
-          <IxJavaScript style={{ fontSize: "32px", color: " #D4B90F" }} />
-          <span>Java Script</span>
+          <IxJavaScript style={{ fontSize: "32px", color: "#D4B90F" }} />
+          <span>JavaScript</span>
         </div>
         <div className="skill-item">
-          <AkarIconsReactFill style={{ fontSize: "32px", color: " #4BB8D9" }} />
+          <AkarIconsReactFill style={{ fontSize: "32px", color: "#4BB8D9" }} />
           <span>React</span>
         </div>
         <div className="skill-item">
-          <Fa7BrandsNodeJs style={{ fontSize: "32px", color: " #339933" }} />
+          <Fa7BrandsNodeJs style={{ fontSize: "32px", color: "#339933" }} />
           <span>Node.js</span>
         </div>
         <div className="skill-item">
-          <MdiGithub style={{ fontSize: "32px", color: " #000000" }} />
+          <MdiGithub style={{ fontSize: "32px", color: "#000000" }} />
           <span>Git</span>
         </div>
         <div className="skill-item">
           <TeenyiconsTypescriptOutline
-            style={{ fontSize: "32px", color: " #3178C6" }}
+            style={{ fontSize: "32px", color: "#3178C6" }}
           />
           <span>TypeScript</span>
         </div>
-
         <div className="skill-item">
-          <TablerBrandVite style={{ fontSize: "32px", color: " #646CFF" }} />
+          <TablerBrandVite style={{ fontSize: "32px", color: "#646CFF" }} />
           <span>Vite</span>
         </div>
       </div>
@@ -954,7 +993,7 @@ const PhotoEditorContent = () => {
 const GamesContent = () => {
   return (
     <div className="window-content">
-      <TetrisGame />
+      <GamesFolder />
     </div>
   );
 };

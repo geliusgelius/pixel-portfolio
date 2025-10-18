@@ -115,13 +115,15 @@
 }
 
 .background-button-container,
-.lock-button-container {
+.lock-button-container,
+.fullscreen-button-container {
   display: flex;
   align-items: center;
 }
 
 .background-button,
-.lock-button {
+.lock-button,
+.fullscreen-button {
   background: var(--theme-accent);
   border: 2px solid var(--theme-primary);
   color: var(--theme-primary);
@@ -137,7 +139,8 @@
 }
 
 .background-button:hover,
-.lock-button:hover {
+.lock-button:hover,
+.fullscreen-button:hover {
   background: var(--theme-primary);
   color: white;
   transform: scale(1.1);
@@ -149,7 +152,8 @@
 }
 
 .background-icon,
-.lock-icon {
+.lock-icon,
+.fullscreen-icon {
   font-size: 1rem;
   display: flex;
   align-items: center;
@@ -165,7 +169,6 @@
   border: 2px solid var(--theme-primary);
   color: var(--theme-primary);
   padding: 6px 10px;
-  margin-top: 15px;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.2s;
@@ -175,6 +178,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 15px;
 }
 
 .language-button:hover {
@@ -230,17 +234,6 @@
   flex-shrink: 0;
 }
 
-/* Добавленные классы для границ */
-.pixel-border {
-  border: 2px solid;
-  border-color: #fff var(--theme-primary) var(--theme-primary) #fff;
-}
-
-.pixel-border-inset {
-  border: 2px solid;
-  border-color: var(--theme-primary) #fff #fff var(--theme-primary);
-}
-
 /* Стили для скроллбара в таскбаре */
 .taskbar-items::-webkit-scrollbar {
   height: 6px;
@@ -292,7 +285,8 @@
   }
 
   .background-button,
-  .lock-button {
+  .lock-button,
+  .fullscreen-button {
     padding: 4px;
     width: 28px;
     height: 28px;
