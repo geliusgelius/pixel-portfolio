@@ -165,7 +165,6 @@ const Taskbar = ({
 
         <div className="language-selector">
           <div className="language-button" onClick={handleLanguageClick}>
-            <MdiLanguage className="language-icon" />
             {currentLanguage === "ru" ? "RU" : "EN"}
           </div>
 
