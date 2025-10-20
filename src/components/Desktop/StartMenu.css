@@ -14,7 +14,7 @@
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Press Start 2P", monospace; /* Заменил на пиксельный шрифт */
 }
 
 .start-menu-header {
@@ -57,10 +57,11 @@
   background: rgba(255, 255, 255, 0.95);
 }
 
+/* ИЗМЕНЕНИЕ: вертикальное расположение вместо grid */
 .menu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .menu-item {
@@ -73,6 +74,9 @@
   transition: all 0.3s ease;
   gap: 12px;
   min-height: 60px;
+  width: 100%; /* Занимает всю ширину */
+  box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .menu-item:hover {
@@ -100,6 +104,8 @@
 .menu-item-info {
   flex: 1;
   min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .menu-item-title {
@@ -201,8 +207,10 @@
     padding: 10px;
   }
 
+  /* Сохраняем вертикальное расположение на мобильных */
   .menu-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 8px;
   }
 
@@ -295,10 +303,7 @@
   .start-menu {
     width: 280px;
   }
-
-  .menu-grid {
-    grid-template-columns: 1fr;
-  }
+  /* Убираем grid-template-columns так как теперь flex */
 }
 
 /* Анимации */
