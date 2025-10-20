@@ -29,6 +29,7 @@ import {
   BytesizePortfolio,
   StreamlinePixelDesignColorPaintingPalette,
   MaterialSymbolsContactMailOutline,
+  MaterialSymbolsFolderCopyOutline,
 } from "./icones";
 import GamesFolder from "./GamesFolder";
 
@@ -435,14 +436,14 @@ const Desktop = () => {
 
             <DesktopIcon
               iconId="games"
-              icon={<span className="folder-icon">📁</span>}
+              icon={
+                <MaterialSymbolsFolderCopyOutline></MaterialSymbolsFolderCopyOutline>
+              }
               title={t("games")}
               onClick={() =>
                 openWindow(
                   t("gamesTitle"),
-                  <span className="folder-icon" style={{ fontSize: "1rem" }}>
-                    📁
-                  </span>,
+                  <MaterialSymbolsFolderCopyOutline></MaterialSymbolsFolderCopyOutline>,
                   GamesContent,
                   "games"
                 )
