@@ -10,7 +10,7 @@ export const translations = {
     skills: "Навыки",
     portfolio: "Портфолио",
     contact: "Контакты",
-    photoEditor: "Фоторедактор",
+    photoEditor: "Фото-редактор",
     games: "Игры",
 
     // Window titles
@@ -18,7 +18,7 @@ export const translations = {
     skillsTitle: "Навыки",
     portfolioTitle: "Портфолио",
     contactTitle: "Контакты",
-    photoEditorTitle: "Фоторедактор",
+    photoEditorTitle: "Фото-редактор",
     gamesTitle: "Игры",
 
     // About Me content
@@ -270,7 +270,7 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     restart: "Restarting...",
 
     // Start menu
-    shutdown: "🚪 Shutdown",
+    shutdown: "Shutdown",
 
     // Pixel Paint:
     paint: "Pixel Paint",

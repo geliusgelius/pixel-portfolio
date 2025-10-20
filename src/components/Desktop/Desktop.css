@@ -13,6 +13,8 @@
 
 * {
   font-family: var(--pixel-font) !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
 }
 
 input,
@@ -113,14 +115,16 @@ textarea,
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80px;
-  padding: 10px;
+  width: 125px !important;
+  padding: 12px 8px;
   z-index: 10;
   cursor: grab;
   user-select: none;
   transition: none !important;
   transform: none !important;
   touch-action: none;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .desktop-icon:active {
@@ -128,27 +132,46 @@ textarea,
 }
 
 .desktop-icon .icon {
-  font-size: 2rem;
-  margin-bottom: 5px;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
   filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.3));
   pointer-events: none;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .desktop-icon span {
   color: var(--theme-text-inverted);
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   text-align: center;
-  line-height: 1.2;
-  word-wrap: break-word;
-  max-width: 80px;
+  line-height: 1.3;
   pointer-events: none;
+
+  white-space: normal !important;
+  overflow: visible !important;
+  display: block !important;
+  width: 100% !important;
+  word-break: break-all !important;
+  hyphens: auto !important;
+  word-wrap: break-word !important;
+  max-width: 100% !important;
+  min-height: 2.6em;
 }
 
-/* Ховер эффект - только визуальный */
+/* Принудительный перенос для слова "портфолио" */
+.desktop-icon span {
+  word-break: break-all !important;
+}
+
+/* Ховер эффект */
 .desktop-icon:hover {
   background: rgba(255, 255, 255, 0.2);
   border: 2px dotted #fff;
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
 }
 
 /* Заблокированные значки */
@@ -160,6 +183,7 @@ textarea,
 .desktop-icon.locked:hover {
   background: rgba(255, 255, 255, 0.1);
   border: 2px dotted rgba(255, 255, 255, 0.5);
+  transform: none;
 }
 
 /* Индикатор блокировки */
@@ -698,13 +722,11 @@ textarea,
   }
 
   .desktop-icon {
-    width: 70px;
-    padding: 8px;
+    width: 110px !important;
   }
 
   .desktop-icon span {
-    font-size: 0.6rem;
-    max-width: 70px;
+    font-size: 0.7rem;
   }
 
   .window-content {
@@ -740,17 +762,18 @@ textarea,
   }
 
   .desktop-icon {
-    width: 65px;
-    padding: 6px;
+    width: 100px !important; /* Соответственно уменьшил для мобильных */
+    padding: 10px 6px;
   }
 
   .desktop-icon .icon {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 8px;
   }
 
   .desktop-icon span {
-    font-size: 0.55rem;
-    max-width: 65px;
+    font-size: 0.65rem;
+    line-height: 1.25;
   }
 
   .lock-overlay {
@@ -846,17 +869,18 @@ textarea,
   }
 
   .desktop-icon {
-    width: 60px;
-    padding: 5px;
+    width: 90px !important; /* Соответственно уменьшил для маленьких экранов */
+    padding: 8px 4px;
   }
 
   .desktop-icon .icon {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
+    margin-bottom: 6px;
   }
 
   .desktop-icon span {
-    font-size: 0.5rem;
-    max-width: 60px;
+    font-size: 0.6rem;
+    line-height: 1.2;
   }
 
   .window-content {
@@ -915,12 +939,11 @@ textarea,
 
 @media (max-width: 360px) {
   .desktop-icon {
-    width: 55px;
+    width: 85px !important; /* Минимальная ширина для очень маленьких экранов */
   }
 
   .desktop-icon span {
-    font-size: 0.45rem;
-    max-width: 55px;
+    font-size: 0.55rem;
   }
 
   .paint-canvas {
@@ -974,12 +997,11 @@ textarea,
 /* Улучшения для очень маленьких экранов */
 @media (max-width: 320px) {
   .desktop-icon {
-    width: 50px;
+    width: 80px !important;
   }
 
   .desktop-icon span {
-    font-size: 0.4rem;
-    max-width: 50px;
+    font-size: 0.5rem;
   }
 
   .paint-canvas {
@@ -1016,34 +1038,18 @@ textarea,
   }
 }
 
-/* Исправления для пиксельного шрифта */
-* {
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-  hyphens: auto !important;
-}
-
-/* Для заголовков и важного текста */
+/* Исправления для пиксельного шрифта - только необходимые */
 .window-title,
 .start-button,
 .taskbar-item,
 .menu-item-title,
-.desktop-icon span,
 .notification-text,
 .bsod-title p,
 .shutdown-text,
 .tetris-header h3 {
-  word-break: break-word !important;
+  word-break: keep-all !important;
   white-space: normal !important;
   line-height: 1.3 !important;
-}
-
-/* Особые случаи для узких блоков */
-.desktop-icon span {
-  font-size: 0.6rem !important;
-  line-height: 1.2 !important;
-  max-width: 70px !important;
-  word-break: break-word !important;
 }
 
 /* Для текста в меню */
@@ -1113,8 +1119,7 @@ textarea,
 /* Адаптивные исправления для мобильных */
 @media (max-width: 768px) {
   .desktop-icon span {
-    font-size: 0.5rem !important;
-    max-width: 60px !important;
+    font-size: 0.65rem !important;
   }
 
   .window-title {
@@ -1133,12 +1138,23 @@ textarea,
 
 @media (max-width: 480px) {
   .desktop-icon span {
-    font-size: 0.45rem !important;
-    max-width: 55px !important;
+    font-size: 0.6rem !important;
   }
 
   .window-title {
     font-size: 0.65rem !important;
     max-width: 120px !important;
   }
+}
+
+.desktop-icon span {
+  word-break: break-all !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+/* Принудительный перенос для слова "Фоторедактор" */
+.desktop-icon span {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
 }
