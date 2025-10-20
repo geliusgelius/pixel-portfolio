@@ -7,6 +7,18 @@
   --theme-border: #ff1493;
   --theme-shadow: #db7093;
   --theme-text-inverted: #ffffff;
+
+  --pixel-font: "Press Start 2P", monospace;
+}
+
+* {
+  font-family: var(--pixel-font) !important;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  font-family: system-ui, -apple-system, sans-serif !important;
 }
 
 /* Запрет выделения и копирования текста */
