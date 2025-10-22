@@ -1116,7 +1116,7 @@ textarea,
   overflow: hidden !important;
 }
 
-/* Адаптивные исправления для мобильных */
+/* Адаптивные исправления для мобильных*/
 @media (max-width: 768px) {
   .desktop-icon span {
     font-size: 0.65rem !important;
