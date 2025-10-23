@@ -180,6 +180,21 @@ export const translations = {
     newGamesComingSoon: "Скоро здесь появятся новые игры!",
 
     fullscreen: "Полноэкранный режим",
+
+    // Сапёр
+    minesweeper: "Сапёр",
+    minesweeperDescription: "Классический сапёр - найдите все мины",
+    minesweeperMines: "Мины: ",
+    minesweeperTime: "Время: ",
+    minesweeperGameOver: "Игра окончена!",
+    minesweeperYouWin: "Победа!",
+    minesweeperFinalTime: "Время: ",
+    minesweeperRestart: "Играть снова",
+    minesweeperNewGame: "Новая игра",
+    minesweeperControlsTitle: "Как играть",
+    minesweeperControlsLeftClick: "Левый клик: Открыть клетку",
+    minesweeperControlsRightClick: "Правый клик: Поставить флаг",
+    minesweeperControlsGoal: "Цель: Найти все мины, не подорвавшись",
   },
   en: {
     // Preloader
@@ -361,6 +376,21 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     newGamesComingSoon: "New games coming soon!",
 
     fullscreen: "Fullscreen",
+
+    // Minesweeper
+    minesweeper: "Minesweeper",
+    minesweeperDescription: "Classic minesweeper - find all mines",
+    minesweeperMines: "Mines: ",
+    minesweeperTime: "Time: ",
+    minesweeperGameOver: "Game Over!",
+    minesweeperYouWin: "You Win!",
+    minesweeperFinalTime: "Time: ",
+    minesweeperRestart: "Play Again",
+    minesweeperNewGame: "New Game",
+    minesweeperControlsTitle: "How to Play",
+    minesweeperControlsLeftClick: "Left Click: Reveal cell",
+    minesweeperControlsRightClick: "Right Click: Place flag",
+    minesweeperControlsGoal: "Goal: Find all mines without triggering them",
   },
 };
 

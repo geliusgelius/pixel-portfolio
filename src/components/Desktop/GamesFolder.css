@@ -216,6 +216,32 @@
   gap: 15px;
 }
 
+.game-file {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.game-file:hover {
+  background: var(--theme-accent);
+  transform: translateY(-2px);
+}
+
+.coming-soon {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--theme-text);
+}
+
+.coming-soon-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.coming-soon h3 {
+  color: var(--theme-primary);
+  margin-bottom: 15px;
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
   .folder-sidebar {

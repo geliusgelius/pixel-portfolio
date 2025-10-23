@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import TetrisGame from "./TetrisGame";
+import MinesweeperGame from "./MinesweeperGame"; // Добавляем импорт
 import "./GamesFolder.css";
 
 const GamesFolder = () => {
@@ -16,6 +17,15 @@ const GamesFolder = () => {
       size: "2.3 MB",
       type: t("game"),
       component: <TetrisGame />,
+    },
+    {
+      id: "minesweeper",
+      title: t("minesweeper"),
+      description: t("minesweeperDescription"),
+      icon: "💣",
+      size: "1.8 MB",
+      type: t("game"),
+      component: <MinesweeperGame />, // Добавляем Сапёр
     },
     {
       id: "comingSoon",
