@@ -1,12 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import TetrisGame from "./TetrisGame";
-import MinesweeperGame from "./MinesweeperGame"; // Добавляем импорт
+import MinesweeperGame from "./MinesweeperGame";
 import "./GamesFolder.css";
 
 const GamesFolder = () => {
-  const { t } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
   const [selectedGame, setSelectedGame] = useState(null);
+
+  // Восстанавливаем игру из localStorage при загрузке
+  useEffect(() => {
+    const savedGameId = localStorage.getItem("currentGameId");
+    if (savedGameId) {
+      const gameToRestore = games.find((game) => game.id === savedGameId);
+      if (gameToRestore) {
+        setSelectedGame(gameToRestore);
+      }
+    }
+  }, []);
+
+  // Сохраняем игру в localStorage
+  useEffect(() => {
+    if (selectedGame) {
+      localStorage.setItem("currentGameId", selectedGame.id);
+    } else {
+      localStorage.removeItem("currentGameId");
+    }
+  }, [selectedGame]);
 
   const games = [
     {
@@ -16,7 +36,7 @@ const GamesFolder = () => {
       icon: "🧩",
       size: "2.3 MB",
       type: t("game"),
-      component: <TetrisGame />,
+      component: <TetrisGame key="tetris" />,
     },
     {
       id: "minesweeper",
@@ -25,7 +45,7 @@ const GamesFolder = () => {
       icon: "💣",
       size: "1.8 MB",
       type: t("game"),
-      component: <MinesweeperGame />, // Добавляем Сапёр
+      component: <MinesweeperGame key="minesweeper" />,
     },
     {
       id: "comingSoon",
@@ -44,6 +64,16 @@ const GamesFolder = () => {
     },
   ];
 
+  // Обновляем игры при смене языка
+  useEffect(() => {
+    if (selectedGame) {
+      const updatedGame = games.find((game) => game.id === selectedGame.id);
+      if (updatedGame) {
+        setSelectedGame(updatedGame);
+      }
+    }
+  }, [currentLanguage, t]);
+
   const handleGameDoubleClick = (game) => {
     setSelectedGame(game);
   };
@@ -53,18 +83,22 @@ const GamesFolder = () => {
   };
 
   if (selectedGame) {
+    const gameComponent = games.find(
+      (game) => game.id === selectedGame.id
+    )?.component;
+
     return (
       <div className="game-fullscreen">
         <div className="game-header">
           <button className="back-button" onClick={handleBack}>
-            ← {}
+            ← {t("back")}
           </button>
           <h3 className="game-title">
             <span className="game-icon">{selectedGame.icon}</span>
             {selectedGame.title}
           </h3>
         </div>
-        <div className="game-content">{selectedGame.component}</div>
+        <div className="game-content">{gameComponent}</div>
       </div>
     );
   }
@@ -113,7 +147,7 @@ const GamesFolder = () => {
             </div>
             <div className="folder-info">
               <span>{t("selectedObjects")}: 0</span>
-              <span>{t("totalSize")}: 2.3 MB</span>
+              <span>{t("totalSize")}: 4.1 MB</span>
             </div>
           </div>
 
@@ -139,7 +173,7 @@ const GamesFolder = () => {
 
       <div className="folder-statusbar">
         <div className="statusbar-left">
-          <span>2 {t("objects")}</span>
+          <span>3 {t("objects")}</span>
         </div>
         <div className="statusbar-right">
           <span>{t("selectObjectForDescription")}</span>

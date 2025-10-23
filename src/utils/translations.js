@@ -178,6 +178,7 @@ export const translations = {
     selectObjectForDescription: "Выберите объект для просмотра его описания",
     doubleClickToLaunch: "Дважды щелкните для запуска",
     newGamesComingSoon: "Скоро здесь появятся новые игры!",
+    back: "Назад",
 
     fullscreen: "Полноэкранный режим",
 
@@ -374,6 +375,7 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     selectObjectForDescription: "Select an object to view its description",
     doubleClickToLaunch: "Double click to launch",
     newGamesComingSoon: "New games coming soon!",
+    back: "Back",
 
     fullscreen: "Fullscreen",
 

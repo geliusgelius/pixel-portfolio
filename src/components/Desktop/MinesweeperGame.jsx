@@ -5,11 +5,9 @@ import "./MinesweeperGame.css";
 const MinesweeperGame = () => {
   const { t } = useLanguage();
 
-  // Константы игры
   const BOARD_SIZE = 10;
   const MINES_COUNT = 15;
 
-  // Состояние игры
   const [board, setBoard] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [gameWon, setGameWon] = useState(false);
@@ -18,7 +16,6 @@ const MinesweeperGame = () => {
   const [timer, setTimer] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
-  // Инициализация игрового поля
   const initializeBoard = useCallback(() => {
     const newBoard = [];
     for (let i = 0; i < BOARD_SIZE; i++) {
@@ -38,7 +35,6 @@ const MinesweeperGame = () => {
     return newBoard;
   }, []);
 
-  // Размещение мин
   const placeMines = useCallback((board, firstX, firstY) => {
     let minesPlaced = 0;
     const newBoard = JSON.parse(JSON.stringify(board));
@@ -47,7 +43,6 @@ const MinesweeperGame = () => {
       const x = Math.floor(Math.random() * BOARD_SIZE);
       const y = Math.floor(Math.random() * BOARD_SIZE);
 
-      // Не ставим мину на первую клетку и вокруг нее
       if (
         !newBoard[x][y].isMine &&
         Math.abs(x - firstX) > 1 &&
@@ -58,7 +53,6 @@ const MinesweeperGame = () => {
       }
     }
 
-    // Подсчет соседних мин
     for (let x = 0; x < BOARD_SIZE; x++) {
       for (let y = 0; y < BOARD_SIZE; y++) {
         if (!newBoard[x][y].isMine) {
@@ -86,7 +80,6 @@ const MinesweeperGame = () => {
     return newBoard;
   }, []);
 
-  // Раскрытие клетки
   const revealCell = useCallback(
     (x, y) => {
       setBoard((prevBoard) => {
@@ -103,11 +96,9 @@ const MinesweeperGame = () => {
 
         newBoard[x][y].isRevealed = true;
 
-        // Если это мина - игра окончена
         if (newBoard[x][y].isMine) {
           setGameOver(true);
           setIsRunning(false);
-          // Показываем все мины
           for (let i = 0; i < BOARD_SIZE; i++) {
             for (let j = 0; j < BOARD_SIZE; j++) {
               if (newBoard[i][j].isMine) {
@@ -118,7 +109,6 @@ const MinesweeperGame = () => {
           return newBoard;
         }
 
-        // Если клетка пустая - раскрываем соседей
         if (newBoard[x][y].adjacentMines === 0) {
           const queue = [[x, y]];
           const visited = new Set();
@@ -155,16 +145,13 @@ const MinesweeperGame = () => {
           }
         }
 
-        // Проверка победы
         checkWinCondition(newBoard);
-
         return newBoard;
       });
     },
     [gameOver, gameWon]
   );
 
-  // Установка/снятие флага
   const toggleFlag = useCallback(
     (x, y, e) => {
       e.preventDefault();
@@ -185,16 +172,13 @@ const MinesweeperGame = () => {
           newBoard[x][y].isFlagged ? prev - 1 : prev + 1
         );
 
-        // Проверка победы
         checkWinCondition(newBoard);
-
         return newBoard;
       });
     },
     [minesLeft, gameOver, gameWon]
   );
 
-  // Проверка условия победы
   const checkWinCondition = useCallback((board) => {
     let unrevealedSafeCells = 0;
     let correctlyFlaggedMines = 0;
@@ -217,7 +201,6 @@ const MinesweeperGame = () => {
     }
   }, []);
 
-  // Обработчик клика по клетке
   const handleCellClick = useCallback(
     (x, y) => {
       if (gameOver || gameWon) return;
@@ -235,7 +218,6 @@ const MinesweeperGame = () => {
     [board, gameOver, gameWon, isFirstClick, placeMines, revealCell]
   );
 
-  // Перезапуск игры
   const restartGame = () => {
     setBoard(initializeBoard());
     setGameOver(false);
@@ -246,7 +228,6 @@ const MinesweeperGame = () => {
     setIsRunning(false);
   };
 
-  // Таймер
   useEffect(() => {
     let interval;
     if (isRunning) {
@@ -257,12 +238,10 @@ const MinesweeperGame = () => {
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  // Инициализация при загрузке
   useEffect(() => {
     restartGame();
   }, []);
 
-  // Рендер клетки
   const renderCell = (cell) => {
     let content = "";
     let className = "minesweeper-cell";
@@ -293,7 +272,6 @@ const MinesweeperGame = () => {
     );
   };
 
-  // Форматирование времени
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;

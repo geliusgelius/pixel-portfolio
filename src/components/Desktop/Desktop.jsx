@@ -54,6 +54,9 @@ const Desktop = () => {
     isVisible: false,
   });
 
+  // СОСТОЯНИЕ ДЛЯ ВЫБРАННОЙ ИГРЫ
+  const [selectedGame, setSelectedGame] = useState(null);
+
   // Начальные позиции для значков
   const defaultIconPositions = {
     aboutMe: { x: 20, y: 20 },
@@ -63,6 +66,20 @@ const Desktop = () => {
     contact: { x: 20, y: 420 },
     games: { x: 20, y: 520 },
   };
+
+  // ВОССТАНОВЛЕНИЕ ВЫБРАННОЙ ИГРЫ ИЗ LOCALSTORAGE ПРИ ЗАГРУЗКЕ
+  useEffect(() => {
+    const savedGameId = localStorage.getItem("currentGameId");
+    if (savedGameId) {
+      // Создаем базовый объект игры для восстановления
+      const restoredGame = {
+        id: savedGameId,
+        title: savedGameId === "tetris" ? t("tetris") : t("minesweeper"),
+        icon: savedGameId === "tetris" ? "🧩" : "💣",
+      };
+      setSelectedGame(restoredGame);
+    }
+  }, []);
 
   // Функция для применения темы ко всему сайту
   const applyTheme = (themeId) => {
@@ -219,6 +236,8 @@ const Desktop = () => {
       setWindows([]);
       setActiveWindow(null);
       setIconPositions({});
+      setSelectedGame(null);
+      localStorage.removeItem("currentGameId");
 
       setTimeout(() => {
         openWindow(
@@ -244,6 +263,8 @@ const Desktop = () => {
       setWindows([]);
       setActiveWindow(null);
       setIconPositions({});
+      setSelectedGame(null);
+      localStorage.removeItem("currentGameId");
 
       setTimeout(() => {
         openWindow(
@@ -305,6 +326,488 @@ const Desktop = () => {
   useEffect(() => {
     updateWindowTitles();
   }, [currentLanguage, t]);
+
+  // ОБНОВЛЕНИЕ ВЫБРАННОЙ ИГРЫ ПРИ СМЕНЕ ЯЗЫКА
+  useEffect(() => {
+    if (selectedGame) {
+      const updatedGame = {
+        ...selectedGame,
+        title: selectedGame.id === "tetris" ? t("tetris") : t("minesweeper"),
+      };
+      setSelectedGame(updatedGame);
+    }
+  }, [currentLanguage, t]);
+
+  // КОМПОНЕНТЫ КОНТЕНТА ОКОН (ПЕРЕМЕЩЕНЫ ВНУТРЬ Desktop)
+  const AboutMeContent = () => {
+    const { t } = useLanguage();
+    return (
+      <div className="window-content">
+        <div className="pixel-avatar">👩‍💻</div>
+        <h3>{t("name")}</h3>
+        <p className="profession">{t("profession")}</p>
+        <div className="pixel-divider"></div>
+        <div className="welcome-text">{t("welcome")}</div>
+      </div>
+    );
+  };
+
+  const SkillsContent = () => {
+    const { t } = useLanguage();
+    return (
+      <div className="window-content">
+        <h3>{t("technicalSkills")}</h3>
+        <div className="skills-grid">
+          <div className="skill-item">
+            <TablerBrandHtml5 style={{ fontSize: "32px", color: "#e44d26" }} />
+            <span>HTML5</span>
+          </div>
+          <div className="skill-item">
+            <TablerBrandCss3 style={{ fontSize: "32px", color: "#1572B6" }} />
+            <span>CSS3</span>
+          </div>
+          <div className="skill-item">
+            <IxJavaScript style={{ fontSize: "32px", color: "#D4B90F" }} />
+            <span>JavaScript</span>
+          </div>
+          <div className="skill-item">
+            <AkarIconsReactFill
+              style={{ fontSize: "32px", color: "#4BB8D9" }}
+            />
+            <span>React</span>
+          </div>
+          <div className="skill-item">
+            <Fa7BrandsNodeJs style={{ fontSize: "32px", color: "#339933" }} />
+            <span>Node.js</span>
+          </div>
+          <div className="skill-item">
+            <MdiGithub style={{ fontSize: "32px", color: "#000000" }} />
+            <span>Git</span>
+          </div>
+          <div className="skill-item">
+            <TeenyiconsTypescriptOutline
+              style={{ fontSize: "32px", color: "#3178C6" }}
+            />
+            <span>TypeScript</span>
+          </div>
+          <div className="skill-item">
+            <TablerBrandVite style={{ fontSize: "32px", color: "#646CFF" }} />
+            <span>Vite</span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const PortfolioContent = () => {
+    const { t } = useLanguage();
+    return (
+      <div className="window-content">
+        <h3>{t("myProjects")}</h3>
+        <div className="projects-list">
+          <div className="project-item">
+            <h4>{t("dollImpostorQuiz")}</h4>
+            <p>{t("project1Description")}</p>
+            <div className="project-links">
+              <a
+                href="https://doll-impostor-quiz.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-link"
+              >
+                {t("demo")}
+              </a>
+              <a
+                href="https://github.com/geliusgelius/doll-impostor-quiz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-link"
+              >
+                {t("code")}
+              </a>
+            </div>
+            <div className="project-tags">
+              <span>React</span>
+              <span>Vite</span>
+              <span>SCSS</span>
+              <span>TypeScript</span>
+            </div>
+          </div>
+
+          <div className="project-item">
+            <h4>{t("artistPortfolio")}</h4>
+            <p>{t("project2Description")}</p>
+            <div className="project-links">
+              <a
+                href="https://geliusgelius.github.io/art-portfolio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-link"
+              >
+                {t("demo")}
+              </a>
+              <a
+                href="https://github.com/geliusgelius/art-portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-link"
+              >
+                {t("code")}
+              </a>
+            </div>
+            <div className="project-tags">
+              <span>React</span>
+              <span>Vite</span>
+              <span>SCSS</span>
+            </div>
+          </div>
+
+          <div className="project-item">
+            <h4>{t("miniTrello")}</h4>
+            <p>{t("project3Description")}</p>
+            <div className="project-links">
+              <a
+                href="https://geliusgelius.github.io/trello-mini/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-link"
+              >
+                {t("demo")}
+              </a>
+              <a
+                href="https://github.com/geliusgelius/trello-mini"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-link"
+              >
+                {t("code")}
+              </a>
+            </div>
+            <div className="project-tags">
+              <span>HTML/CSS</span>
+              <span>JavaScript</span>
+              <span>{t("responsiveDesign")}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const ContactContent = () => {
+    const { t } = useLanguage();
+    const [showNotification, setShowNotification] = useState(false);
+
+    const handleCopy = async () => {
+      try {
+        await navigator.clipboard.writeText(t("email"));
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 3000);
+      } catch (err) {
+        console.error("Failed to copy: ", err);
+        const textArea = document.createElement("textarea");
+        textArea.value = t("email");
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 3000);
+      }
+    };
+
+    const handleCloseNotification = () => {
+      setShowNotification(false);
+    };
+
+    return (
+      <div className="window-content">
+        <h3>{t("getInTouch")}</h3>
+        <div className="contact-info">
+          <div className="contact-item">
+            <MaterialSymbolsAttachEmailOutline className="contact-icon" />
+            <span className="contact-text">{t("email")}</span>
+            <button
+              onClick={handleCopy}
+              className="copy-btn"
+              title="Скопировать email"
+            >
+              <MaterialSymbolsContentCopyOutline className="copy-icon" />
+            </button>
+          </div>
+          <div className="contact-item">
+            <IconoirTelegram className="contact-icon" />
+            <a
+              href={t("phoneUrl")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-link"
+            >
+              {t("phone")}
+            </a>
+          </div>
+          <div className="contact-item">
+            <MdiGithub className="contact-icon" />
+            <a
+              href={t("githubUrl")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-link"
+            >
+              {t("github")}
+            </a>
+          </div>
+        </div>
+
+        <Notification
+          message="Email скопирован в буфер обмена! 📧"
+          isVisible={showNotification}
+          onClose={handleCloseNotification}
+        />
+      </div>
+    );
+  };
+
+  const PhotoEditorContent = () => {
+    const { t } = useLanguage();
+    const [color, setColor] = useState("#ff1493");
+    const [brushSize, setBrushSize] = useState(5);
+    const [isDrawing, setIsDrawing] = useState(false);
+    const [canvasContext, setCanvasContext] = useState(null);
+    const [originalImage, setOriginalImage] = useState(null);
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    const canvasRef = React.useRef(null);
+
+    React.useEffect(() => {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      setCanvasContext(ctx);
+
+      // Загружаем изображение
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = "/avatar.jpg";
+      img.onload = () => {
+        setOriginalImage(img);
+        setImageLoaded(true);
+        // Рисуем изображение на холсте с центрированием
+        drawImageCentered(ctx, img, canvas);
+      };
+
+      img.onerror = () => {
+        console.error("Не удалось загрузить изображение");
+        setImageLoaded(false);
+        // Если изображение не загрузилось, создаем белый фон
+        clearToWhite(ctx, canvas);
+      };
+    }, []);
+
+    // Функция для центрирования изображения на квадратном холсте
+    const drawImageCentered = (ctx, img, canvas) => {
+      const size = Math.min(canvas.width, canvas.height);
+      const x = (canvas.width - size) / 2;
+      const y = (canvas.height - size) / 2;
+
+      // Очищаем белым
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Рисуем изображение по центру
+      ctx.drawImage(img, x, y, size, size);
+    };
+
+    // Функция для очистки белым фоном
+    const clearToWhite = (ctx, canvas) => {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Если изображение не загружено, показываем сообщение
+      if (!imageLoaded) {
+        ctx.fillStyle = "#ff1493";
+        ctx.font = "14px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText(t("imageNotFound"), canvas.width / 2, canvas.height / 2);
+      }
+    };
+
+    const startDrawing = (e) => {
+      const canvas = canvasRef.current;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
+
+      setIsDrawing(true);
+      if (canvasContext) {
+        canvasContext.beginPath();
+        canvasContext.moveTo(x, y);
+      }
+    };
+
+    const draw = (e) => {
+      if (!isDrawing || !canvasContext) return;
+
+      const canvas = canvasRef.current;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
+
+      canvasContext.lineTo(x, y);
+      canvasContext.strokeStyle = color;
+      canvasContext.lineWidth = brushSize;
+      canvasContext.lineCap = "round";
+      canvasContext.lineJoin = "round";
+      canvasContext.stroke();
+    };
+
+    const stopDrawing = () => {
+      setIsDrawing(false);
+      if (canvasContext) {
+        canvasContext.closePath();
+      }
+    };
+
+    // Восстанавливает оригинальную фотографию
+    const restoreOriginal = () => {
+      if (canvasContext && originalImage) {
+        const canvas = canvasRef.current;
+        drawImageCentered(canvasContext, originalImage, canvas);
+      }
+    };
+
+    // Очищает до белого фона
+    const clearToWhiteCanvas = () => {
+      if (canvasContext) {
+        const canvas = canvasRef.current;
+        clearToWhite(canvasContext, canvas);
+      }
+    };
+
+    const saveImage = () => {
+      const canvas = canvasRef.current;
+      const link = document.createElement("a");
+      link.download = "angelina-photo-editor.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    };
+
+    const colors = [
+      "#ff1493",
+      "#ff69b4",
+      "#ffb6c1",
+      "#db7093",
+      "#000000",
+      "#ffffff",
+      "#ff0000",
+      "#00ff00",
+      "#0000ff",
+      "#ffff00",
+      "#00ffff",
+      "#ff00ff",
+      "#ffa500",
+      "#800080",
+      "#008000",
+      "#ffc0cb",
+    ];
+
+    return (
+      <div className="window-content">
+        <h3>{t("photoEditorTitle")}</h3>
+        <div className="paint-tools">
+          <div className="tool-section">
+            <label>{t("color")}:</label>
+            <div className="color-palette">
+              {colors.map((col) => (
+                <button
+                  key={col}
+                  className={`color-btn ${color === col ? "active" : ""}`}
+                  style={{
+                    backgroundColor: col,
+                    border:
+                      col === "#ffffff" ? "1px solid #ccc" : "2px solid #fff",
+                  }}
+                  onClick={() => setColor(col)}
+                  title={col}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="tool-section">
+            <label>
+              {t("brushSize")}: {brushSize}px
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="30"
+              value={brushSize}
+              onChange={(e) => setBrushSize(parseInt(e.target.value))}
+              className="brush-slider"
+            />
+          </div>
+
+          <div className="tool-buttons">
+            <button onClick={restoreOriginal} className="paint-btn">
+              🖼️ {t("restorePhoto")}
+            </button>
+            <button onClick={clearToWhiteCanvas} className="paint-btn">
+              ⬜ {t("clearCanvas")}
+            </button>
+            <button onClick={saveImage} className="paint-btn">
+              💾 {t("save")}
+            </button>
+          </div>
+        </div>
+
+        <div className="paint-canvas-container">
+          <canvas
+            ref={canvasRef}
+            width={400}
+            height={400}
+            className="paint-canvas"
+            onMouseDown={startDrawing}
+            onMouseMove={draw}
+            onMouseUp={stopDrawing}
+            onMouseLeave={stopDrawing}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              startDrawing(e.touches[0]);
+            }}
+            onTouchMove={(e) => {
+              e.preventDefault();
+              draw(e.touches[0]);
+            }}
+            onTouchEnd={stopDrawing}
+          />
+          {!imageLoaded && (
+            <div className="image-loading">{t("loadingImage")}</div>
+          )}
+        </div>
+
+        <div className="paint-hint">
+          💡 <strong>{t("restorePhoto")}</strong> - {t("restorePhotoHint")}
+          <br />
+          💡 <strong>{t("clearCanvas")}</strong> - {t("clearCanvasHint")}
+          <br />
+          {!imageLoaded && t("imageNotFound")}
+        </div>
+      </div>
+    );
+  };
+
+  // ОБНОВЛЕННЫЙ GamesContent С ИСПОЛЬЗОВАНИЕМ СОСТОЯНИЯ ИЗ DESKTOP
+  const GamesContent = () => {
+    return (
+      <div className="window-content">
+        <GamesFolder />
+      </div>
+    );
+  };
 
   if (isRestarting) {
     return (
@@ -527,474 +1030,6 @@ const Desktop = () => {
         isVisible={notification.isVisible}
         onClose={() => setNotification({ message: "", isVisible: false })}
       />
-    </div>
-  );
-};
-
-// Компоненты контента окон
-const AboutMeContent = () => {
-  const { t } = useLanguage();
-  return (
-    <div className="window-content">
-      <div className="pixel-avatar">👩‍💻</div>
-      <h3>{t("name")}</h3>
-      <p className="profession">{t("profession")}</p>
-      <div className="pixel-divider"></div>
-      <div className="welcome-text">{t("welcome")}</div>
-    </div>
-  );
-};
-
-const SkillsContent = () => {
-  const { t } = useLanguage();
-  return (
-    <div className="window-content">
-      <h3>{t("technicalSkills")}</h3>
-      <div className="skills-grid">
-        <div className="skill-item">
-          <TablerBrandHtml5 style={{ fontSize: "32px", color: "#e44d26" }} />
-          <span>HTML5</span>
-        </div>
-        <div className="skill-item">
-          <TablerBrandCss3 style={{ fontSize: "32px", color: "#1572B6" }} />
-          <span>CSS3</span>
-        </div>
-        <div className="skill-item">
-          <IxJavaScript style={{ fontSize: "32px", color: "#D4B90F" }} />
-          <span>JavaScript</span>
-        </div>
-        <div className="skill-item">
-          <AkarIconsReactFill style={{ fontSize: "32px", color: "#4BB8D9" }} />
-          <span>React</span>
-        </div>
-        <div className="skill-item">
-          <Fa7BrandsNodeJs style={{ fontSize: "32px", color: "#339933" }} />
-          <span>Node.js</span>
-        </div>
-        <div className="skill-item">
-          <MdiGithub style={{ fontSize: "32px", color: "#000000" }} />
-          <span>Git</span>
-        </div>
-        <div className="skill-item">
-          <TeenyiconsTypescriptOutline
-            style={{ fontSize: "32px", color: "#3178C6" }}
-          />
-          <span>TypeScript</span>
-        </div>
-        <div className="skill-item">
-          <TablerBrandVite style={{ fontSize: "32px", color: "#646CFF" }} />
-          <span>Vite</span>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const PortfolioContent = () => {
-  const { t } = useLanguage();
-  return (
-    <div className="window-content">
-      <h3>{t("myProjects")}</h3>
-      <div className="projects-list">
-        <div className="project-item">
-          <h4>{t("dollImpostorQuiz")}</h4>
-          <p>{t("project1Description")}</p>
-          <div className="project-links">
-            <a
-              href="https://doll-impostor-quiz.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              {t("demo")}
-            </a>
-            <a
-              href="https://github.com/geliusgelius/doll-impostor-quiz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              {t("code")}
-            </a>
-          </div>
-          <div className="project-tags">
-            <span>React</span>
-            <span>Vite</span>
-            <span>SCSS</span>
-            <span>TypeScript</span>
-          </div>
-        </div>
-
-        <div className="project-item">
-          <h4>{t("artistPortfolio")}</h4>
-          <p>{t("project2Description")}</p>
-          <div className="project-links">
-            <a
-              href="https://geliusgelius.github.io/art-portfolio/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              {t("demo")}
-            </a>
-            <a
-              href="https://github.com/geliusgelius/art-portfolio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              {t("code")}
-            </a>
-          </div>
-          <div className="project-tags">
-            <span>React</span>
-            <span>Vite</span>
-            <span>SCSS</span>
-          </div>
-        </div>
-
-        <div className="project-item">
-          <h4>{t("miniTrello")}</h4>
-          <p>{t("project3Description")}</p>
-          <div className="project-links">
-            <a
-              href="https://geliusgelius.github.io/trello-mini/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              {t("demo")}
-            </a>
-            <a
-              href="https://github.com/geliusgelius/trello-mini"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              {t("code")}
-            </a>
-          </div>
-          <div className="project-tags">
-            <span>HTML/CSS</span>
-            <span>JavaScript</span>
-            <span>{t("responsiveDesign")}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ContactContent = () => {
-  const { t } = useLanguage();
-  const [showNotification, setShowNotification] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(t("email"));
-      setShowNotification(true);
-      setTimeout(() => setShowNotification(false), 3000);
-    } catch (err) {
-      console.error("Failed to copy: ", err);
-      const textArea = document.createElement("textarea");
-      textArea.value = t("email");
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-      setShowNotification(true);
-      setTimeout(() => setShowNotification(false), 3000);
-    }
-  };
-
-  const handleCloseNotification = () => {
-    setShowNotification(false);
-  };
-
-  return (
-    <div className="window-content">
-      <h3>{t("getInTouch")}</h3>
-      <div className="contact-info">
-        <div className="contact-item">
-          <MaterialSymbolsAttachEmailOutline className="contact-icon" />
-          <span className="contact-text">{t("email")}</span>
-          <button
-            onClick={handleCopy}
-            className="copy-btn"
-            title="Скопировать email"
-          >
-            <MaterialSymbolsContentCopyOutline className="copy-icon" />
-          </button>
-        </div>
-        <div className="contact-item">
-          <IconoirTelegram className="contact-icon" />
-          <a
-            href={t("phoneUrl")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-link"
-          >
-            {t("phone")}
-          </a>
-        </div>
-        <div className="contact-item">
-          <MdiGithub className="contact-icon" />
-          <a
-            href={t("githubUrl")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-link"
-          >
-            {t("github")}
-          </a>
-        </div>
-      </div>
-
-      <Notification
-        message="Email скопирован в буфер обмена! 📧"
-        isVisible={showNotification}
-        onClose={handleCloseNotification}
-      />
-    </div>
-  );
-};
-
-const PhotoEditorContent = () => {
-  const { t } = useLanguage();
-  const [color, setColor] = useState("#ff1493");
-  const [brushSize, setBrushSize] = useState(5);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [canvasContext, setCanvasContext] = useState(null);
-  const [originalImage, setOriginalImage] = useState(null);
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  const canvasRef = React.useRef(null);
-
-  React.useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    setCanvasContext(ctx);
-
-    // Загружаем изображение
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = "/avatar.jpg";
-    img.onload = () => {
-      setOriginalImage(img);
-      setImageLoaded(true);
-      // Рисуем изображение на холсте с центрированием
-      drawImageCentered(ctx, img, canvas);
-    };
-
-    img.onerror = () => {
-      console.error("Не удалось загрузить изображение");
-      setImageLoaded(false);
-      // Если изображение не загрузилось, создаем белый фон
-      clearToWhite(ctx, canvas);
-    };
-  }, []);
-
-  // Функция для центрирования изображения на квадратном холсте
-  const drawImageCentered = (ctx, img, canvas) => {
-    const size = Math.min(canvas.width, canvas.height);
-    const x = (canvas.width - size) / 2;
-    const y = (canvas.height - size) / 2;
-
-    // Очищаем белым
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Рисуем изображение по центру
-    ctx.drawImage(img, x, y, size, size);
-  };
-
-  // Функция для очистки белым фоном
-  const clearToWhite = (ctx, canvas) => {
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Если изображение не загружено, показываем сообщение
-    if (!imageLoaded) {
-      ctx.fillStyle = "#ff1493";
-      ctx.font = "14px Arial";
-      ctx.textAlign = "center";
-      ctx.fillText(t("imageNotFound"), canvas.width / 2, canvas.height / 2);
-    }
-  };
-
-  const startDrawing = (e) => {
-    const canvas = canvasRef.current;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    const x = (e.clientX - rect.left) * scaleX;
-    const y = (e.clientY - rect.top) * scaleY;
-
-    setIsDrawing(true);
-    if (canvasContext) {
-      canvasContext.beginPath();
-      canvasContext.moveTo(x, y);
-    }
-  };
-
-  const draw = (e) => {
-    if (!isDrawing || !canvasContext) return;
-
-    const canvas = canvasRef.current;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    const x = (e.clientX - rect.left) * scaleX;
-    const y = (e.clientY - rect.top) * scaleY;
-
-    canvasContext.lineTo(x, y);
-    canvasContext.strokeStyle = color;
-    canvasContext.lineWidth = brushSize;
-    canvasContext.lineCap = "round";
-    canvasContext.lineJoin = "round";
-    canvasContext.stroke();
-  };
-
-  const stopDrawing = () => {
-    setIsDrawing(false);
-    if (canvasContext) {
-      canvasContext.closePath();
-    }
-  };
-
-  // Восстанавливает оригинальную фотографию
-  const restoreOriginal = () => {
-    if (canvasContext && originalImage) {
-      const canvas = canvasRef.current;
-      drawImageCentered(canvasContext, originalImage, canvas);
-    }
-  };
-
-  // Очищает до белого фона
-  const clearToWhiteCanvas = () => {
-    if (canvasContext) {
-      const canvas = canvasRef.current;
-      clearToWhite(canvasContext, canvas);
-    }
-  };
-
-  const saveImage = () => {
-    const canvas = canvasRef.current;
-    const link = document.createElement("a");
-    link.download = "angelina-photo-editor.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  };
-
-  const colors = [
-    "#ff1493",
-    "#ff69b4",
-    "#ffb6c1",
-    "#db7093",
-    "#000000",
-    "#ffffff",
-    "#ff0000",
-    "#00ff00",
-    "#0000ff",
-    "#ffff00",
-    "#00ffff",
-    "#ff00ff",
-    "#ffa500",
-    "#800080",
-    "#008000",
-    "#ffc0cb",
-  ];
-
-  return (
-    <div className="window-content">
-      <h3>{t("photoEditorTitle")}</h3>
-      <div className="paint-tools">
-        <div className="tool-section">
-          <label>{t("color")}:</label>
-          <div className="color-palette">
-            {colors.map((col) => (
-              <button
-                key={col}
-                className={`color-btn ${color === col ? "active" : ""}`}
-                style={{
-                  backgroundColor: col,
-                  border:
-                    col === "#ffffff" ? "1px solid #ccc" : "2px solid #fff",
-                }}
-                onClick={() => setColor(col)}
-                title={col}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className="tool-section">
-          <label>
-            {t("brushSize")}: {brushSize}px
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="30"
-            value={brushSize}
-            onChange={(e) => setBrushSize(parseInt(e.target.value))}
-            className="brush-slider"
-          />
-        </div>
-
-        <div className="tool-buttons">
-          <button onClick={restoreOriginal} className="paint-btn">
-            🖼️ {t("restorePhoto")}
-          </button>
-          <button onClick={clearToWhiteCanvas} className="paint-btn">
-            ⬜ {t("clearCanvas")}
-          </button>
-          <button onClick={saveImage} className="paint-btn">
-            💾 {t("save")}
-          </button>
-        </div>
-      </div>
-
-      <div className="paint-canvas-container">
-        <canvas
-          ref={canvasRef}
-          width={400}
-          height={400}
-          className="paint-canvas"
-          onMouseDown={startDrawing}
-          onMouseMove={draw}
-          onMouseUp={stopDrawing}
-          onMouseLeave={stopDrawing}
-          onTouchStart={(e) => {
-            e.preventDefault();
-            startDrawing(e.touches[0]);
-          }}
-          onTouchMove={(e) => {
-            e.preventDefault();
-            draw(e.touches[0]);
-          }}
-          onTouchEnd={stopDrawing}
-        />
-        {!imageLoaded && (
-          <div className="image-loading">{t("loadingImage")}</div>
-        )}
-      </div>
-
-      <div className="paint-hint">
-        💡 <strong>{t("restorePhoto")}</strong> - {t("restorePhotoHint")}
-        <br />
-        💡 <strong>{t("clearCanvas")}</strong> - {t("clearCanvasHint")}
-        <br />
-        {!imageLoaded && t("imageNotFound")}
-      </div>
-    </div>
-  );
-};
-
-const GamesContent = () => {
-  return (
-    <div className="window-content">
-      <GamesFolder />
     </div>
   );
 };
