@@ -7,6 +7,7 @@ import "./GamesFolder.css";
 const GamesFolder = () => {
   const { t, currentLanguage } = useLanguage();
   const [selectedGame, setSelectedGame] = useState(null);
+  const [viewMode, setViewMode] = useState("largeIcons"); // largeIcons | list | details
 
   // Восстанавливаем игру из localStorage при загрузке
   useEffect(() => {
@@ -141,9 +142,24 @@ const GamesFolder = () => {
         <div className="folder-content">
           <div className="content-header">
             <div className="view-options">
-              <button className="view-btn active">{t("largeIcons")}</button>
-              <button className="view-btn">{t("list")}</button>
-              <button className="view-btn">{t("details")}</button>
+              <button
+                className={`view-btn ${viewMode === "largeIcons" ? "active" : ""}`}
+                onClick={() => setViewMode("largeIcons")}
+              >
+                {t("largeIcons")}
+              </button>
+              <button
+                className={`view-btn ${viewMode === "list" ? "active" : ""}`}
+                onClick={() => setViewMode("list")}
+              >
+                {t("list")}
+              </button>
+              <button
+                className={`view-btn ${viewMode === "details" ? "active" : ""}`}
+                onClick={() => setViewMode("details")}
+              >
+                {t("details")}
+              </button>
             </div>
             <div className="folder-info">
               <span>{t("selectedObjects")}: 0</span>
@@ -151,22 +167,53 @@ const GamesFolder = () => {
             </div>
           </div>
 
-          <div className="games-grid">
-            {games.map((game) => (
-              <div
-                key={game.id}
-                className="game-file"
-                onDoubleClick={() => handleGameDoubleClick(game)}
-                title={`${game.title}\n${game.description}\n\n${t(
-                  "doubleClickToLaunch"
-                )}`}
-              >
-                <div className="file-icon">{game.icon}</div>
-                <div className="file-name">{game.title}</div>
-                <div className="file-type">{game.type}</div>
-                <div className="file-size">{game.size}</div>
+          <div className={`games-grid view-${viewMode}`}>
+            {viewMode === "details" && (
+              <div className="details-header">
+                <span className="details-col-name">{t("file")}</span>
+                <span className="details-col-type">{t("file")}</span>
+                <span className="details-col-size">{t("totalSize")}</span>
+                <span className="details-col-desc">{t("selectObjectForDescription")}</span>
               </div>
-            ))}
+            )}
+            {games.map((game) =>
+              viewMode === "largeIcons" ? (
+                <div
+                  key={game.id}
+                  className="game-file"
+                  onDoubleClick={() => handleGameDoubleClick(game)}
+                  title={`${game.title}\n${game.description}\n\n${t("doubleClickToLaunch")}`}
+                >
+                  <div className="file-icon">{game.icon}</div>
+                  <div className="file-name">{game.title}</div>
+                  <div className="file-type">{game.type}</div>
+                  <div className="file-size">{game.size}</div>
+                </div>
+              ) : viewMode === "list" ? (
+                <div
+                  key={game.id}
+                  className="game-file-list"
+                  onDoubleClick={() => handleGameDoubleClick(game)}
+                  title={`${game.title} — ${t("doubleClickToLaunch")}`}
+                >
+                  <span className="list-icon">{game.icon}</span>
+                  <span className="list-name">{game.title}</span>
+                </div>
+              ) : (
+                <div
+                  key={game.id}
+                  className="game-file-details"
+                  onDoubleClick={() => handleGameDoubleClick(game)}
+                  title={`${game.title} — ${t("doubleClickToLaunch")}`}
+                >
+                  <span className="details-icon">{game.icon}</span>
+                  <span className="details-name">{game.title}</span>
+                  <span className="details-type">{game.type}</span>
+                  <span className="details-size">{game.size}</span>
+                  <span className="details-desc">{game.description}</span>
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>

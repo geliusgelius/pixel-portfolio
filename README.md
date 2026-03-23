@@ -1,16 +1,29 @@
-# React + Vite
+# Angelina OS — Pixel Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интерактивное портфолио фронтенд-разработчика Ангелины Смирновой, выполненное в стиле пиксельного Windows-десктопа.
 
-Currently, two official plugins are available:
+🔗 **Live:** https://pixel-portfolio-kohl.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## О проекте
 
-## React Compiler
+Портфолио имитирует интерфейс операционной системы с рабочим столом, окнами, панелью задач и стартовым меню. Включает разделы: обо мне, навыки, проекты, контакты, пиксельный редактор и мини-игры (Тетрис, Сапёр).
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Стек
 
-## Expanding the ESLint configuration
+- React 18 + Vite
+- Framer Motion
+- JavaScript (ES6+)
+- CSS (кастомные темы через CSS-переменные)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Запуск
+
+```bash
+npm install
+npm run dev
+```
+
+## Контакты
+
+- GitHub: [geliusgelius](https://github.com/geliusgelius)
+- Telegram: [@geliusgelius](https://t.me/geliusgelius)
+- Email: angelina68tmb@gmail.com

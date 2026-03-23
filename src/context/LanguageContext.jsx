@@ -20,6 +20,12 @@ export const LanguageProvider = ({ children }) => {
 
   const switchLanguage = (lang) => {
     setCurrentLanguage(lang);
+    // Update document lang attribute and title for SEO
+    document.documentElement.lang = lang;
+    document.title =
+      lang === "ru"
+        ? "Ангелина Смирнова | Фронтенд-разработчик — Портфолио"
+        : "Angelina Smirnova | Frontend Developer — Portfolio";
   };
 
   return (
