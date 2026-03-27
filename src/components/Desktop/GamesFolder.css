@@ -413,6 +413,7 @@
   }
 }
 
+<<<<<<< HEAD
 /* List view */
 .games-list-view {
   flex: 1;
@@ -424,6 +425,18 @@
 }
 
 .game-list-item {
+=======
+/* ── List view ── */
+.view-list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 2px;
+  align-content: start;
+}
+
+.game-file-list {
+>>>>>>> 901fcc0264df55b468a0744854b7fb802f2f7d84
   display: flex;
   align-items: center;
   gap: 10px;
@@ -434,16 +447,25 @@
   border: 1px solid transparent;
 }
 
+<<<<<<< HEAD
 .game-list-item:hover {
+=======
+.game-file-list:hover {
+>>>>>>> 901fcc0264df55b468a0744854b7fb802f2f7d84
   background: var(--theme-accent);
   border-color: var(--theme-primary);
 }
 
+<<<<<<< HEAD
 .game-list-item .list-icon {
+=======
+.list-icon {
+>>>>>>> 901fcc0264df55b468a0744854b7fb802f2f7d84
   font-size: 1.2rem;
   flex-shrink: 0;
 }
 
+<<<<<<< HEAD
 .game-list-item .list-name {
   font-size: 0.8rem;
   color: var(--theme-text);
@@ -467,10 +489,38 @@
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--theme-primary);
+=======
+.list-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--theme-text);
+}
+
+/* ── Details view ── */
+.view-details {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 0;
+  align-content: start;
+}
+
+.details-header {
+  display: grid;
+  grid-template-columns: 1.5rem 160px 80px 70px 1fr;
+  gap: 0 12px;
+  padding: 5px 10px;
+  background: #e9ecef;
+  border-bottom: 1px solid #ccc;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #555;
+>>>>>>> 901fcc0264df55b468a0744854b7fb802f2f7d84
   position: sticky;
   top: 0;
 }
 
+<<<<<<< HEAD
 .game-details-item {
   display: grid;
   grid-template-columns: 32px 1fr 100px 80px;
@@ -500,3 +550,48 @@
   font-size: 0.7rem;
   color: #666;
 }
+=======
+.game-file-details {
+  display: grid;
+  grid-template-columns: 1.5rem 160px 80px 70px 1fr;
+  gap: 0 12px;
+  align-items: center;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+  font-size: 0.8rem;
+}
+
+.game-file-details:hover {
+  background: var(--theme-accent);
+}
+
+.details-icon {
+  font-size: 1.1rem;
+}
+
+.details-name {
+  font-weight: 500;
+  color: var(--theme-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.details-type {
+  color: #666;
+}
+
+.details-size {
+  color: #888;
+  text-align: right;
+}
+
+.details-desc {
+  color: #999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+>>>>>>> 901fcc0264df55b468a0744854b7fb802f2f7d84
