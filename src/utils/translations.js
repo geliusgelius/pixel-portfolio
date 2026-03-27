@@ -52,6 +52,22 @@ export const translations = {
     code: "Код",
     responsiveDesign: "Адаптивный дизайн",
 
+    // Client projects
+    clientProjects: "Клиентские проекты",
+    myOwnProjects: "Мои проекты",
+    putorana: "Путорана Тревел",
+    putorana_desc: "Сайт туристической компании по турам на плато Путорана",
+    montazhAgro: "Монтаж-Агро",
+    montazhAgro_desc: "Сайт строительной компании по возведению элеваторов",
+    bento68: "Bento68",
+    bento68_desc: "Сайт кондитерской — торты и сладости на заказ в Тамбове",
+    vesna: "Весна",
+    vesna_desc: "Сайт студии перманентного макияжа в Красноярске",
+    viewSite: "Открыть сайт",
+    closePreview: "Закрыть",
+    previewNotAvailable: "Предпросмотр недоступен",
+    openInNewTab: "Открыть в новой вкладке",
+
     // Contact content
     getInTouch: "Свяжитесь со мной",
     email: "angelina68tmb@gmail.com",
@@ -196,6 +212,22 @@ export const translations = {
     minesweeperControlsLeftClick: "Левый клик: Открыть клетку",
     minesweeperControlsRightClick: "Правый клик: Поставить флаг",
     minesweeperControlsGoal: "Цель: Найти все мины, не подорвавшись",
+
+    // Змейка
+    snake: "Змейка",
+    snakeDescription: "Классическая змейка - собирай еду и не врезайся",
+    snakeScore: "Счёт: ",
+    snakeStart: "Начать игру",
+    snakeGameOver: "Игра окончена!",
+    snakeRestart: "Играть снова",
+    snakeFinalScore: "Финальный счёт: ",
+    snakeControlsTitle: "Управление:",
+    snakeControlsMove: "←↑→↓ или WASD - движение",
+    snakePause: "Пауза",
+    snakeContinue: "Продолжить",
+
+    // Games folder
+    developmentInProgress: "В разработке",
   },
   en: {
     // Preloader
@@ -249,6 +281,22 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     demo: "Demo",
     code: "Code",
     responsiveDesign: "Responsive Design",
+
+    // Client projects
+    clientProjects: "Client Projects",
+    myOwnProjects: "My Projects",
+    putorana: "Putorana Travel",
+    putorana_desc: "Tourism company website for tours to the Putorana Plateau",
+    montazhAgro: "Montazh-Agro",
+    montazhAgro_desc: "Construction company website for elevator building",
+    bento68: "Bento68",
+    bento68_desc: "Confectionery website — custom cakes and sweets in Tambov",
+    vesna: "Vesna",
+    vesna_desc: "Permanent makeup studio website in Krasnoyarsk",
+    viewSite: "Open site",
+    closePreview: "Close",
+    previewNotAvailable: "Preview unavailable",
+    openInNewTab: "Open in new tab",
 
     // Contact content
     getInTouch: "Get In Touch",
@@ -393,6 +441,22 @@ I'm looking for a team where I can solve interesting challenges, grow under the 
     minesweeperControlsLeftClick: "Left Click: Reveal cell",
     minesweeperControlsRightClick: "Right Click: Place flag",
     minesweeperControlsGoal: "Goal: Find all mines without triggering them",
+
+    // Snake
+    snake: "Snake",
+    snakeDescription: "Classic snake - collect food and don't crash",
+    snakeScore: "Score: ",
+    snakeStart: "Start Game",
+    snakeGameOver: "Game Over!",
+    snakeRestart: "Play Again",
+    snakeFinalScore: "Final Score: ",
+    snakeControlsTitle: "Controls:",
+    snakeControlsMove: "←↑→↓ or WASD - move",
+    snakePause: "Pause",
+    snakeContinue: "Continue",
+
+    // Games folder
+    developmentInProgress: "In Development",
   },
 };
 

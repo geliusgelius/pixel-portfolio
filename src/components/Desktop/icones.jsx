@@ -471,3 +471,73 @@ export function MaterialSymbolsFolderCopyOutline(props) {
     </svg>
   );
 }
+
+// Mountain / travel icon (for Putorana Travel)
+export function MdiMountain(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      {/* Icon from Material Design Icons by Pictogrammers - https://github.com/Templarian/MaterialDesign/blob/master/LICENSE */}
+      <path fill="currentColor" d="M14 6l-1-2H5v17h2v-7h5l1 2h7V6zm4 8h-4l-1-2H7V6h5l1 2h5z" />
+    </svg>
+  );
+}
+
+// Construction / elevator icon (for Montazh-Agro)
+export function MdiFactory(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      {/* Icon from Material Design Icons by Pictogrammers - https://github.com/Templarian/MaterialDesign/blob/master/LICENSE */}
+      <path fill="currentColor" d="M4 18V9l4 3V9l4 3V9l4 3V6h4v12zm2-2h12V8.85l-4-3v3.15l-4-3v3.15l-4-3zm0 0V8.85z" />
+    </svg>
+  );
+}
+
+// Cake icon (for Bento68)
+export function MdiCakeVariant(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      {/* Icon from Material Design Icons by Pictogrammers - https://github.com/Templarian/MaterialDesign/blob/master/LICENSE */}
+      <path fill="currentColor" d="M12 6c1.11 0 2-.89 2-2c0-.55-.22-1.05-.59-1.41L12 1l-1.41 1.59C10.22 2.95 10 3.45 10 4c0 1.11.89 2 2 2m4.6 9.99l-1.07-1.07l-1.08 1.07c-1.3 1.3-3.58 1.31-4.89 0l-1.07-1.07l-1.09 1.07C6.75 17.14 5.88 17.5 5 17.5s-1.75-.36-2.4-1.01L2 16v2.5C2 19.88 3.12 21 4.5 21h15c1.38 0 2.5-1.12 2.5-2.5V16l-.6.49c-.65.65-1.52 1.01-2.4 1.01s-1.75-.36-2.4-1.01M20 8H4C2.9 8 2 8.9 2 10v3c0 1.1.9 2 2 2c.55 0 1.05-.22 1.41-.59L7 12.83l1.59 1.58c.76.76 2.07.76 2.83 0L13 12.83l1.59 1.58c.38.38.88.59 1.41.59s1.05-.22 1.41-.59L19 12.83l1.59 1.58c.36.37.86.59 1.41.59c1.1 0 2-.9 2-2v-3c0-1.1-.9-2-2-2z" />
+    </svg>
+  );
+}
+
+// Sparkles / beauty icon (for Vesna)
+export function MdiSpa(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      {/* Icon from Material Design Icons by Pictogrammers - https://github.com/Templarian/MaterialDesign/blob/master/LICENSE */}
+      <path fill="currentColor" d="M15.49 9.63c-.18-2.79-1.31-5.51-3.43-7.63c-2.14 2.14-3.32 4.86-3.55 7.63c1.28.68 2.46 1.56 3.49 2.63c1.03-1.06 2.21-1.94 3.49-2.63M11.51 14.37c-.18-2.79-1.31-5.51-3.43-7.63C5.95 8.88 4.77 11.6 4.54 14.37c1.28.68 2.46 1.56 3.49 2.63c1.03-1.06 2.21-1.94 3.48-2.63M8.07 17c.14 2.1.97 4.12 2.5 5.65c1.54-1.54 2.36-3.56 2.5-5.65c-.79-.45-1.62-.8-2.5-1.01c-.88.21-1.71.56-2.5 1.01m11.37-2.63c-2.14 2.14-3.32 4.86-3.55 7.63c1.28.68 2.46 1.56 3.49 2.63c1.03-1.06 2.21-1.94 3.49-2.63c-.23-2.77-1.41-5.49-3.43-7.63" />
+    </svg>
+  );
+}
+
+// Quiz / game controller icon (for Doll Impostor Quiz)
+export function MdiGamepadVariant(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      {/* Icon from Material Design Icons by Pictogrammers - https://github.com/Templarian/MaterialDesign/blob/master/LICENSE */}
+      <path fill="currentColor" d="M6 9H4v2h2v2h2v-2h2V9H8V7H6m13 0h-2v2h-2v2h2v2h2v-2h2V9h-2M11.5 5C6.81 5 3 8.13 3 12s3.81 7 8.5 7S20 15.87 20 12s-3.81-7-8.5-7m0 12.5c-3.58 0-6.5-2.46-6.5-5.5s2.92-5.5 6.5-5.5s6.5 2.46 6.5 5.5s-2.92 5.5-6.5 5.5" />
+    </svg>
+  );
+}
+
+// Art palette icon (for Artist Portfolio)
+export function MdiPalette(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      {/* Icon from Material Design Icons by Pictogrammers - https://github.com/Templarian/MaterialDesign/blob/master/LICENSE */}
+      <path fill="currentColor" d="M12 22A10 10 0 0 1 2 12A10 10 0 0 1 12 2c5.5 0 10 4 10 9a6 6 0 0 1-6 6h-1.8c-.3 0-.5.2-.5.5c0 .1.1.2.1.3c.4.5.6 1.1.6 1.7c.1 1.4-1 2.5-2.4 2.5m0-18a8 8 0 0 0-8 8a8 8 0 0 0 8 8c.3 0 .5-.2.5-.5c0-.2-.1-.3-.1-.4c-.4-.5-.6-1-.6-1.6c0-1.4 1.1-2.5 2.5-2.5H16a4 4 0 0 0 4-4c0-3.9-3.6-7-8-7m-5.5 6c.8 0 1.5.7 1.5 1.5S7.3 13 6.5 13S5 12.3 5 11.5S5.7 10 6.5 10m3-4c.8 0 1.5.7 1.5 1.5S10.3 9 9.5 9S8 8.3 8 7.5S8.7 6 9.5 6m5 0c.8 0 1.5.7 1.5 1.5S15.3 9 14.5 9S13 8.3 13 7.5S13.7 6 14.5 6m3 4c.8 0 1.5.7 1.5 1.5S18.3 13 17.5 13S16 12.3 16 11.5s.7-1.5 1.5-1.5z" />
+    </svg>
+  );
+}
+
+// Kanban / trello icon (for Mini Trello)
+export function MdiViewColumn(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      {/* Icon from Material Design Icons by Pictogrammers - https://github.com/Templarian/MaterialDesign/blob/master/LICENSE */}
+      <path fill="currentColor" d="M3 5v14h5V5zm6 0v14h6V5zm7 0v14h5V5z" />
+    </svg>
+  );
+}

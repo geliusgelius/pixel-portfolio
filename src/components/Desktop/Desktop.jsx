@@ -30,6 +30,13 @@ import {
   StreamlinePixelDesignColorPaintingPalette,
   MaterialSymbolsContactMailOutline,
   MaterialSymbolsFolderCopyOutline,
+  MdiMountain,
+  MdiFactory,
+  MdiCakeVariant,
+  MdiSpa,
+  MdiGamepadVariant,
+  MdiPalette,
+  MdiViewColumn,
 } from "./icones";
 import GamesFolder from "./GamesFolder";
 
@@ -401,12 +408,66 @@ const Desktop = () => {
 
   const PortfolioContent = () => {
     const { t } = useLanguage();
+    const clientProjects = [
+      {
+        key: "putorana",
+        url: "https://xn----7sbb5bndbcbemtdn.xn--p1ai/",
+        tags: ["HTML/CSS", "JavaScript", "PHP"],
+        icon: <MdiMountain style={{ fontSize: "2rem", color: "var(--theme-primary)" }} />,
+      },
+      {
+        key: "montazhAgro",
+        url: "https://montazh-agro.ru/",
+        tags: ["HTML/CSS", "JavaScript", "PHP"],
+        icon: <MdiFactory style={{ fontSize: "2rem", color: "var(--theme-primary)" }} />,
+      },
+      {
+        key: "bento68",
+        url: "https://bento68.ru/",
+        tags: ["HTML/CSS", "JavaScript", "PHP"],
+        icon: <MdiCakeVariant style={{ fontSize: "2rem", color: "var(--theme-primary)" }} />,
+      },
+      {
+        key: "vesna",
+        url: "https://vesnapm.ru/",
+        tags: ["HTML/CSS", "JavaScript", "PHP"],
+        icon: <MdiSpa style={{ fontSize: "2rem", color: "var(--theme-primary)" }} />,
+      },
+    ];
+
     return (
       <div className="window-content">
-        <h3>{t("myProjects")}</h3>
+        <h3>{t("clientProjects")}</h3>
+        <div className="projects-list">
+          {clientProjects.map((proj) => (
+            <div className="project-item" key={proj.key}>
+              <h4 className="project-title-with-icon">{proj.icon} {t(proj.key)}</h4>
+              <p>{t(`${proj.key}_desc`)}</p>
+              <div className="project-links">
+                <a
+                  href={proj.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-link"
+                >
+                  {t("demo")}
+                </a>
+              </div>
+              <div className="project-tags">
+                {proj.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="portfolio-divider"></div>
+
+        <h3>{t("myOwnProjects")}</h3>
         <div className="projects-list">
           <div className="project-item">
-            <h4>{t("dollImpostorQuiz")}</h4>
+            <h4 className="project-title-with-icon"><MdiGamepadVariant style={{ fontSize: "2rem", color: "var(--theme-primary)" }} /> {t("dollImpostorQuiz")}</h4>
             <p>{t("project1Description")}</p>
             <div className="project-links">
               <a
@@ -434,62 +495,62 @@ const Desktop = () => {
             </div>
           </div>
 
-          <div className="project-item">
-            <h4>{t("artistPortfolio")}</h4>
-            <p>{t("project2Description")}</p>
-            <div className="project-links">
-              <a
-                href="https://geliusgelius.github.io/art-portfolio/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link"
-              >
-                {t("demo")}
-              </a>
-              <a
-                href="https://github.com/geliusgelius/art-portfolio"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link"
-              >
-                {t("code")}
-              </a>
-            </div>
-            <div className="project-tags">
-              <span>React</span>
-              <span>Vite</span>
-              <span>SCSS</span>
-            </div>
-          </div>
+              <div className="project-item">
+                <h4 className="project-title-with-icon"><MdiPalette style={{ fontSize: "2rem", color: "var(--theme-primary)" }} /> {t("artistPortfolio")}</h4>
+                <p>{t("project2Description")}</p>
+                <div className="project-links">
+                  <a
+                    href="https://geliusgelius.github.io/art-portfolio/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    {t("demo")}
+                  </a>
+                  <a
+                    href="https://github.com/geliusgelius/art-portfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    {t("code")}
+                  </a>
+                </div>
+                <div className="project-tags">
+                  <span>React</span>
+                  <span>Vite</span>
+                  <span>SCSS</span>
+                </div>
+              </div>
 
-          <div className="project-item">
-            <h4>{t("miniTrello")}</h4>
-            <p>{t("project3Description")}</p>
-            <div className="project-links">
-              <a
-                href="https://geliusgelius.github.io/trello-mini/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link"
-              >
-                {t("demo")}
-              </a>
-              <a
-                href="https://github.com/geliusgelius/trello-mini"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link"
-              >
-                {t("code")}
-              </a>
+              <div className="project-item">
+                <h4 className="project-title-with-icon"><MdiViewColumn style={{ fontSize: "2rem", color: "var(--theme-primary)" }} /> {t("miniTrello")}</h4>
+                <p>{t("project3Description")}</p>
+                <div className="project-links">
+                  <a
+                    href="https://geliusgelius.github.io/trello-mini/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    {t("demo")}
+                  </a>
+                  <a
+                    href="https://github.com/geliusgelius/trello-mini"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    {t("code")}
+                  </a>
+                </div>
+                <div className="project-tags">
+                  <span>HTML/CSS</span>
+                  <span>JavaScript</span>
+                  <span>{t("responsiveDesign")}</span>
+                </div>
+              </div>
             </div>
-            <div className="project-tags">
-              <span>HTML/CSS</span>
-              <span>JavaScript</span>
-              <span>{t("responsiveDesign")}</span>
-            </div>
-          </div>
-        </div>
       </div>
     );
   };

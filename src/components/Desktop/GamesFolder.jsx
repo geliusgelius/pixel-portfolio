@@ -2,31 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import TetrisGame from "./TetrisGame";
 import MinesweeperGame from "./MinesweeperGame";
+import SnakeGame from "./SnakeGame";
 import "./GamesFolder.css";
 
 const GamesFolder = () => {
   const { t, currentLanguage } = useLanguage();
   const [selectedGame, setSelectedGame] = useState(null);
-
-  // Восстанавливаем игру из localStorage при загрузке
-  useEffect(() => {
-    const savedGameId = localStorage.getItem("currentGameId");
-    if (savedGameId) {
-      const gameToRestore = games.find((game) => game.id === savedGameId);
-      if (gameToRestore) {
-        setSelectedGame(gameToRestore);
-      }
-    }
-  }, []);
-
-  // Сохраняем игру в localStorage
-  useEffect(() => {
-    if (selectedGame) {
-      localStorage.setItem("currentGameId", selectedGame.id);
-    } else {
-      localStorage.removeItem("currentGameId");
-    }
-  }, [selectedGame]);
+  const [viewMode, setViewMode] = useState("icons"); // icons | list | details
 
   const games = [
     {
@@ -48,45 +30,44 @@ const GamesFolder = () => {
       component: <MinesweeperGame key="minesweeper" />,
     },
     {
-      id: "comingSoon",
-      title: t("comingSoon"),
-      description: t("moreGamesComing"),
-      icon: "🎮",
-      size: "0 KB",
-      type: t("folder"),
-      component: (
-        <div className="coming-soon">
-          <div className="coming-soon-icon">🚧</div>
-          <h3>{t("developmentInProgress")}</h3>
-          <p>{t("newGamesComingSoon")}</p>
-        </div>
-      ),
+      id: "snake",
+      title: t("snake"),
+      description: t("snakeDescription"),
+      icon: "🐍",
+      size: "1.2 MB",
+      type: t("game"),
+      component: <SnakeGame key="snake" />,
     },
   ];
+
+  // Восстанавливаем игру из localStorage при загрузке
+  useEffect(() => {
+    const savedGameId = localStorage.getItem("currentGameId");
+    if (savedGameId) {
+      const gameToRestore = games.find((game) => game.id === savedGameId);
+      if (gameToRestore) setSelectedGame(gameToRestore);
+    }
+  }, []);
+
+  // Сохраняем игру в localStorage
+  useEffect(() => {
+    if (selectedGame) localStorage.setItem("currentGameId", selectedGame.id);
+    else localStorage.removeItem("currentGameId");
+  }, [selectedGame]);
 
   // Обновляем игры при смене языка
   useEffect(() => {
     if (selectedGame) {
       const updatedGame = games.find((game) => game.id === selectedGame.id);
-      if (updatedGame) {
-        setSelectedGame(updatedGame);
-      }
+      if (updatedGame) setSelectedGame(updatedGame);
     }
   }, [currentLanguage, t]);
 
-  const handleGameDoubleClick = (game) => {
-    setSelectedGame(game);
-  };
-
-  const handleBack = () => {
-    setSelectedGame(null);
-  };
+  const handleGameDoubleClick = (game) => setSelectedGame(game);
+  const handleBack = () => setSelectedGame(null);
 
   if (selectedGame) {
-    const gameComponent = games.find(
-      (game) => game.id === selectedGame.id
-    )?.component;
-
+    const gameComponent = games.find((g) => g.id === selectedGame.id)?.component;
     return (
       <div className="game-fullscreen">
         <div className="game-header">
@@ -141,39 +122,94 @@ const GamesFolder = () => {
         <div className="folder-content">
           <div className="content-header">
             <div className="view-options">
-              <button className="view-btn active">{t("largeIcons")}</button>
-              <button className="view-btn">{t("list")}</button>
-              <button className="view-btn">{t("details")}</button>
+              <button
+                className={`view-btn${viewMode === "icons" ? " active" : ""}`}
+                onClick={() => setViewMode("icons")}
+              >
+                {t("largeIcons")}
+              </button>
+              <button
+                className={`view-btn${viewMode === "list" ? " active" : ""}`}
+                onClick={() => setViewMode("list")}
+              >
+                {t("list")}
+              </button>
+              <button
+                className={`view-btn${viewMode === "details" ? " active" : ""}`}
+                onClick={() => setViewMode("details")}
+              >
+                {t("details")}
+              </button>
             </div>
             <div className="folder-info">
-              <span>{t("selectedObjects")}: 0</span>
-              <span>{t("totalSize")}: 4.1 MB</span>
+              <span>{t("totalSize")}: 5.3 MB</span>
             </div>
           </div>
 
-          <div className="games-grid">
-            {games.map((game) => (
-              <div
-                key={game.id}
-                className="game-file"
-                onDoubleClick={() => handleGameDoubleClick(game)}
-                title={`${game.title}\n${game.description}\n\n${t(
-                  "doubleClickToLaunch"
-                )}`}
-              >
-                <div className="file-icon">{game.icon}</div>
-                <div className="file-name">{game.title}</div>
-                <div className="file-type">{game.type}</div>
-                <div className="file-size">{game.size}</div>
+          {/* Icons view */}
+          {viewMode === "icons" && (
+            <div className="games-grid">
+              {games.map((game) => (
+                <div
+                  key={game.id}
+                  className="game-file"
+                  onDoubleClick={() => handleGameDoubleClick(game)}
+                  title={`${game.title}\n${game.description}\n\n${t("doubleClickToLaunch")}`}
+                >
+                  <div className="file-icon">{game.icon}</div>
+                  <div className="file-name">{game.title}</div>
+                  <div className="file-type">{game.type}</div>
+                  <div className="file-size">{game.size}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* List view */}
+          {viewMode === "list" && (
+            <div className="games-list-view">
+              {games.map((game) => (
+                <div
+                  key={game.id}
+                  className="game-list-item"
+                  onDoubleClick={() => handleGameDoubleClick(game)}
+                >
+                  <span className="list-icon">{game.icon}</span>
+                  <span className="list-name">{game.title}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Details view */}
+          {viewMode === "details" && (
+            <div className="games-details-view">
+              <div className="details-header-row">
+                <span className="details-col-icon"></span>
+                <span className="details-col-name">{t("file")}</span>
+                <span className="details-col-type">{t("details")}</span>
+                <span className="details-col-size">{t("totalSize")}</span>
               </div>
-            ))}
-          </div>
+              {games.map((game) => (
+                <div
+                  key={game.id}
+                  className="game-details-item"
+                  onDoubleClick={() => handleGameDoubleClick(game)}
+                >
+                  <span className="details-col-icon">{game.icon}</span>
+                  <span className="details-col-name">{game.title}</span>
+                  <span className="details-col-type">{game.type}</span>
+                  <span className="details-col-size">{game.size}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
       <div className="folder-statusbar">
         <div className="statusbar-left">
-          <span>3 {t("objects")}</span>
+          <span>{games.length} {t("objects")}</span>
         </div>
         <div className="statusbar-right">
           <span>{t("selectObjectForDescription")}</span>
