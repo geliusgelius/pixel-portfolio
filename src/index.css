@@ -4,6 +4,10 @@
   font-family: "Press Start 2P", cursive, monospace;
 }
 
+html {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   min-width: 320px;
