@@ -19,8 +19,10 @@
 .window.maximized {
   left: 0 !important;
   top: 0 !important;
-  width: 100vw !important;
-  height: calc(100vh - 60px) !important;
+  right: 0 !important;
+  bottom: 60px !important;
+  width: auto !important;
+  height: auto !important;
   border-width: 2px;
 }
 
@@ -227,7 +229,8 @@
 
 @media (max-width: 480px) {
   .window.maximized {
-    height: calc(100vh - 50px) !important;
+    bottom: 50px !important;
+    height: auto !important;
   }
 
   .window-header {
@@ -254,8 +257,8 @@
     top: 5px !important;
     right: 5px !important;
     bottom: 65px !important;
-    width: calc(100vw - 10px) !important;
-    height: calc(100vh - 70px) !important;
+    width: auto !important;
+    height: auto !important;
     min-width: unset !important;
     min-height: unset !important;
     max-width: none !important;
@@ -266,8 +269,10 @@
   .window.maximized {
     left: 0 !important;
     top: 0 !important;
-    width: 100vw !important;
-    height: calc(100vh - 60px) !important;
+    right: 0 !important;
+    bottom: 60px !important;
+    width: auto !important;
+    height: auto !important;
     border-width: 2px;
   }
 
@@ -293,14 +298,8 @@
       right: max(5px, env(safe-area-inset-right)) !important;
       top: max(5px, env(safe-area-inset-top)) !important;
       bottom: max(65px, env(safe-area-inset-bottom)) !important;
-      width: calc(
-        100vw -
-          max(10px, env(safe-area-inset-left) + env(safe-area-inset-right))
-      ) !important;
-      height: calc(
-        100vh -
-          max(70px, env(safe-area-inset-top) + env(safe-area-inset-bottom))
-      ) !important;
+      width: auto !important;
+      height: auto !important;
     }
 
     .window.maximized {
@@ -308,13 +307,8 @@
       right: env(safe-area-inset-right) !important;
       top: env(safe-area-inset-top) !important;
       bottom: max(60px, env(safe-area-inset-bottom)) !important;
-      width: calc(
-        100vw - env(safe-area-inset-left) - env(safe-area-inset-right)
-      ) !important;
-      height: calc(
-        100vh - env(safe-area-inset-top) -
-          max(60px, env(safe-area-inset-bottom))
-      ) !important;
+      width: auto !important;
+      height: auto !important;
     }
   }
 }
@@ -325,12 +319,13 @@
     top: 2px !important;
     right: 2px !important;
     bottom: 52px !important;
-    width: calc(100vw - 4px) !important;
-    height: calc(100vh - 54px) !important;
+    width: auto !important;
+    height: auto !important;
   }
 
   .window.maximized {
-    height: calc(100vh - 50px) !important;
+    bottom: 50px !important;
+    height: auto !important;
   }
 
   .window-header {
@@ -354,21 +349,13 @@
       right: max(2px, env(safe-area-inset-right)) !important;
       top: max(2px, env(safe-area-inset-top)) !important;
       bottom: max(52px, env(safe-area-inset-bottom)) !important;
-      width: calc(
-        100vw - max(4px, env(safe-area-inset-left) + env(safe-area-inset-right))
-      ) !important;
-      height: calc(
-        100vh -
-          max(54px, env(safe-area-inset-top) + env(safe-area-inset-bottom))
-      ) !important;
+      width: auto !important;
+      height: auto !important;
     }
 
     .window.maximized {
       bottom: max(50px, env(safe-area-inset-bottom)) !important;
-      height: calc(
-        100vh - env(safe-area-inset-top) -
-          max(50px, env(safe-area-inset-bottom))
-      ) !important;
+      height: auto !important;
     }
   }
 }
@@ -393,8 +380,8 @@
 
 /* Предотвращение выхода окон за пределы экрана на всех устройствах */
 .window {
-  max-width: calc(100vw - 20px);
-  max-height: calc(100vh - 80px);
+  max-width: calc(100% - 20px);
+  max-height: calc(100dvh - 80px);
 }
 
 /* Улучшение скролла на мобильных */

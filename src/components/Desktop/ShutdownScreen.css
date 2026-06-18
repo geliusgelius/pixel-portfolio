@@ -1,9 +1,9 @@
 .shutdown-screen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: auto;
+  min-height: 100dvh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;

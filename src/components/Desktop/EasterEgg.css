@@ -1,9 +1,9 @@
 .easter-egg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: auto;
+  min-height: 100dvh;
+  height: auto;
   background: rgba(255, 105, 180, 0.95);
   display: flex;
   justify-content: center;
