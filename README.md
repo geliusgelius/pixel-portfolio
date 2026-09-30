@@ -53,12 +53,19 @@ This project was built to showcase my frontend skills in a fun, memorable way: c
 ## Project Structure
 
 public/ — Static assets (favicon, og-image)
+
 src/ — Source code
+
 src/components/ — Windows, Taskbar, StartMenu, etc.
+
 src/apps/ — About, Skills, Projects, Contacts, PixelEditor, Games
+
 src/styles/ — Global CSS, themes, variables
+
 src/App.jsx — Main app component
+
 index.html — Entry point
+
 vite.config.js — Vite configuration
 
 ---
