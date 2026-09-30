@@ -147,14 +147,21 @@ If you like this project, give it a star! It means a lot.
 
 ## Структура проекта
 
-| public/ — Статика (favicon, og-image)| 
-| src/ — Исходный код| 
-| src/components/ — Windows, Taskbar, StartMenu и т.д.| 
-| src/apps/ — About, Skills, Projects, Contacts, PixelEditor, Games| 
-| src/styles/ — Глобальный CSS, темы, переменные| 
-| src/App.jsx — Главный компонент приложения| 
-| index.html — Точка входа| 
-| vite.config.js — Конфигурация Vite| 
+public/ — Статика (favicon, og-image)
+
+src/ — Исходный код
+
+src/components/ — Windows, Taskbar, StartMenu и т.д.
+
+src/apps/ — About, Skills, Projects, Contacts, PixelEditor, Games
+
+src/styles/ — Глобальный CSS, темы, переменные
+
+src/App.jsx — Главный компонент приложения
+
+index.html — Точка входа
+
+vite.config.js — Конфигурация Vite
 
 ---
 
