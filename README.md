@@ -52,14 +52,14 @@ This project was built to showcase my frontend skills in a fun, memorable way: c
 
 ## Project Structure
 
-public/              # Static assets (favicon, og-image)
-src/
-  components/        # Windows, Taskbar, StartMenu, etc.
-  apps/              # About, Skills, Projects, Contacts, PixelEditor, Games
-  styles/            # Global CSS, themes, variables
-  App.jsx
-index.html
-vite.config.js
+public/ — Static assets (favicon, og-image)
+src/ — Source code
+src/components/ — Windows, Taskbar, StartMenu, etc.
+src/apps/ — About, Skills, Projects, Contacts, PixelEditor, Games
+src/styles/ — Global CSS, themes, variables
+src/App.jsx — Main app component
+index.html — Entry point
+vite.config.js — Vite configuration
 
 ---
 
@@ -140,14 +140,14 @@ If you like this project, give it a star! It means a lot.
 
 ## Структура проекта
 
-public/              # Статика (favicon, og-image)
-src/
-  components/        # Windows, Taskbar, StartMenu и т.д.
-  apps/              # About, Skills, Projects, Contacts, PixelEditor, Games
-  styles/            # Глобальный CSS, темы, переменные
-  App.jsx
-index.html
-vite.config.js
+public/ — Статика (favicon, og-image)
+src/ — Исходный код
+src/components/ — Windows, Taskbar, StartMenu и т.д.
+src/apps/ — About, Skills, Projects, Contacts, PixelEditor, Games
+src/styles/ — Глобальный CSS, темы, переменные
+src/App.jsx — Главный компонент приложения
+index.html — Точка входа
+vite.config.js — Конфигурация Vite
 
 ---
 
