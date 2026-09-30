@@ -51,19 +51,20 @@ This project was built to showcase my frontend skills in a fun, memorable way: c
 ---
 
 ## Project Structure
-├── public/ # Static assets (favicon, og-image)
-├── src/
-│ ├── components/ # Windows, Taskbar, StartMenu, etc.
-│ ├── apps/ # About, Skills, Projects, Contacts, PixelEditor, Games
-│ ├── styles/ # Global CSS, themes, variables
-│ └── App.jsx
-├── index.html
-└── vite.config.js
+
+public/              # Static assets (favicon, og-image)
+src/
+  components/        # Windows, Taskbar, StartMenu, etc.
+  apps/              # About, Skills, Projects, Contacts, PixelEditor, Games
+  styles/            # Global CSS, themes, variables
+  App.jsx
+index.html
+vite.config.js
+
 ---
 
 ## Running Locally
 
-```bash
 # Install dependencies
 npm install
 
@@ -73,9 +74,14 @@ npm run dev
 # Build for production
 npm run build
 
-Author
+---
+
+## Author
 Angelina Smirnova
 Frontend Developer
 
-<p> <a href="https://github.com/geliusgelius"> <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /> </a> <a href="https://t.me/geliusgelius"> <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" /> </a> <a href="mailto:angelina68tmb@gmail.com"> <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" /> </a> </p>
-<p align="center"> <i>If you like this project, give it a star! It means a lot.</i> </p> ```
+GitHub: https://github.com/geliusgelius
+Telegram: https://t.me/geliusgelius
+Email: angelina68tmb@gmail.com
+
+If you like this project, give it a star! It means a lot.
